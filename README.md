@@ -107,3 +107,4 @@ The GPS fallback uses a SIM7600 modem and reads the owner's phone position from 
 
 - FollowMe: F. Rollo, A. Zunino, G. Raiola, F. Amadio, A. Ajoudani, N. Tsagarakis, *FollowMe: a robust person following framework based on visual re-identification and gestures*, arXiv:2311.12992.
 - OSNet (K. Zhou et al.), YOLO11 (Ultralytics), MediaPipe Hands, ROS 2, Slamtec sllidar_ros2, Intel RealSense SDK.
+Authors: Manuel Afonso Fernandes Junior 
