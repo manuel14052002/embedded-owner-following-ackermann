@@ -14,7 +14,7 @@ The person-recognition part started from [FollowMe](https://arxiv.org/abs/2311.1
 - **multi-view re-identification**: instead of one "average" picture of the owner, the robot keeps many separate views (front, back, side, near, far) and compares new detections against the closest ones;
 - **lidar owner keeping**: a 2D lidar tracker that holds on to the owner when the camera loses them, which happens a lot on a car that can't turn on the spot.
 
-This was my student research project (TDK) at the University of Debrecen, Faculty of Engineering, in 2026.
+This was my student research project (TDK) and Thesis work at the University of Debrecen, Faculty of Engineering, in 2026.
 
 ## What's in the repo
 
@@ -96,7 +96,7 @@ The GPS fallback uses a SIM7600 modem and reads the owner's phone position from 
 
 ## Known issues / TODO
 
-- When it loses you it searches by turning in place, which is not great for a car. It should drive towards the last place it saw you.
+- When it loses you, it searches by turning in place, which is not great for a car. It should drive towards the last place it saw you.
 - Recognition gets unreliable when you are further than ~3.5 m away or very close (only legs in view).
 - Enrolment can lock onto the wrong person if someone else is in view at the same time. Do it alone for now.
 - There are no wheel encoders, so speed control is open loop.
@@ -107,4 +107,6 @@ The GPS fallback uses a SIM7600 modem and reads the owner's phone position from 
 
 - FollowMe: F. Rollo, A. Zunino, G. Raiola, F. Amadio, A. Ajoudani, N. Tsagarakis, *FollowMe: a robust person following framework based on visual re-identification and gestures*, arXiv:2311.12992.
 - OSNet (K. Zhou et al.), YOLO11 (Ultralytics), MediaPipe Hands, ROS 2, Slamtec sllidar_ros2, Intel RealSense SDK.
-Authors: Manuel Afonso Fernandes Junior 
+Authors: Manuel Afonso Fernandes Junior and David Mbomko Pani
+  -Linkedin: @manuel-jr
+ 
