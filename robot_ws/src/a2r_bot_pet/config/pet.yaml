@@ -1,0 +1,99 @@
+# =============================================================================
+#  a2r_bot_pet — parameters
+# =============================================================================
+#  The state -> expression mapping lives here, as DATA. Adding a state the
+#  Jetson has started sending is a config edit and a restart, not a code
+#  change. That matters because the Jetson's state machine will change more
+#  often than this package will.
+# =============================================================================
+
+state_bridge_node:
+  ros__parameters:
+    state_topic: "/pet/state"
+    face_topic: "/pet/face"
+
+    # ---- The mapping -----------------------------------------------------
+    # Two parallel lists, because ROS 2 parameters cannot hold a dictionary.
+    # The Nth name maps to the Nth expression. Keep them the same length —
+    # the node checks, and refuses the whole mapping if they disagree rather
+    # than silently pairing them wrong.
+    #
+    # The eight expressions the face actually knows are:
+    #     idle  curious  happy  angry  sad  bored  sleep  talking
+    #
+    # The first six states are the ones the Jetson's FSM publishes. The rest
+    # are the older names from the original PET state machine, kept so that
+    # an unchanged Jetson still drives the face correctly.
+    state_names:
+      - "IDLE"           # waiting, nothing to do
+      - "FIND"           # looking for the owner
+      - "GO_TO_OWNER"    # owner located, driving to them
+      - "FOLLOW_OWNER"   # tracking and following
+      - "COMPLETED"      # task done
+      - "ERROR"          # something went wrong
+      - "NEUTRAL"        # --- legacy names below ---
+      - "SURPRISED"
+      - "EXCITED"
+      - "INNOCENT"
+      - "HAPPY"
+      - "SAD"
+    state_expressions:
+      - "idle"
+      - "curious"        # searching reads well as curious
+      - "happy"
+      - "happy"
+      - "happy"
+      - "sad"
+      - "idle"
+      - "curious"
+      - "happy"
+      - "happy"
+      - "happy"
+      - "sad"
+
+    default_expression: "idle"
+    # Shown when the Jetson sends a state that is not in the list above. The
+    # node warns once per unseen state rather than once per message.
+    unknown_expression: "curious"
+    case_sensitive: false
+    republish_period_s: 1.0
+
+    # ---- Reacting to the robot's own condition ---------------------------
+    # The face is the only output this robot has that a person can read from
+    # across a room, so it is worth using to say something is wrong.
+    # Health beats battery: a firmware failsafe matters more than a low cell.
+    react_to_health: true
+    unhealthy_expression: "sad"
+    low_battery_expression: "bored"
+    low_battery_percent: 15.0
+
+
+face_node:
+  ros__parameters:
+    face_topic: "/pet/face"
+    start_expression: "idle"
+
+    # Matches the 800x480 LCD. Set fullscreen false to develop on a laptop.
+    fullscreen: true
+    screen_width: 800
+    screen_height: 480
+
+    # The original ran at 90. 60 is kinder to a Pi that is also running the
+    # local planner, the EKF and scan fusion, and the animation is driven by
+    # real elapsed time so it looks identical — just with fewer frames.
+    fps: 60
+
+    show_mouth: true
+
+    # Off under ROS. When the Jetson is choosing the expression, an auto
+    # sequence competing for the same face is a bug that looks like a feature.
+    # Set true to demo the face with no Jetson attached.
+    auto_sequence: false
+
+    # For a bare framebuffer LCD with no desktop session. Leave both empty
+    # under X11 or Wayland. On a Pi driving an SPI/HDMI panel directly:
+    #     sdl_videodriver: "fbcon"      (or "kmsdrm" on newer kernels)
+    #     sdl_fbdev: "/dev/fb0"
+    # These must be set before pygame initialises, which the node handles.
+    sdl_videodriver: ""
+    sdl_fbdev: ""

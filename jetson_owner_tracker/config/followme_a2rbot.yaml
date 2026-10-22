@@ -1,0 +1,17 @@
+# FollowMe on a Jetson Orin Nano with an Ackermann base (A2RBOT-style).
+# Differences from config/followme.yaml are only the keys listed here.
+segmentation:
+  model_path: yolo11n-seg.engine        # yolo export model=yolo11n-seg.pt format=engine half=True
+  image_size: 480
+reid:
+  backend: onnx                         # scripts/followme_export_mmt_onnx.py (+ TensorRT EP)
+  model_path: models/mmt_ibn50a.onnx
+localization:
+  expiration_time_s: 3.0
+navigation:
+  max_velocity_mps: 0.3                 # keep equal to Nav2's max_vel_x so Eq. 3 holds
+  search_angular_speed: 0.4
+  search_linear_speed: 0.15             # Ackermann cannot turn in place: search on an arc
+  goal_update_distance_m: 0.3
+state_machine:
+  initial_state: WAIT

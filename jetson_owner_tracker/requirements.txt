@@ -1,0 +1,24 @@
+# Core (required)
+numpy>=1.24
+opencv-python>=4.8        # use opencv-contrib-python or the JetPack build on Jetson
+PyYAML>=6.0
+pyrealsense2>=2.54      # Intel RealSense cameras (optional; on Jetson build librealsense from source)
+
+# Deep models (required for real video; the synthetic tests run without them)
+torch>=2.1                # install the CUDA / JetPack wheel matching your platform
+torchvision>=0.16
+ultralytics>=8.3          # YOLO person detector (YOLOv8/YOLO11, .pt/.onnx/.engine)
+# Torchreid (OSNet) is not on PyPI in a maintained form; install from source:
+torchreid @ git+https://github.com/KaiyangZhou/deep-person-reid.git
+gdown                     # torchreid dependency for weight downloads
+tensorboard               # torchreid import-time dependency
+
+# Testing
+pytest>=7.4
+
+# FollowMe (followme/ package)
+scikit-learn>=1.3         # gesture SVM
+joblib
+mediapipe>=0.10           # hand landmarks (>=0.10.30 needs hand_landmarker.task, see README_FOLLOWME.md)
+onnxruntime>=1.16         # onnx Re-ID backend (use onnxruntime-gpu / Jetson build for TensorRT)
+matplotlib                # Fig. 2 plot in scripts/followme_eval_reid.py

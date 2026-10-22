@@ -1,0 +1,197 @@
+<?xml version="1.0"?>
+<!--
+  sensors.xacro — every perception frame on the robot
+  ════════════════════════════════════════════════════════════════════════════
+  THESE FRAMES ARE THE EXTRINSIC CALIBRATION. a2r_bot_sensor_fusion does not
+  hardcode a single sensor offset; it looks every one of them up through TF
+  from this file. Move a sensor on the real robot, edit the number in
+  common.xacro, rebuild — the EKF and the costmap both follow automatically.
+
+  Frames published here
+  ─────────────────────
+    lidar_link              RPLIDAR A2M12 scan origin (rear of the upper deck)
+    imu_link                GY-91 (MPU-9250 + BMP280) sensor origin
+    camera_link             RealSense D435 body (green pillar, nose)
+    camera_optical_frame    REP-103 optical frame (Z fwd, X right, Y down)
+    ultrasonic_front_link   front twin-barrel ultrasonic, transducer face
+    ultrasonic_rear_link    frame only (no rear module on the current build)
+
+  Ultrasonic convention: +X of each link points ALONG THE BEAM. The rear
+  sensor is yawed π, so a positive range in ultrasonic_rear_link is genuinely
+  behind the car. The fusion node relies on this — do not "fix" it by
+  negating ranges somewhere downstream.
+  ════════════════════════════════════════════════════════════════════════════
+-->
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <xacro:macro name="a2r_sensors" params="parent_deck_top parent_deck_base styling:=true">
+
+    <!-- ══════════════════════════════════════════════════════════════════
+         LIDAR — RPLIDAR A2M12, REAR of the upper deck on 4 brass standoffs
+         ══════════════════════════════════════════════════════════════════
+         lidar_link is placed ON THE SCAN PLANE (middle of the spinning
+         head), at lidar_x in base_link. Its visual is the spinning head;
+         the fixed base and the standoffs hang below it.                    -->
+    <link name="lidar_link">
+      <visual>
+        <geometry><cylinder radius="${lidar_radius}" length="${lidar_head_h}"/></geometry>
+        <material name="lidar_black"/>
+      </visual>
+      <collision>
+        <origin xyz="0 0 ${lidar_head_h/2 - lidar_height/2}"/>
+        <geometry><cylinder radius="${lidar_radius}" length="${lidar_height}"/></geometry>
+      </collision>
+      <xacro:cylinder_inertial mass="0.19" radius="${lidar_radius}" length="${lidar_height}">
+        <origin xyz="0 0 0"/>
+      </xacro:cylinder_inertial>
+    </link>
+    <joint name="lidar_joint" type="fixed">
+      <parent link="${parent_deck_top}"/>
+      <child  link="lidar_link"/>
+      <origin xyz="${lidar_x} ${lidar_y} ${deck_thk/2 + lidar_standoff_h + lidar_optical_z}"
+              rpy="0 0 ${lidar_yaw}"/>
+    </joint>
+
+    <xacro:if value="${styling}">
+      <!-- Fixed base (slightly wider), purple LED ring, cap -->
+      <xacro:deco_cyl name="lidar_base" parent="lidar_link"
+                      z="${-lidar_optical_z + lidar_base_h/2}"
+                      radius="${lidar_radius*1.03}" length="${lidar_base_h}" material="lidar_black"/>
+      <xacro:deco_cyl name="lidar_ring" parent="lidar_link" z="${lidar_head_h*0.20}"
+                      radius="${lidar_radius*1.005}" length="0.002" material="lidar_glow"/>
+      <xacro:deco_cyl name="lidar_cap" parent="lidar_link" z="${lidar_head_h/2 + 0.001}"
+                      radius="${lidar_radius*0.90}" length="0.002" material="body_highlight"/>
+      <!-- 4 brass standoffs from the upper deck up to the lidar base -->
+      <xacro:property name="lso_z" value="${-lidar_optical_z - lidar_standoff_h/2}"/>
+      <xacro:deco_cyl name="lidar_standoff_fl" parent="lidar_link" x="0.022"  y="0.022"  z="${lso_z}"
+                      radius="0.0025" length="${lidar_standoff_h}" material="brass"/>
+      <xacro:deco_cyl name="lidar_standoff_fr" parent="lidar_link" x="0.022"  y="-0.022" z="${lso_z}"
+                      radius="0.0025" length="${lidar_standoff_h}" material="brass"/>
+      <xacro:deco_cyl name="lidar_standoff_rl" parent="lidar_link" x="-0.022" y="0.022"  z="${lso_z}"
+                      radius="0.0025" length="${lidar_standoff_h}" material="brass"/>
+      <xacro:deco_cyl name="lidar_standoff_rr" parent="lidar_link" x="-0.022" y="-0.022" z="${lso_z}"
+                      radius="0.0025" length="${lidar_standoff_h}" material="brass"/>
+    </xacro:if>
+
+    <!-- ══════════════════════════════════════════════════════════════════
+         IMU — GY-91 breakout (MPU-9250 6/9-axis + BMP280 baro), base deck
+         ══════════════════════════════════════════════════════════════════
+         Mounted flat, chip X forward. If you rotate the board on the deck,
+         express that here as an rpy — NEVER by swapping axes in code.      -->
+    <link name="imu_link">
+      <visual>
+        <geometry><box size="0.025 0.015 0.003"/></geometry>
+        <material name="pcb_blue"/>
+      </visual>
+      <xacro:box_inertial mass="0.005" x="0.025" y="0.015" z="0.003">
+        <origin xyz="0 0 0"/>
+      </xacro:box_inertial>
+    </link>
+    <joint name="imu_joint" type="fixed">
+      <parent link="${parent_deck_base}"/>
+      <child  link="imu_link"/>
+      <origin xyz="${imu_x} ${imu_y} ${deck_thk/2 + 0.0015}" rpy="0 0 0"/>
+    </joint>
+
+    <!-- ══════════════════════════════════════════════════════════════════
+         CAMERA — RealSense D435 on the green printed pillar, lower-deck nose
+         ══════════════════════════════════════════════════════════════════ -->
+    <xacro:property name="cam_z" value="${deck_thk/2 + 0.006 + cam_pillar_h + cam_clamp_h + 0.0125}"/>
+    <link name="camera_link">
+      <visual>
+        <geometry><box size="0.025 0.090 0.025"/></geometry>
+        <material name="rs_silver"/>
+      </visual>
+      <collision>
+        <geometry><box size="0.025 0.090 0.025"/></geometry>
+      </collision>
+      <xacro:box_inertial mass="0.072" x="0.025" y="0.090" z="0.025">
+        <origin xyz="0 0 0"/>
+      </xacro:box_inertial>
+    </link>
+    <joint name="camera_joint" type="fixed">
+      <parent link="${parent_deck_base}"/>
+      <child  link="camera_link"/>
+      <origin xyz="${cam_x} ${cam_y} ${cam_z}" rpy="0 0 0"/>
+    </joint>
+
+    <!-- REP-103 optical frame: Z forward, X right, Y down. The Jetson's
+         tracker publishes owner bearings in THIS frame.                    -->
+    <link name="camera_optical_frame"/>
+    <joint name="camera_optical_joint" type="fixed">
+      <parent link="camera_link"/>
+      <child  link="camera_optical_frame"/>
+      <origin xyz="0.013 0 0" rpy="${-pi/2} 0 ${-pi/2}"/>
+    </joint>
+
+    <xacro:if value="${styling}">
+      <!-- Green printed pillar: square foot, round column, silver clamp -->
+      <xacro:deco_box name="cam_pillar_foot" parent="${parent_deck_base}" x="${cam_x}" y="${cam_y}"
+                      z="${deck_thk/2 + 0.003}" sx="0.048" sy="0.048" sz="0.006" material="print_green"/>
+      <xacro:deco_cyl name="cam_pillar" parent="${parent_deck_base}" x="${cam_x}" y="${cam_y}"
+                      z="${deck_thk/2 + 0.006 + cam_pillar_h/2}"
+                      radius="${cam_pillar_r}" length="${cam_pillar_h}" material="print_green"/>
+      <xacro:deco_cyl name="cam_clamp" parent="${parent_deck_base}" x="${cam_x}" y="${cam_y}"
+                      z="${deck_thk/2 + 0.006 + cam_pillar_h + cam_clamp_h/2}"
+                      radius="0.011" length="${cam_clamp_h}" material="rs_silver"/>
+      <xacro:deco_box name="cam_face" parent="camera_link" x="0.0127"
+                      sx="0.001" sy="0.084" sz="0.020" material="body_shadow"/>
+      <xacro:deco_cyl name="cam_lens_l" parent="camera_link" x="0.0135" y="0.032"
+                      pitch="1.5708" radius="0.0055" length="0.003" material="body_shadow"/>
+      <xacro:deco_cyl name="cam_lens_c" parent="camera_link" x="0.0135" y="0.012"
+                      pitch="1.5708" radius="0.0065" length="0.003" material="pcb_blue"/>
+      <xacro:deco_cyl name="cam_lens_r" parent="camera_link" x="0.0135" y="-0.023"
+                      pitch="1.5708" radius="0.0055" length="0.003" material="body_shadow"/>
+    </xacro:if>
+
+    <!-- ══════════════════════════════════════════════════════════════════
+         ULTRASONICS — 2 × DYP-A21 IP67, 5 m range
+         ══════════════════════════════════════════════════════════════════
+         FRONT: +X of the link is straight ahead.
+         REAR : yawed π, so +X of the link points backwards along −X of the
+                robot. Range values are therefore always POSITIVE distances
+                along the beam, for both sensors, with no sign juggling.    -->
+    <link name="ultrasonic_front_link">
+      <visual>
+        <origin xyz="-0.013 0 0"/>
+        <geometry><box size="0.003 0.045 0.020"/></geometry>
+        <material name="pcb_blue"/>
+      </visual>
+      <xacro:box_inertial mass="0.010" x="0.003" y="0.045" z="0.020">
+        <origin xyz="-0.013 0 0"/>
+      </xacro:box_inertial>
+    </link>
+    <joint name="ultrasonic_front_joint" type="fixed">
+      <parent link="base_link"/>
+      <child  link="ultrasonic_front_link"/>
+      <origin xyz="${us_front_x} 0 ${us_z}" rpy="0 0 0"/>
+    </joint>
+
+    <!-- Rear frame only: no module fitted on the current build. -->
+    <link name="ultrasonic_rear_link">
+      <xacro:null_inertial/>
+    </link>
+    <joint name="ultrasonic_rear_joint" type="fixed">
+      <parent link="base_link"/>
+      <child  link="ultrasonic_rear_link"/>
+      <origin xyz="${us_rear_x} 0 ${us_z}" rpy="0 0 ${pi}"/>
+    </joint>
+
+    <xacro:if value="${styling}">
+      <!-- Twin transducer barrels, faces on the link origin plane -->
+      <xacro:deco_cyl name="us_front_barrel_l" parent="ultrasonic_front_link"
+                      x="${-us_length/2}" y="0.013" pitch="1.5708"
+                      radius="${us_radius}" length="${us_length}" material="rim_silver"/>
+      <xacro:deco_cyl name="us_front_barrel_r" parent="ultrasonic_front_link"
+                      x="${-us_length/2}" y="-0.013" pitch="1.5708"
+                      radius="${us_radius}" length="${us_length}" material="rim_silver"/>
+      <xacro:deco_cyl name="us_front_face_l" parent="ultrasonic_front_link"
+                      x="0.0005" y="0.013" pitch="1.5708"
+                      radius="${us_radius*0.8}" length="0.001" material="body_shadow"/>
+      <xacro:deco_cyl name="us_front_face_r" parent="ultrasonic_front_link"
+                      x="0.0005" y="-0.013" pitch="1.5708"
+                      radius="${us_radius*0.8}" length="0.001" material="body_shadow"/>
+    </xacro:if>
+
+  </xacro:macro>
+</robot>

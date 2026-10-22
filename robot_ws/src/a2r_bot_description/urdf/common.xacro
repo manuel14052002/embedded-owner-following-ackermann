@@ -1,0 +1,228 @@
+<?xml version="1.0"?>
+<!--
+  common.xacro — a2r_bot_description
+  ════════════════════════════════════════════════════════════════════════════
+  Single source of truth for every dimension, colour and inertial helper used
+  by the rest of the model. Change a number HERE and the whole robot, the
+  planner footprint and the RViz view follow.
+
+  Coordinate convention (REP-103):
+      +X forward   +Y left   +Z up      base_link at chassis centre
+      base_footprint sits on the ground directly under base_link.
+  ════════════════════════════════════════════════════════════════════════════
+-->
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <!-- ══════════════════════════════════════════════════════════════════════
+       1. VEHICLE GEOMETRY  (1:10 monster-truck RC chassis, Ackermann)
+       ══════════════════════════════════════════════════════════════════════ -->
+  <!-- MEASURED Sep 2026 (see docs/KINEMATICS.md). 400 mm tyre-to-tyre minus one
+       120 mm tyre diameter puts the axles 280 mm apart. -->
+  <xacro:property name="wheelbase"        value="0.280"/>   <!-- front↔rear axle -->
+  <xacro:property name="track"            value="0.250"/>   <!-- left↔right wheel -->
+  <xacro:property name="wheel_radius"     value="0.060"/>   <!-- Ø 120 mm measured -->
+  <xacro:property name="wheel_width"      value="0.065"/>
+  <xacro:property name="rim_radius"       value="0.033"/>
+  <xacro:property name="chassis_len"      value="0.400"/>
+  <xacro:property name="chassis_wid"      value="0.310"/>
+  <xacro:property name="chassis_hgt"      value="0.060"/>
+  <xacro:property name="chassis_z"        value="0.090"/>   <!-- base_link above ground (axle 0.060 + 0.030) -->
+  <xacro:property name="max_steer_rad"    value="0.5236"/>  <!-- ±30 °          -->
+
+  <!-- Derived -->
+  <xacro:property name="half_wb"          value="${wheelbase/2}"/>
+  <xacro:property name="half_track"       value="${track/2}"/>
+  <xacro:property name="wheel_z"          value="${wheel_radius - chassis_z}"/>
+
+  <!-- ══════════════════════════════════════════════════════════════════════
+       2. DECK GEOMETRY  (measured off the 2026-09-25 photos of the real car)
+       ══════════════════════════════════════════════════════════════════════
+       All x values are relative to base_link (= midpoint between the axles),
+       +X forward. Heights marked _gz are above the GROUND.
+
+         LOWER deck  aluminium plate, octagonal nose, bolted to the RC tub.
+                     Carries the PCBs, rear battery pack and the green
+                     RealSense pillar at the front.
+         UPPER deck  aluminium plate on brass standoffs, set toward the REAR.
+                     Carries the green compute cases, the touchscreen, and the
+                     RPLIDAR A2M12 on its own brass standoffs at the rear edge. -->
+  <xacro:property name="deck_thk"          value="0.003"/>
+  <xacro:property name="lower_deck_top_gz" value="0.165"/>
+  <xacro:property name="lower_deck_rear_x" value="-0.185"/>
+  <xacro:property name="lower_deck_front_x" value="0.140"/>  <!-- nose starts here -->
+  <xacro:property name="lower_deck_nose_x" value="0.200"/>   <!-- nose tip         -->
+  <xacro:property name="lower_deck_wid"    value="0.170"/>
+  <xacro:property name="deck_gap"          value="0.068"/>   <!-- lower→upper, brass -->
+  <xacro:property name="upper_deck_rear_x" value="-0.205"/>
+  <xacro:property name="upper_deck_front_x" value="0.110"/>
+  <xacro:property name="upper_deck_wid"    value="0.165"/>
+  <xacro:property name="standoff_r"        value="0.0028"/>
+
+  <!-- Derived (do not edit) -->
+  <xacro:property name="base_deck_z"  value="${lower_deck_top_gz - deck_thk/2 - chassis_z}"/>
+  <xacro:property name="top_deck_z"   value="${deck_gap}"/>
+  <xacro:property name="lower_len"    value="${lower_deck_front_x - lower_deck_rear_x}"/>
+  <xacro:property name="lower_cx"     value="${(lower_deck_front_x + lower_deck_rear_x)/2}"/>
+  <xacro:property name="upper_len"    value="${upper_deck_front_x - upper_deck_rear_x}"/>
+  <xacro:property name="upper_cx"     value="${(upper_deck_front_x + upper_deck_rear_x)/2}"/>
+  <!-- kept for anything that still reads the old names -->
+  <xacro:property name="deck_len"     value="${upper_len}"/>
+  <xacro:property name="deck_wid"     value="${upper_deck_wid}"/>
+  <xacro:property name="standoff_h"   value="${deck_gap - deck_thk}"/>
+
+  <!-- ══════════════════════════════════════════════════════════════════════
+       3. SENSOR MOUNT POINTS  (must match the planner / SLAM yaml!)
+       ══════════════════════════════════════════════════════════════════════
+       lidar_x is THE number that decides where every scan point lands.
+       It must equal  a2r_bot_follow/config/params.yaml  lidar_offset_x
+       and           a2r_bot_slam/config/slam.yaml       lidar_offset_x_m.
+
+       The RPLIDAR A2M12 sits at the REAR of the upper deck, spin axis roughly
+       above the rear axle. The old value (+0.080, "forward of centre") put
+       the scan origin ~22 cm ahead of the real sensor, which slid every
+       point 22 cm forward: things behind looked like they were touching the
+       tail, things in front looked further away than they were.
+
+       To re-check with a tape: measure from the front-axle centre to the
+       lidar spin axis (D). Then  lidar_x = wheelbase/2 - D.                  -->
+  <xacro:property name="lidar_x"          value="-0.140"/>  <!-- base_link frame -->
+  <xacro:property name="lidar_y"          value="0.001"/>   <!-- sheet: 55 mm right vs 53 mm left gap -->
+  <xacro:property name="lidar_yaw"        value="0.000"/>
+  <!-- RPLIDAR A2M12 (Slamtec, driven by sllidar_ros2): Ø76 mm, ~41 mm tall,
+       fixed base + spinning head with the light ring -->
+  <xacro:property name="lidar_radius"     value="0.038"/>
+  <xacro:property name="lidar_base_h"     value="0.017"/>
+  <xacro:property name="lidar_head_h"     value="0.024"/>
+  <xacro:property name="lidar_height"     value="${lidar_base_h + lidar_head_h}"/>
+  <xacro:property name="lidar_standoff_h" value="0.040"/>   <!-- 4 × brass -->
+  <!-- lidar_link sits on the scan plane = middle of the spinning head -->
+  <xacro:property name="lidar_optical_z"  value="${lidar_base_h + lidar_head_h/2}"/>
+
+  <xacro:property name="imu_x"            value="0.000"/>   <!-- GY-91, lower deck -->
+  <xacro:property name="imu_y"            value="0.000"/>
+
+  <!-- RealSense D435 on the green printed pillar at the nose of the lower deck -->
+  <xacro:property name="cam_x"            value="0.160"/>
+  <xacro:property name="cam_y"            value="0.000"/>
+  <xacro:property name="cam_pillar_h"     value="0.078"/>
+  <xacro:property name="cam_pillar_r"     value="0.0175"/>
+  <xacro:property name="cam_clamp_h"      value="0.012"/>
+
+  <!-- Front ultrasonic (twin-barrel module) under the nose of the lower deck.
+       The rear frame is kept for the fusion node / Gazebo, no module is
+       fitted there on the current build so it is not drawn.               -->
+  <xacro:property name="us_front_x"       value="0.180"/>
+  <xacro:property name="us_rear_x"        value="-0.205"/>
+  <xacro:property name="us_z"             value="0.050"/>   <!-- rel. base_link   -->
+  <xacro:property name="us_radius"        value="0.008"/>
+  <xacro:property name="us_length"        value="0.012"/>
+
+  <!-- ══════════════════════════════════════════════════════════════════════
+       4. MATERIAL PALETTE — "midnight silver" show car
+       ══════════════════════════════════════════════════════════════════════
+       RViz shades URDF <material> as flat RGBA (no specular/metalness), so
+       depth comes from VALUE CONTRAST between neighbouring panels rather
+       than from a shader. The palette below is picked for that: near-black
+       body, one step lighter for the shoulder line, bright chrome accents,
+       one saturated hero colour (the light bars).                           -->
+  <material name="body_black">   <color rgba="0.086 0.094 0.110 1.0"/></material>
+  <material name="body_shadow">  <color rgba="0.043 0.047 0.059 1.0"/></material>
+  <material name="body_highlight"><color rgba="0.161 0.176 0.204 1.0"/></material>
+  <material name="glass">        <color rgba="0.118 0.153 0.196 0.72"/></material>
+  <material name="chrome">       <color rgba="0.780 0.800 0.827 1.0"/></material>
+  <material name="gunmetal">     <color rgba="0.298 0.322 0.353 1.0"/></material>
+  <material name="tyre">         <color rgba="0.055 0.055 0.063 1.0"/></material>
+  <material name="rim_silver">   <color rgba="0.663 0.686 0.714 1.0"/></material>
+  <material name="caliper_red">  <color rgba="0.769 0.114 0.137 1.0"/></material>
+  <material name="light_white">  <color rgba="0.925 0.961 1.000 1.0"/></material>
+  <material name="light_red">    <color rgba="0.937 0.137 0.169 1.0"/></material>
+  <material name="light_amber">  <color rgba="1.000 0.596 0.102 1.0"/></material>
+  <material name="pcb_green">    <color rgba="0.078 0.396 0.267 1.0"/></material>
+  <material name="pcb_blue">     <color rgba="0.106 0.278 0.561 1.0"/></material>
+  <material name="pcb_black">    <color rgba="0.110 0.118 0.133 1.0"/></material>
+  <material name="lipo_orange">  <color rgba="0.878 0.400 0.086 1.0"/></material>
+  <material name="screen_cyan">  <color rgba="0.118 0.549 1.000 1.0"/></material>
+  <material name="sensor_grey">  <color rgba="0.451 0.471 0.502 1.0"/></material>
+  <material name="lidar_blue">   <color rgba="0.161 0.353 0.706 1.0"/></material>
+  <material name="aluminium">    <color rgba="0.620 0.640 0.660 1.0"/></material>
+  <material name="brass">        <color rgba="0.800 0.650 0.300 1.0"/></material>
+  <material name="print_green">  <color rgba="0.090 0.420 0.270 1.0"/></material>
+  <material name="rs_silver">    <color rgba="0.820 0.820 0.830 1.0"/></material>
+  <material name="lidar_black">  <color rgba="0.070 0.070 0.080 1.0"/></material>
+  <material name="lidar_glow">   <color rgba="0.520 0.360 0.950 1.0"/></material>
+  <material name="pcb_brown">    <color rgba="0.600 0.380 0.200 1.0"/></material>
+  <material name="terminal_green"><color rgba="0.200 0.650 0.300 1.0"/></material>
+  <material name="battery_grey"> <color rgba="0.330 0.340 0.360 1.0"/></material>
+  <material name="xt60_yellow">  <color rgba="0.950 0.780 0.100 1.0"/></material>
+  <material name="copper">       <color rgba="0.722 0.451 0.200 1.0"/></material>
+
+  <!-- ══════════════════════════════════════════════════════════════════════
+       5. INERTIAL HELPERS
+       ══════════════════════════════════════════════════════════════════════
+       Every link needs mass + inertia for Gazebo / ros2_control. Decorative
+       links get `null_inertial` (1 g, negligible tensor) so they never
+       perturb the dynamics; structural links get a real box or cylinder.    -->
+  <xacro:macro name="null_inertial">
+    <inertial>
+      <mass value="0.001"/>
+      <inertia ixx="1e-7" ixy="0" ixz="0" iyy="1e-7" iyz="0" izz="1e-7"/>
+    </inertial>
+  </xacro:macro>
+
+  <xacro:macro name="box_inertial" params="mass x y z *origin">
+    <inertial>
+      <xacro:insert_block name="origin"/>
+      <mass value="${mass}"/>
+      <inertia
+        ixx="${mass*(y*y + z*z)/12.0}" ixy="0.0" ixz="0.0"
+        iyy="${mass*(x*x + z*z)/12.0}" iyz="0.0"
+        izz="${mass*(x*x + y*y)/12.0}"/>
+    </inertial>
+  </xacro:macro>
+
+  <xacro:macro name="cylinder_inertial" params="mass radius length *origin">
+    <inertial>
+      <xacro:insert_block name="origin"/>
+      <mass value="${mass}"/>
+      <inertia
+        ixx="${mass*(3.0*radius*radius + length*length)/12.0}" ixy="0.0" ixz="0.0"
+        iyy="${mass*(3.0*radius*radius + length*length)/12.0}" iyz="0.0"
+        izz="${mass*radius*radius/2.0}"/>
+    </inertial>
+  </xacro:macro>
+
+  <!-- Decorative box: visual only, no collision, negligible inertia.
+       Used for the ~40 styling panels so they cost the planner nothing.     -->
+  <xacro:macro name="deco_box" params="name parent x:=0 y:=0 z:=0 roll:=0 pitch:=0 yaw:=0
+                                       sx sy sz material">
+    <link name="${name}">
+      <visual>
+        <geometry><box size="${sx} ${sy} ${sz}"/></geometry>
+        <material name="${material}"/>
+      </visual>
+      <xacro:null_inertial/>
+    </link>
+    <joint name="${name}_joint" type="fixed">
+      <parent link="${parent}"/>
+      <child  link="${name}"/>
+      <origin xyz="${x} ${y} ${z}" rpy="${roll} ${pitch} ${yaw}"/>
+    </joint>
+  </xacro:macro>
+
+  <xacro:macro name="deco_cyl" params="name parent x:=0 y:=0 z:=0 roll:=0 pitch:=0 yaw:=0
+                                       radius length material">
+    <link name="${name}">
+      <visual>
+        <geometry><cylinder radius="${radius}" length="${length}"/></geometry>
+        <material name="${material}"/>
+      </visual>
+      <xacro:null_inertial/>
+    </link>
+    <joint name="${name}_joint" type="fixed">
+      <parent link="${parent}"/>
+      <child  link="${name}"/>
+      <origin xyz="${x} ${y} ${z}" rpy="${roll} ${pitch} ${yaw}"/>
+    </joint>
+  </xacro:macro>
+
+</robot>

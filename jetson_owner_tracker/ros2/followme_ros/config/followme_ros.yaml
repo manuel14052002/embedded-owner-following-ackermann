@@ -1,0 +1,18 @@
+followme:
+  ros__parameters:
+    color_topic: /camera/camera/color/image_raw
+    depth_topic: /camera/camera/aligned_depth_to_color/image_raw
+    camera_info_topic: /camera/camera/color/camera_info
+    global_frame: map
+    base_frame: base_link
+    nav2_action: navigate_to_pose
+    cmd_vel_topic: /cmd_vel
+    enable_navigation: false      # true = the robot moves
+    control_mode: cmd_vel         # cmd_vel (direct Twist -> serial bridge) | nav2
+    enable_voice: true
+    voice_command_topic: /voice_command
+    voice_state_cmd_topic: /robot_state_cmd
+    owner_distance_topic: /owner_distance
+    robot_state_topic: /robot_state
+    publish_debug_image: true
+    sync_slop_s: 0.05

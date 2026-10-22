@@ -1,0 +1,678 @@
+[INFO] [launch]: All log files can be found below /dev/shm/ros_log/2026-10-22-14-31-41-229152-a2r-desktop-3419
+[INFO] [launch]: Default logging verbosity is set to INFO
+[INFO] [imu_filter_node-4]: process started with pid [3427]
+[INFO] [ekf_state_node-5]: process started with pid [3434]
+[INFO] [smart_planner_node-6]: process started with pid [3462]
+[INFO] [robot_state_publisher-1]: process started with pid [3421]
+[INFO] [wheel_state_node-2]: process started with pid [3423]
+[INFO] [sllidar_node-3]: process started with pid [3425]
+[INFO] [owner_fusion_node-7]: process started with pid [3465]
+[INFO] [follow_manager_node-8]: process started with pid [3468]
+[INFO] [cmd_mux_node-9]: process started with pid [3471]
+[INFO] [collision_monitor_node-10]: process started with pid [3473]
+[INFO] [scan_leg_fill_node-11]: process started with pid [3475]
+[INFO] [gps_owner_node-12]: process started with pid [3477]
+[robot_state_publisher-1] [INFO] [1792672304.334767659] [robot_state_publisher]: got segment arduino_nano
+[robot_state_publisher-1] [INFO] [1792672304.342979098] [robot_state_publisher]: got segment arm_fl
+[robot_state_publisher-1] [INFO] [1792672304.345415191] [robot_state_publisher]: got segment arm_fr
+[robot_state_publisher-1] [INFO] [1792672304.348022394] [robot_state_publisher]: got segment arm_rl
+[robot_state_publisher-1] [INFO] [1792672304.350596393] [robot_state_publisher]: got segment arm_rr
+[robot_state_publisher-1] [INFO] [1792672304.350732040] [robot_state_publisher]: got segment base_deck
+[robot_state_publisher-1] [INFO] [1792672304.350769022] [robot_state_publisher]: got segment base_footprint
+[robot_state_publisher-1] [INFO] [1792672304.350797040] [robot_state_publisher]: got segment base_link
+[robot_state_publisher-1] [INFO] [1792672304.350822651] [robot_state_publisher]: got segment battery_label
+[robot_state_publisher-1] [INFO] [1792672304.350849780] [robot_state_publisher]: got segment battery_pack
+[robot_state_publisher-1] [INFO] [1792672304.350877706] [robot_state_publisher]: got segment cam_clamp
+[robot_state_publisher-1] [INFO] [1792672304.350904650] [robot_state_publisher]: got segment cam_face
+[robot_state_publisher-1] [INFO] [1792672304.350930483] [robot_state_publisher]: got segment cam_lens_c
+[robot_state_publisher-1] [INFO] [1792672304.350956372] [robot_state_publisher]: got segment cam_lens_l
+[robot_state_publisher-1] [INFO] [1792672304.350981242] [robot_state_publisher]: got segment cam_lens_r
+[robot_state_publisher-1] [INFO] [1792672304.351006946] [robot_state_publisher]: got segment cam_pillar
+[robot_state_publisher-1] [INFO] [1792672304.351032112] [robot_state_publisher]: got segment cam_pillar_foot
+[robot_state_publisher-1] [INFO] [1792672304.351057853] [robot_state_publisher]: got segment camera_link
+[robot_state_publisher-1] [INFO] [1792672304.351082408] [robot_state_publisher]: got segment camera_optical_frame
+[robot_state_publisher-1] [INFO] [1792672304.351108334] [robot_state_publisher]: got segment deck_post_f
+[robot_state_publisher-1] [INFO] [1792672304.351133963] [robot_state_publisher]: got segment deck_post_r
+[robot_state_publisher-1] [INFO] [1792672304.351159148] [robot_state_publisher]: got segment display_link
+[robot_state_publisher-1] [INFO] [1792672304.351184204] [robot_state_publisher]: got segment drive_shaft
+[robot_state_publisher-1] [INFO] [1792672304.351209944] [robot_state_publisher]: got segment face_eye_l
+[robot_state_publisher-1] [INFO] [1792672304.351236555] [robot_state_publisher]: got segment face_eye_r
+[robot_state_publisher-1] [INFO] [1792672304.351263425] [robot_state_publisher]: got segment face_mouth
+[robot_state_publisher-1] [INFO] [1792672304.351289314] [robot_state_publisher]: got segment face_panel
+[robot_state_publisher-1] [INFO] [1792672304.351314221] [robot_state_publisher]: got segment face_screen_link
+[robot_state_publisher-1] [INFO] [1792672304.351339943] [robot_state_publisher]: got segment front_bulkhead
+[robot_state_publisher-1] [INFO] [1792672304.351365480] [robot_state_publisher]: got segment front_bumper
+[robot_state_publisher-1] [INFO] [1792672304.351390721] [robot_state_publisher]: got segment front_bumper_arm
+[robot_state_publisher-1] [INFO] [1792672304.351416850] [robot_state_publisher]: got segment front_left_hub
+[robot_state_publisher-1] [INFO] [1792672304.351442498] [robot_state_publisher]: got segment front_left_rim
+[robot_state_publisher-1] [INFO] [1792672304.351468220] [robot_state_publisher]: got segment front_left_rim_mark_a
+[robot_state_publisher-1] [INFO] [1792672304.351495553] [robot_state_publisher]: got segment front_left_rim_mark_b
+[robot_state_publisher-1] [INFO] [1792672304.351520886] [robot_state_publisher]: got segment front_left_steer_link
+[robot_state_publisher-1] [INFO] [1792672304.351547812] [robot_state_publisher]: got segment front_left_tread
+[robot_state_publisher-1] [INFO] [1792672304.351573645] [robot_state_publisher]: got segment front_left_wheel
+[robot_state_publisher-1] [INFO] [1792672304.351599182] [robot_state_publisher]: got segment front_right_hub
+[robot_state_publisher-1] [INFO] [1792672304.351624608] [robot_state_publisher]: got segment front_right_rim
+[robot_state_publisher-1] [INFO] [1792672304.351650626] [robot_state_publisher]: got segment front_right_rim_mark_a
+[robot_state_publisher-1] [INFO] [1792672304.351676607] [robot_state_publisher]: got segment front_right_rim_mark_b
+[robot_state_publisher-1] [INFO] [1792672304.351702366] [robot_state_publisher]: got segment front_right_steer_link
+[robot_state_publisher-1] [INFO] [1792672304.351729700] [robot_state_publisher]: got segment front_right_tread
+[robot_state_publisher-1] [INFO] [1792672304.351754866] [robot_state_publisher]: got segment front_right_wheel
+[robot_state_publisher-1] [INFO] [1792672304.351780329] [robot_state_publisher]: got segment gearbox
+[robot_state_publisher-1] [INFO] [1792672304.351807958] [robot_state_publisher]: got segment imu_link
+[robot_state_publisher-1] [INFO] [1792672304.351835032] [robot_state_publisher]: got segment jetson_case
+[robot_state_publisher-1] [INFO] [1792672304.351861458] [robot_state_publisher]: got segment jetson_fan
+[robot_state_publisher-1] [INFO] [1792672304.351887106] [robot_state_publisher]: got segment lidar_base
+[robot_state_publisher-1] [INFO] [1792672304.351915624] [robot_state_publisher]: got segment lidar_cap
+[robot_state_publisher-1] [INFO] [1792672304.352019012] [robot_state_publisher]: got segment lidar_link
+[robot_state_publisher-1] [INFO] [1792672304.352080197] [robot_state_publisher]: got segment lidar_ring
+[robot_state_publisher-1] [INFO] [1792672304.352111215] [robot_state_publisher]: got segment lidar_standoff_fl
+[robot_state_publisher-1] [INFO] [1792672304.352139734] [robot_state_publisher]: got segment lidar_standoff_fr
+[robot_state_publisher-1] [INFO] [1792672304.352175289] [robot_state_publisher]: got segment lidar_standoff_rl
+[robot_state_publisher-1] [INFO] [1792672304.352204733] [robot_state_publisher]: got segment lidar_standoff_rr
+[robot_state_publisher-1] [INFO] [1792672304.352229844] [robot_state_publisher]: got segment lower_nose
+[robot_state_publisher-1] [INFO] [1792672304.352255307] [robot_state_publisher]: got segment lower_nose_cl
+[robot_state_publisher-1] [INFO] [1792672304.352281584] [robot_state_publisher]: got segment lower_nose_cr
+[robot_state_publisher-1] [INFO] [1792672304.352307066] [robot_state_publisher]: got segment motor
+[robot_state_publisher-1] [INFO] [1792672304.352333065] [robot_state_publisher]: got segment pca9685
+[robot_state_publisher-1] [INFO] [1792672304.352358713] [robot_state_publisher]: got segment perfboard
+[robot_state_publisher-1] [INFO] [1792672304.352384398] [robot_state_publisher]: got segment rear_axle
+[robot_state_publisher-1] [INFO] [1792672304.352411232] [robot_state_publisher]: got segment rear_bumper
+[robot_state_publisher-1] [INFO] [1792672304.352436768] [robot_state_publisher]: got segment rear_left_hub
+[robot_state_publisher-1] [INFO] [1792672304.352466416] [robot_state_publisher]: got segment rear_left_rim
+[robot_state_publisher-1] [INFO] [1792672304.352493768] [robot_state_publisher]: got segment rear_left_rim_mark_a
+[robot_state_publisher-1] [INFO] [1792672304.352521157] [robot_state_publisher]: got segment rear_left_rim_mark_b
+[robot_state_publisher-1] [INFO] [1792672304.352547323] [robot_state_publisher]: got segment rear_left_tread
+[robot_state_publisher-1] [INFO] [1792672304.352574119] [robot_state_publisher]: got segment rear_left_wheel
+[robot_state_publisher-1] [INFO] [1792672304.352599693] [robot_state_publisher]: got segment rear_right_hub
+[robot_state_publisher-1] [INFO] [1792672304.352626304] [robot_state_publisher]: got segment rear_right_rim
+[robot_state_publisher-1] [INFO] [1792672304.352651674] [robot_state_publisher]: got segment rear_right_rim_mark_a
+[robot_state_publisher-1] [INFO] [1792672304.352678730] [robot_state_publisher]: got segment rear_right_rim_mark_b
+[robot_state_publisher-1] [INFO] [1792672304.352704137] [robot_state_publisher]: got segment rear_right_tread
+[robot_state_publisher-1] [INFO] [1792672304.352730692] [robot_state_publisher]: got segment rear_right_wheel
+[robot_state_publisher-1] [INFO] [1792672304.352756970] [robot_state_publisher]: got segment rpi_case
+[robot_state_publisher-1] [INFO] [1792672304.352782877] [robot_state_publisher]: got segment rpi_ports
+[robot_state_publisher-1] [INFO] [1792672304.352813192] [robot_state_publisher]: got segment screen_post_l
+[robot_state_publisher-1] [INFO] [1792672304.352842395] [robot_state_publisher]: got segment screen_post_r
+[robot_state_publisher-1] [INFO] [1792672304.352867395] [robot_state_publisher]: got segment shock_fl_body
+[robot_state_publisher-1] [INFO] [1792672304.352893246] [robot_state_publisher]: got segment shock_fl_spring
+[robot_state_publisher-1] [INFO] [1792672304.352918376] [robot_state_publisher]: got segment shock_fr_body
+[robot_state_publisher-1] [INFO] [1792672304.352943191] [robot_state_publisher]: got segment shock_fr_spring
+[robot_state_publisher-1] [INFO] [1792672304.352969172] [robot_state_publisher]: got segment shock_rl_body
+[robot_state_publisher-1] [INFO] [1792672304.352995635] [robot_state_publisher]: got segment shock_rl_spring
+[robot_state_publisher-1] [INFO] [1792672304.353022801] [robot_state_publisher]: got segment shock_rr_body
+[robot_state_publisher-1] [INFO] [1792672304.353052264] [robot_state_publisher]: got segment shock_rr_spring
+[robot_state_publisher-1] [INFO] [1792672304.353079486] [robot_state_publisher]: got segment standoff_fl
+[robot_state_publisher-1] [INFO] [1792672304.353108745] [robot_state_publisher]: got segment standoff_fr
+[robot_state_publisher-1] [INFO] [1792672304.353134411] [robot_state_publisher]: got segment standoff_ml
+[robot_state_publisher-1] [INFO] [1792672304.353166541] [robot_state_publisher]: got segment standoff_mr
+[robot_state_publisher-1] [INFO] [1792672304.353194948] [robot_state_publisher]: got segment standoff_rl
+[robot_state_publisher-1] [INFO] [1792672304.353225059] [robot_state_publisher]: got segment standoff_rr
+[robot_state_publisher-1] [INFO] [1792672304.353250096] [robot_state_publisher]: got segment steer_servo
+[robot_state_publisher-1] [INFO] [1792672304.353278244] [robot_state_publisher]: got segment terminals_a
+[robot_state_publisher-1] [INFO] [1792672304.353309577] [robot_state_publisher]: got segment terminals_b
+[robot_state_publisher-1] [INFO] [1792672304.353338743] [robot_state_publisher]: got segment top_deck
+[robot_state_publisher-1] [INFO] [1792672304.353365910] [robot_state_publisher]: got segment track_rod
+[robot_state_publisher-1] [INFO] [1792672304.353394261] [robot_state_publisher]: got segment ultrasonic_front_link
+[robot_state_publisher-1] [INFO] [1792672304.353451428] [robot_state_publisher]: got segment ultrasonic_rear_link
+[robot_state_publisher-1] [INFO] [1792672304.353579167] [robot_state_publisher]: got segment us_front_barrel_l
+[robot_state_publisher-1] [INFO] [1792672304.353643000] [robot_state_publisher]: got segment us_front_barrel_r
+[robot_state_publisher-1] [INFO] [1792672304.353676000] [robot_state_publisher]: got segment us_front_face_l
+[robot_state_publisher-1] [INFO] [1792672304.353714240] [robot_state_publisher]: got segment us_front_face_r
+[sllidar_node-3] [INFO] [1792672304.363811647] [rplidar_node]: SLLidar running on ROS2 package SLLidar.ROS2 SDK Version:1.0.1, SLLIDAR SDK Version:2.1.0
+[sllidar_node-3] [INFO] [1792672304.398567073] [rplidar_node]: SLLidar S/N: 828AF8F7C7E39BD9B7E793F0025C5B1F
+[sllidar_node-3] [INFO] [1792672304.398734961] [rplidar_node]: Firmware Ver: 1.32
+[sllidar_node-3] [INFO] [1792672304.398778368] [rplidar_node]: Hardware Rev: 6
+[sllidar_node-3] [INFO] [1792672304.401828475] [rplidar_node]: SLLidar health status : 0
+[sllidar_node-3] [INFO] [1792672304.402023659] [rplidar_node]: SLLidar health status : OK.
+[robot_state_publisher-1] [INFO] [1792672304.365894335] [robot_state_publisher]: got segment xt60
+[sllidar_node-3] [INFO] [1792672304.556430380] [rplidar_node]: motor_control: PWM motor, target 7.0 Hz, starting PWM 448 (closed loop)
+[sllidar_node-3] [INFO] [1792672304.787332125] [rplidar_node]: current scan mode: Sensitivity, sample rate: 16 Khz, max_distance: 16.0 m, scan frequency:7.0 Hz, 
+[sllidar_node-3] [INFO] [1792672306.420069588] [rplidar_node]: motor_control: 11.82 Hz (target 7.0), PWM 310, 1343 samples/rev
+[wheel_state_node-2] [INFO] [1792672310.858755970] [wheel_state_node]: wheel_state_node → /joint_states @ 15 Hz (L=0.280 m, T=0.250 m, r=0.060 m)
+[cmd_mux_node-9] [INFO] [1792672314.918598875] [cmd_mux]: cmd_mux: pc(200) /cmd_vel_pc, teleop(100) /cmd_vel_teleop, escape(50) /cmd_vel_escape, navigation(10) /cmd_vel_nav -> /cmd_vel_mux; lock /estop_lock
+[cmd_mux_node-9] [INFO] [1792672315.035897261] [cmd_mux]: cmd_mux: driving input -> none
+[sllidar_node-3] [INFO] [1792672317.173363950] [rplidar_node]: motor_control: 7.09 Hz (target 7.0), PWM 352, 2330 samples/rev
+[owner_fusion_node-7] [INFO] [1792672318.360439637] [owner_fusion]: owner source: Jetson lidar_owner_keeper (/owner_keeper/position) - the Pi's own lidar tracker is off; camera only without a keeper
+[owner_fusion_node-7] [INFO] [1792672318.575649239] [owner_fusion]: owner_fusion up (camera <-> lidar owner tracking)
+[owner_fusion_node-7] [WARN] [1792672319.120439760] [owner_fusion]: no lidar_owner_keeper heartbeat: following the camera only
+[ekf_state_node-5] [0m[INFO] [1792672319.349935812] [ekf_state_node]: ekf_state_node up — 50 Hz, sources: imu_rate imu_accel command scan_match[0m
+[smart_planner_node-6] [0m[INFO] [1792672319.526159389] [local_planner_bridge]: output_mode=topic — a2r_bot_arduino owns the serial port[0m
+[gps_owner_node-12] [INFO] [1792672320.156141295] [gps_owner]: gps_owner (a2r_step3f) up - mode INDOOR
+[imu_filter_node-4] [0m[INFO] [1792672320.553253451] [imu_filter_node]: imu_filter_node up — madgwick, mag on, calibrating gyro bias[0m
+[smart_planner_node-6] [0m[INFO] [1792672320.578498023] [local_planner_bridge]: SmartPlanner ready | planner=dwa | out=topic | heading_memory=off | costmap 4.0 m @ 0.05 m | lethal r=0.175 m infl=0.22 m | v∈[0.168,1.2] m/s steer=±30° [DRY RUN][0m
+[cmd_mux_node-9] [INFO] [1792672320.580779765] [cmd_mux]: cmd_mux: driving input -> navigation
+[collision_monitor_node-10] [INFO] [1792672320.888080775] [collision_monitor]: collision_monitor: /cmd_vel_mux -> /local_planner/cmd_out
+[follow_manager_node-8] [INFO] [1792672321.392314097] [follow_manager]: follow_manager up: stand-off 1.20 m, search ON (/followme/owner_lost), trap memory ON
+[follow_manager_node-8] [INFO] [1792672321.465335850] [follow_manager]: follow: INACTIVE (no /followme/state)
+[scan_leg_fill_node-11] [INFO] [1792672321.483346938] [scan_leg_fill]: /scan -> /scan/planner (owner removed) + /scan/merged (owner kept): chair-leg gaps <= 0.60 m closed, posts -> 0.06 m discs
+[follow_manager_node-8] [INFO] [1792672321.541012102] [follow_manager]: follow: HOLD (FollowMe: NO_OWNER|UNCALIBRATED|WAIT)
+[scan_leg_fill_node-11] [INFO] [1792672321.968485236] [scan_leg_fill]: laser pose from TF: x=-0.140 y=0.001 yaw=0.0 deg
+[sllidar_node-3] [INFO] [1792672327.428810980] [rplidar_node]: motor_control: 6.98 Hz (target 7.0), PWM 366, 2277 samples/rev
+[scan_leg_fill_node-11] [INFO] [1792672330.606561355] [scan_leg_fill]: 61 scans: 58.1 beams filled per scan (chairs), owner removed in 0 % (scrub point 0 %), 19.9 ms per scan
+[owner_fusion_node-7] [INFO] [1792672333.374012523] [owner_fusion]: keeper: 27 heartbeats (last 0.2 s ago), 0 points (frames -), 0 used, 0 ignored (no TF); camera: 0 points; scrub points: 0
+[imu_filter_node-4] [0m[INFO] [1792672334.257065620] [imu_filter_node]: gyro bias: [-0.00125 0.00055 0.00044] rad/s[0m
+[imu_filter_node-4] [0m[INFO] [1792672334.280259392] [imu_filter_node]: attitude seeded: roll -178.9 deg, pitch -1.3 deg, yaw 111.8 deg[0m
+[smart_planner_node-6] [0m[INFO] [1792672335.071764836] [local_planner_bridge]: Heading source: IMU gyro[0m
+[sllidar_node-3] [INFO] [1792672337.558108837] [rplidar_node]: motor_control: 6.95 Hz (target 7.0), PWM 363, 2280 samples/rev
+[scan_leg_fill_node-11] [INFO] [1792672340.615920234] [scan_leg_fill]: 69 scans: 69.9 beams filled per scan (chairs), owner removed in 0 % (scrub point 0 %), 19.4 ms per scan
+[sllidar_node-3] [INFO] [1792672347.759383991] [rplidar_node]: motor_control: 6.97 Hz (target 7.0), PWM 363, 2277 samples/rev
+[ekf_state_node-5] [0m[INFO] [1792672348.130042678] [ekf_state_node]: EKF gated out 11 measurement(s) in the last 30 s (yaw_rate 5, accel 6)[0m
+[owner_fusion_node-7] [INFO] [1792672348.364530581] [owner_fusion]: keeper: 26 heartbeats (last 0.1 s ago), 0 points (frames -), 0 used, 0 ignored (no TF); camera: 0 points; scrub points: 0
+[scan_leg_fill_node-11] [INFO] [1792672350.607139229] [scan_leg_fill]: 69 scans: 66.2 beams filled per scan (chairs), owner removed in 0 % (scrub point 0 %), 20.0 ms per scan
+[sllidar_node-3] [INFO] [1792672357.959689283] [rplidar_node]: motor_control: 6.95 Hz (target 7.0), PWM 363, 2283 samples/rev
+[scan_leg_fill_node-11] [INFO] [1792672360.623251632] [scan_leg_fill]: 69 scans: 65.2 beams filled per scan (chairs), owner removed in 0 % (scrub point 0 %), 21.4 ms per scan
+[owner_fusion_node-7] [INFO] [1792672363.364624179] [owner_fusion]: keeper: 25 heartbeats (last 0.5 s ago), 0 points (frames -), 0 used, 0 ignored (no TF); camera: 0 points; scrub points: 0
+[sllidar_node-3] [INFO] [1792672368.152174892] [rplidar_node]: motor_control: 6.98 Hz (target 7.0), PWM 363, 2277 samples/rev
+[scan_leg_fill_node-11] [INFO] [1792672370.606334225] [scan_leg_fill]: 68 scans: 64.5 beams filled per scan (chairs), owner removed in 0 % (scrub point 0 %), 19.3 ms per scan
+[sllidar_node-3] [INFO] [1792672378.334973999] [rplidar_node]: motor_control: 6.98 Hz (target 7.0), PWM 363, 2273 samples/rev
+[owner_fusion_node-7] [INFO] [1792672378.365172626] [owner_fusion]: keeper: 26 heartbeats (last 0.4 s ago), 0 points (frames -), 0 used, 0 ignored (no TF); camera: 0 points; scrub points: 0
+[scan_leg_fill_node-11] [INFO] [1792672380.619754407] [scan_leg_fill]: 69 scans: 64.2 beams filled per scan (chairs), owner removed in 0 % (scrub point 0 %), 21.9 ms per scan
+[follow_manager_node-8] [INFO] [1792672384.019762072] [follow_manager]: follow: HOLD (FollowMe: CLAIMING|UNCALIBRATED|WAIT)
+[sllidar_node-3] [INFO] [1792672388.506176859] [rplidar_node]: motor_control: 6.99 Hz (target 7.0), PWM 363, 2273 samples/rev
+[scan_leg_fill_node-11] [INFO] [1792672390.605909829] [scan_leg_fill]: 69 scans: 78.0 beams filled per scan (chairs), owner removed in 0 % (scrub point 0 %), 16.6 ms per scan
+[owner_fusion_node-7] [INFO] [1792672393.365060911] [owner_fusion]: keeper: 26 heartbeats (last 0.2 s ago), 0 points (frames -), 0 used, 0 ignored (no TF); camera: 0 points; scrub points: 0
+[sllidar_node-3] [INFO] [1792672398.691846129] [rplidar_node]: motor_control: 6.98 Hz (target 7.0), PWM 363, 2274 samples/rev
+[scan_leg_fill_node-11] [INFO] [1792672400.614827007] [scan_leg_fill]: 69 scans: 78.9 beams filled per scan (chairs), owner removed in 0 % (scrub point 0 %), 21.9 ms per scan
+[follow_manager_node-8] [INFO] [1792672402.503951007] [follow_manager]: follow: HOLD (FollowMe: OWNED|UNCALIBRATED|WAIT)
+[follow_manager_node-8] [INFO] [1792672402.606269134] [follow_manager]: follow: INACTIVE (Jetson planner: NO_OWNER, no fresh path)
+[follow_manager_node-8] [INFO] [1792672402.909124011] [follow_manager]: follow: ACTIVE PATH FOLLOW
+[collision_monitor_node-10] [WARN] [1792672404.882294163] [collision_monitor]: collision_monitor SLOW (beside): obstacle 0.98 m along the path
+[smart_planner_node-6] [33m[WARN] [1792672405.757675131] [local_planner_bridge]: Sparse scan ignored (308 pts vs median 849) — 1 dropped so far[0m
+[smart_planner_node-6] [33m[WARN] [1792672406.872687317] [local_planner_bridge]: No usable scan on '/scan' for 1 s - republishing the last costmap. Check: ros2 topic hz /scan[0m
+[ekf_state_node-5] [0m[INFO] [1792672408.146317970] [ekf_state_node]: EKF gated out 1 measurement(s) in the last 30 s (accel 1)[0m
+[owner_fusion_node-7] [INFO] [1792672408.376128075] [owner_fusion]: keeper: 26 heartbeats (last 0.0 s ago), 32 points (frames ['lidar_link']), 32 used, 0 ignored (no TF); camera: 42 points; scrub points: 34
+[sllidar_node-3] [INFO] [1792672409.050316929] [rplidar_node]: motor_control: 6.96 Hz (target 7.0), PWM 371, 2282 samples/rev
+[scan_leg_fill_node-11] [INFO] [1792672410.608989962] [scan_leg_fill]: 67 scans: 36.0 beams filled per scan (chairs), owner removed in 79 % (scrub point 78 %), 19.0 ms per scan
+[collision_monitor_node-10] [WARN] [1792672410.833591717] [collision_monitor]: collision_monitor SLOW (beside): obstacle inf m along the path
+[collision_monitor_node-10] [WARN] [1792672411.138397616] [collision_monitor]: collision_monitor STOP: obstacle 0.22 m along the path
+[collision_monitor_node-10] [WARN] [1792672411.276410570] [collision_monitor]: collision_monitor SLOW: obstacle 0.42 m along the path
+[collision_monitor_node-10] [WARN] [1792672412.952145398] [collision_monitor]: collision_monitor SLOW: obstacle 0.85 m along the path
+[collision_monitor_node-10] [WARN] [1792672413.820548271] [collision_monitor]: collision_monitor STOP: obstacle 0.30 m along the path
+[collision_monitor_node-10] [WARN] [1792672414.208607865] [collision_monitor]: collision_monitor SLOW: obstacle 0.36 m along the path
+[follow_manager_node-8] [INFO] [1792672414.229354692] [follow_manager]: follow: ACTIVE PATH LAST_KNOWN
+[collision_monitor_node-10] [WARN] [1792672414.690335336] [collision_monitor]: collision_monitor STOP: obstacle 0.20 m along the path
+[follow_manager_node-8] [INFO] [1792672414.839346709] [follow_manager]: follow: ACTIVE PATH FOLLOW
+[collision_monitor_node-10] [WARN] [1792672415.363147738] [collision_monitor]: collision_monitor SLOW: obstacle 0.34 m along the path
+[cmd_mux_node-9] [INFO] [1792672415.764031588] [cmd_mux]: cmd_mux: driving input -> escape
+[smart_planner_node-6] [0m[INFO] [1792672415.885923774] [local_planner_bridge]: manoeuvre (goal -75 deg - full-lock turn blocked): 1 legs R0.30 - plan 63 ms, 3 nodes[0m
+[smart_planner_node-6] [0m[INFO] [1792672417.010670646] [local_planner_bridge]: manoeuvre (goal -75 deg - full-lock turn blocked): 1 legs R0.20 - plan 120 ms, 9 nodes (re-plan 1)[0m
+[smart_planner_node-6] [0m[INFO] [1792672418.424680274] [local_planner_bridge]: manoeuvre done: goal now ahead (2 legs, 2.7 s)[0m
+[cmd_mux_node-9] [INFO] [1792672418.976795721] [cmd_mux]: cmd_mux: driving input -> navigation
+[collision_monitor_node-10] [WARN] [1792672418.999435738] [collision_monitor]: collision_monitor SLOW (beside): obstacle inf m along the path
+[sllidar_node-3] [INFO] [1792672419.672628711] [rplidar_node]: motor_control: 7.01 Hz (target 7.0), PWM 368, 2278 samples/rev
+[collision_monitor_node-10] [WARN] [1792672420.031174321] [collision_monitor]: collision_monitor SLOW: obstacle 1.05 m along the path
+[collision_monitor_node-10] [WARN] [1792672420.226707607] [collision_monitor]: collision_monitor SLOW: obstacle 0.96 m along the path
+[scan_leg_fill_node-11] [INFO] [1792672420.605890859] [scan_leg_fill]: 70 scans: 0.8 beams filled per scan (chairs), owner removed in 97 % (scrub point 96 %), 18.3 ms per scan
+[collision_monitor_node-10] [WARN] [1792672421.018878361] [collision_monitor]: collision_monitor SLOW (beside): obstacle inf m along the path
+[collision_monitor_node-10] [WARN] [1792672421.366938086] [collision_monitor]: collision_monitor STOP: obstacle 0.20 m along the path
+[owner_fusion_node-7] [INFO] [1792672423.366755744] [owner_fusion]: keeper: 25 heartbeats (last 0.1 s ago), 100 points (frames ['lidar_link']), 100 used, 0 ignored (no TF); camera: 44 points; scrub points: 100
+[collision_monitor_node-10] [WARN] [1792672423.681174738] [collision_monitor]: collision_monitor SLOW (beside): obstacle inf m along the path
+[follow_manager_node-8] [INFO] [1792672423.949260576] [follow_manager]: follow: HOLD (FollowMe: IDENTIFYING|OWNED|WAIT)
+[collision_monitor_node-10] [WARN] [1792672423.999602683] [collision_monitor]: collision_monitor SLOW (beside): obstacle inf m along the path
+[sllidar_node-3] [INFO] [1792672429.970611164] [rplidar_node]: motor_control: 6.97 Hz (target 7.0), PWM 362, 2285 samples/rev
+[scan_leg_fill_node-11] [INFO] [1792672430.610768605] [scan_leg_fill]: 69 scans: 20.7 beams filled per scan (chairs), owner removed in 100 % (scrub point 100 %), 22.9 ms per scan
+[ekf_state_node-5] [0m[INFO] [1792672438.166430574] [ekf_state_node]: EKF gated out 3 measurement(s) in the last 30 s (accel 3)[0m
+[owner_fusion_node-7] [INFO] [1792672438.366377086] [owner_fusion]: keeper: 26 heartbeats (last 0.1 s ago), 103 points (frames ['lidar_link']), 103 used, 0 ignored (no TF); camera: 39 points; scrub points: 103
+[sllidar_node-3] [INFO] [1792672440.196932096] [rplidar_node]: motor_control: 6.95 Hz (target 7.0), PWM 362, 2282 samples/rev
+[scan_leg_fill_node-11] [INFO] [1792672440.620502814] [scan_leg_fill]: 68 scans: 27.0 beams filled per scan (chairs), owner removed in 100 % (scrub point 100 %), 23.9 ms per scan
+[sllidar_node-3] [INFO] [1792672450.406638484] [rplidar_node]: motor_control: 6.96 Hz (target 7.0), PWM 362, 2285 samples/rev
+[scan_leg_fill_node-11] [INFO] [1792672450.614887916] [scan_leg_fill]: 69 scans: 27.1 beams filled per scan (chairs), owner removed in 100 % (scrub point 100 %), 23.0 ms per scan
+[owner_fusion_node-7] [INFO] [1792672453.365193953] [owner_fusion]: keeper: 26 heartbeats (last 0.1 s ago), 103 points (frames ['lidar_link']), 103 used, 0 ignored (no TF); camera: 57 points; scrub points: 103
+[follow_manager_node-8] [INFO] [1792672454.311156859] [follow_manager]: follow: HOLD (FollowMe: IDENTIFYING|NO_OWNER|WAIT)
+[follow_manager_node-8] [INFO] [1792672454.410220066] [follow_manager]: follow: HOLD (FollowMe: NO_OWNER|UNCALIBRATED|WAIT)
+[follow_manager_node-8] [INFO] [1792672459.098511647] [follow_manager]: follow: HOLD (FollowMe: CLAIMING|UNCALIBRATED|WAIT)
+[scan_leg_fill_node-11] [INFO] [1792672460.614270091] [scan_leg_fill]: 68 scans: 27.1 beams filled per scan (chairs), owner removed in 41 % (scrub point 41 %), 22.4 ms per scan
+[sllidar_node-3] [INFO] [1792672460.622320883] [rplidar_node]: motor_control: 6.97 Hz (target 7.0), PWM 362, 2277 samples/rev
+[owner_fusion_node-7] [INFO] [1792672468.372652329] [owner_fusion]: keeper: 26 heartbeats (last 0.1 s ago), 7 points (frames ['lidar_link']), 7 used, 0 ignored (no TF); camera: 6 points; scrub points: 7
+[scan_leg_fill_node-11] [INFO] [1792672470.607066816] [scan_leg_fill]: 69 scans: 27.2 beams filled per scan (chairs), owner removed in 0 % (scrub point 0 %), 23.5 ms per scan
+[sllidar_node-3] [INFO] [1792672470.819437402] [rplidar_node]: motor_control: 6.96 Hz (target 7.0), PWM 362, 2282 samples/rev
+[follow_manager_node-8] [INFO] [1792672474.802518859] [follow_manager]: follow: HOLD (FollowMe: OWNED|UNCALIBRATED|WAIT)
+[follow_manager_node-8] [INFO] [1792672475.012657148] [follow_manager]: follow: INACTIVE (Jetson planner: NO_OWNER, no fresh path)
+[follow_manager_node-8] [INFO] [1792672475.211735148] [follow_manager]: follow: ACTIVE PATH FOLLOW
+[scan_leg_fill_node-11] [INFO] [1792672480.635650014] [scan_leg_fill]: 68 scans: 22.0 beams filled per scan (chairs), owner removed in 56 % (scrub point 51 %), 23.8 ms per scan
+[collision_monitor_node-10] [WARN] [1792672480.722329518] [collision_monitor]: collision_monitor SLOW (beside): obstacle inf m along the path
+[sllidar_node-3] [INFO] [1792672481.038353259] [rplidar_node]: motor_control: 7.00 Hz (target 7.0), PWM 374, 2262 samples/rev
+[owner_fusion_node-7] [INFO] [1792672483.365439204] [owner_fusion]: keeper: 25 heartbeats (last 0.0 s ago), 55 points (frames ['lidar_link']), 55 used, 0 ignored (no TF); camera: 43 points; scrub points: 57
+[collision_monitor_node-10] [WARN] [1792672485.737000559] [collision_monitor]: collision_monitor SLOW (beside): obstacle inf m along the path
+[collision_monitor_node-10] [WARN] [1792672487.126083260] [collision_monitor]: collision_monitor STOP: obstacle 0.26 m along the path
+[smart_planner_node-6] [0m[INFO] [1792672487.877648631] [local_planner_bridge]: Obstacle ahead — cmd weight faded to 0.22 (des_clear=0.20m), chose steer +30deg[0m
+[follow_manager_node-8] [INFO] [1792672488.225858633] [follow_manager]: follow: ACTIVE PATH LAST_KNOWN
+[smart_planner_node-6] [33m[WARN] [1792672489.383309429] [local_planner_bridge]: collision monitor held the car 0.7 s - way ahead blocked, starting reverse escape[0m
+[cmd_mux_node-9] [INFO] [1792672489.433907812] [cmd_mux]: cmd_mux: driving input -> escape
+[smart_planner_node-6] [0m[INFO] [1792672489.487019583] [local_planner_bridge]: manoeuvre (stuck): 1 legs R0.30 - plan 20 ms, 3 nodes[0m
+[smart_planner_node-6] [0m[INFO] [1792672490.591365607] [local_planner_bridge]: manoeuvre (stuck): 1 legs R0.30 - plan 31 ms, 3 nodes (re-plan 1)[0m
+[scan_leg_fill_node-11] [INFO] [1792672490.621354069] [scan_leg_fill]: 70 scans: 86.3 beams filled per scan (chairs), owner removed in 79 % (scrub point 79 %), 25.0 ms per scan
+[sllidar_node-3] [INFO] [1792672491.389450539] [rplidar_node]: motor_control: 6.98 Hz (target 7.0), PWM 364, 2299 samples/rev
+[smart_planner_node-6] [0m[INFO] [1792672492.015149458] [local_planner_bridge]: manoeuvre done: forward turn to the goal (+70 deg) is free - no more reversing (2 legs, 2.6 s)[0m
+[cmd_mux_node-9] [INFO] [1792672492.540845954] [cmd_mux]: cmd_mux: driving input -> navigation
+[collision_monitor_node-10] [WARN] [1792672492.570195291] [collision_monitor]: collision_monitor SLOW (beside): obstacle 0.58 m along the path
+[collision_monitor_node-10] [WARN] [1792672493.964675823] [collision_monitor]: collision_monitor STOP: obstacle 0.24 m along the path
+[smart_planner_node-6] [0m[INFO] [1792672494.801557856] [local_planner_bridge]: Obstacle ahead — cmd weight faded to 0.24 (des_clear=0.22m), chose steer +21deg[0m
+[cmd_mux_node-9] [INFO] [1792672495.484672829] [cmd_mux]: cmd_mux: driving input -> escape
+[smart_planner_node-6] [0m[INFO] [1792672495.577054882] [local_planner_bridge]: manoeuvre (owner -91 deg - behind the car): 1 legs R0.50 - plan 38 ms, 5 nodes[0m
+[smart_planner_node-6] [0m[INFO] [1792672496.710140785] [local_planner_bridge]: manoeuvre (owner -91 deg - behind the car): 1 legs R0.50 - plan 48 ms, 5 nodes (re-plan 1)[0m
+[collision_monitor_node-10] [WARN] [1792672497.216556869] [collision_monitor]: collision_monitor SLOW (beside): obstacle inf m along the path
+[ekf_state_node-5] [0m[INFO] [1792672498.184941368] [ekf_state_node]: EKF gated out 6 measurement(s) in the last 30 s (accel 6)[0m
+[owner_fusion_node-7] [INFO] [1792672498.364874436] [owner_fusion]: keeper: 25 heartbeats (last 0.4 s ago), 22 points (frames ['lidar_link']), 22 used, 0 ignored (no TF); camera: 1 points; scrub points: 22
+[smart_planner_node-6] [0m[INFO] [1792672498.877868249] [local_planner_bridge]: manoeuvre done: goal now ahead (2 legs, 3.4 s)[0m
+[cmd_mux_node-9] [INFO] [1792672499.405155826] [cmd_mux]: cmd_mux: driving input -> navigation
+[collision_monitor_node-10] [WARN] [1792672499.435843505] [collision_monitor]: collision_monitor SLOW (beside): obstacle inf m along the path
+[scan_leg_fill_node-11] [INFO] [1792672500.608169134] [scan_leg_fill]: 69 scans: 175.2 beams filled per scan (chairs), owner removed in 0 % (scrub point 0 %), 25.7 ms per scan
+[collision_monitor_node-10] [WARN] [1792672500.782485986] [collision_monitor]: collision_monitor STOP: obstacle 0.24 m along the path
+[smart_planner_node-6] [0m[INFO] [1792672501.489977759] [local_planner_bridge]: Obstacle ahead — cmd weight faded to 0.26 (des_clear=0.23m), chose steer +17deg[0m
+[sllidar_node-3] [INFO] [1792672501.572622310] [rplidar_node]: motor_control: 6.98 Hz (target 7.0), PWM 369, 2260 samples/rev
+[cmd_mux_node-9] [INFO] [1792672502.858295467] [cmd_mux]: cmd_mux: driving input -> escape
+[smart_planner_node-6] [0m[INFO] [1792672503.030401279] [local_planner_bridge]: manoeuvre (owner -81 deg - behind the car): 2 legs R0.40 F0.10 - plan 117 ms, 5 nodes[0m
+[smart_planner_node-6] [0m[INFO] [1792672504.146632603] [local_planner_bridge]: manoeuvre (owner -81 deg - behind the car): 2 legs R0.40 F0.10 - plan 36 ms, 5 nodes (re-plan 1)[0m
+[collision_monitor_node-10] [WARN] [1792672504.605373894] [collision_monitor]: collision_monitor SLOW (beside): obstacle inf m along the path
+[smart_planner_node-6] [0m[INFO] [1792672507.302675640] [local_planner_bridge]: manoeuvre done: last leg is a stub - handing back to follow (2 legs, 4.4 s)[0m
+[cmd_mux_node-9] [INFO] [1792672507.831767481] [cmd_mux]: cmd_mux: driving input -> navigation
+[collision_monitor_node-10] [WARN] [1792672507.843203025] [collision_monitor]: collision_monitor SLOW (beside): obstacle 0.65 m along the path
+[collision_monitor_node-10] [WARN] [1792672509.020846726] [collision_monitor]: collision_monitor STOP: obstacle 0.24 m along the path
+[cmd_mux_node-9] [INFO] [1792672509.327215965] [cmd_mux]: cmd_mux: driving input -> escape
+[smart_planner_node-6] [0m[INFO] [1792672509.332704795] [local_planner_bridge]: manoeuvre (goal +77 deg - full-lock turn blocked): 1 legs R0.30 - plan 23 ms, 3 nodes[0m
+[smart_planner_node-6] [0m[INFO] [1792672510.428947009] [local_planner_bridge]: manoeuvre (goal +77 deg - full-lock turn blocked): 1 legs R0.30 - plan 54 ms, 3 nodes (re-plan 1)[0m
+[scan_leg_fill_node-11] [INFO] [1792672510.614229445] [scan_leg_fill]: 69 scans: 129.5 beams filled per scan (chairs), owner removed in 0 % (scrub point 0 %), 22.8 ms per scan
+[sllidar_node-3] [INFO] [1792672511.819101703] [rplidar_node]: motor_control: 7.03 Hz (target 7.0), PWM 367, 2259 samples/rev
+[smart_planner_node-6] [0m[INFO] [1792672512.455010842] [local_planner_bridge]: manoeuvre done: forward turn to the goal (+80 deg) is free - no more reversing (2 legs, 3.2 s)[0m
+[smart_planner_node-6] [0m[INFO] [1792672512.958501744] [local_planner_bridge]: Obstacle ahead — cmd weight faded to 0.56 (des_clear=0.51m), chose steer +30deg[0m
+[collision_monitor_node-10] [WARN] [1792672513.015768966] [collision_monitor]: collision_monitor SLOW: obstacle 0.40 m along the path
+[cmd_mux_node-9] [INFO] [1792672513.016487609] [cmd_mux]: cmd_mux: driving input -> navigation
+[owner_fusion_node-7] [INFO] [1792672513.370259069] [owner_fusion]: keeper: 24 heartbeats (last 0.3 s ago), 0 points (frames ['lidar_link']), 0 used, 0 ignored (no TF); camera: 0 points; scrub points: 0
+[collision_monitor_node-10] [WARN] [1792672513.766107216] [collision_monitor]: collision_monitor SLOW (beside): obstacle inf m along the path
+[collision_monitor_node-10] [WARN] [1792672514.166456441] [collision_monitor]: collision_monitor SLOW: obstacle 0.37 m along the path
+[follow_manager_node-8] [INFO] [1792672514.504943515] [follow_manager]: follow: INACTIVE (Jetson planner: LOST, no fresh path)
+[collision_monitor_node-10] [WARN] [1792672514.661423536] [collision_monitor]: collision_monitor STOP: obstacle 0.28 m along the path
+[smart_planner_node-6] [0m[INFO] [1792672515.304110051] [local_planner_bridge]: Obstacle ahead — cmd weight faded to 0.37 (des_clear=0.33m), chose steer +26deg[0m
+[follow_manager_node-8] [INFO] [1792672516.219478203] [follow_manager]: owner lost - search: go to last seen (2.4, -0.3) m
+[follow_manager_node-8] [INFO] [1792672516.240778619] [follow_manager]: trap remembered (dead end seen ahead) at odom (3.9, 2.7) - 1 known
+[follow_manager_node-8] [INFO] [1792672516.244821848] [follow_manager]: detour left: dead end ahead
+[follow_manager_node-8] [INFO] [1792672516.264474128] [follow_manager]: follow: SEARCH APPROACH DETOUR L (Jetson planner: LOST)
+[smart_planner_node-6] [0m[INFO] [1792672516.801399503] [local_planner_bridge]: Obstacle ahead — cmd weight faded to 0.29 (des_clear=0.27m), chose steer +17deg[0m
+[collision_monitor_node-10] [WARN] [1792672516.848109026] [collision_monitor]: collision_monitor STOP: obstacle 0.24 m along the path
+[smart_planner_node-6] [0m[INFO] [1792672518.180316503] [local_planner_bridge]: Obstacle ahead — cmd weight faded to 0.29 (des_clear=0.27m), chose steer +30deg[0m
+[smart_planner_node-6] [0m[INFO] [1792672519.255302912] [local_planner_bridge]: Obstacle ahead — cmd weight faded to 0.29 (des_clear=0.27m), chose steer +30deg[0m
+[smart_planner_node-6] [33m[WARN] [1792672519.305214170] [local_planner_bridge]: collision monitor held the car 0.7 s - way ahead blocked, starting reverse escape[0m
+[cmd_mux_node-9] [INFO] [1792672519.350441852] [cmd_mux]: cmd_mux: driving input -> escape
+[smart_planner_node-6] [0m[INFO] [1792672519.428077830] [local_planner_bridge]: manoeuvre (stuck): 1 legs R0.20 - plan 11 ms, 2 nodes[0m
+[scan_leg_fill_node-11] [INFO] [1792672520.615947066] [scan_leg_fill]: 69 scans: 151.7 beams filled per scan (chairs), owner removed in 0 % (scrub point 0 %), 26.3 ms per scan
+[smart_planner_node-6] [0m[INFO] [1792672520.727311849] [local_planner_bridge]: manoeuvre (stuck): 1 legs R0.30 - plan 51 ms, 3 nodes (re-plan 1)[0m
+[collision_monitor_node-10] [WARN] [1792672521.204193949] [collision_monitor]: collision_monitor SLOW (beside): obstacle inf m along the path
+[sllidar_node-3] [INFO] [1792672522.103547776] [rplidar_node]: motor_control: 6.91 Hz (target 7.0), PWM 367, 2314 samples/rev
+[smart_planner_node-6] [0m[INFO] [1792672522.176310716] [local_planner_bridge]: manoeuvre done: forward turn to the goal (+53 deg) is free - no more reversing (2 legs, 2.9 s)[0m
+[cmd_mux_node-9] [INFO] [1792672522.700980386] [cmd_mux]: cmd_mux: driving input -> navigation
+[collision_monitor_node-10] [WARN] [1792672523.412089595] [collision_monitor]: collision_monitor SLOW (beside): obstacle inf m along the path
+[follow_manager_node-8] [INFO] [1792672524.433693346] [follow_manager]: follow: ACTIVE PATH FOLLOW
+[collision_monitor_node-10] [WARN] [1792672524.972192469] [collision_monitor]: collision_monitor SLOW (beside): obstacle inf m along the path
+[ekf_state_node-5] [0m[INFO] [1792672528.201073371] [ekf_state_node]: EKF gated out 5 measurement(s) in the last 30 s (accel 5)[0m
+[owner_fusion_node-7] [INFO] [1792672528.365765905] [owner_fusion]: keeper: 27 heartbeats (last 0.1 s ago), 24 points (frames ['lidar_link']), 24 used, 0 ignored (no TF); camera: 31 points; scrub points: 27
+[scan_leg_fill_node-11] [INFO] [1792672530.612563373] [scan_leg_fill]: 69 scans: 172.3 beams filled per scan (chairs), owner removed in 65 % (scrub point 62 %), 25.4 ms per scan
+[sllidar_node-3] [INFO] [1792672532.522077036] [rplidar_node]: motor_control: 7.01 Hz (target 7.0), PWM 365, 2262 samples/rev
+[collision_monitor_node-10] [WARN] [1792672533.435994736] [collision_monitor]: collision_monitor SLOW (beside): obstacle inf m along the path
+[collision_monitor_node-10] [WARN] [1792672539.968827667] [collision_monitor]: collision_monitor SLOW (beside): obstacle inf m along the path
+[scan_leg_fill_node-11] [INFO] [1792672540.611445330] [scan_leg_fill]: 69 scans: 135.5 beams filled per scan (chairs), owner removed in 100 % (scrub point 100 %), 27.1 ms per scan
+[sllidar_node-3] [INFO] [1792672542.696668704] [rplidar_node]: motor_control: 7.05 Hz (target 7.0), PWM 373, 2254 samples/rev
+[collision_monitor_node-10] [WARN] [1792672542.879430048] [collision_monitor]: collision_monitor SLOW (beside): obstacle inf m along the path
+[owner_fusion_node-7] [INFO] [1792672543.373175819] [owner_fusion]: keeper: 25 heartbeats (last 0.0 s ago), 77 points (frames ['lidar_link']), 77 used, 0 ignored (no TF); camera: 88 points; scrub points: 77
+[collision_monitor_node-10] [WARN] [1792672544.613836625] [collision_monitor]: collision_monitor SLOW (beside): obstacle inf m along the path
+[collision_monitor_node-10] [WARN] [1792672546.341633955] [collision_monitor]: collision_monitor SLOW (beside): obstacle 0.91 m along the path
+[scan_leg_fill_node-11] [INFO] [1792672550.611766609] [scan_leg_fill]: 69 scans: 18.6 beams filled per scan (chairs), owner removed in 100 % (scrub point 99 %), 22.3 ms per scan
+[sllidar_node-3] [INFO] [1792672553.026104479] [rplidar_node]: motor_control: 6.92 Hz (target 7.0), PWM 369, 2298 samples/rev
+[collision_monitor_node-10] [WARN] [1792672553.947568364] [collision_monitor]: collision_monitor SLOW (beside): obstacle inf m along the path
+[follow_manager_node-8] [INFO] [1792672557.405274026] [follow_manager]: follow: INACTIVE (Jetson planner: FOLLOW, no fresh path)
+[follow_manager_node-8] [INFO] [1792672557.926798072] [follow_manager]: follow: ACTIVE OWNER (Jetson planner: FOLLOW, no path)
+[ekf_state_node-5] [0m[INFO] [1792672558.200392740] [ekf_state_node]: EKF gated out 7 measurement(s) in the last 30 s (accel 7)[0m
+[owner_fusion_node-7] [INFO] [1792672558.375210421] [owner_fusion]: keeper: 26 heartbeats (last 0.0 s ago), 97 points (frames ['lidar_link']), 97 used, 0 ignored (no TF); camera: 37 points; scrub points: 97
+[follow_manager_node-8] [INFO] [1792672558.411064524] [follow_manager]: follow: ACTIVE PATH FOLLOW
+[follow_manager_node-8] [INFO] [1792672559.215764834] [follow_manager]: follow: INACTIVE (Jetson planner: FOLLOW, no fresh path)
+[follow_manager_node-8] [INFO] [1792672559.808930698] [follow_manager]: follow: ACTIVE OWNER (Jetson planner: FOLLOW, no path)
+[collision_monitor_node-10] [WARN] [1792672559.811354384] [collision_monitor]: collision_monitor SLOW (beside): obstacle inf m along the path
+[follow_manager_node-8] [INFO] [1792672560.411638436] [follow_manager]: follow: ACTIVE PATH FOLLOW
+[scan_leg_fill_node-11] [INFO] [1792672560.616672225] [scan_leg_fill]: 68 scans: 4.3 beams filled per scan (chairs), owner removed in 100 % (scrub point 96 %), 20.3 ms per scan
+[collision_monitor_node-10] [WARN] [1792672562.956192300] [collision_monitor]: collision_monitor SLOW (beside): obstacle inf m along the path
+[sllidar_node-3] [INFO] [1792672563.188514868] [rplidar_node]: motor_control: 7.02 Hz (target 7.0), PWM 372, 2257 samples/rev
+[collision_monitor_node-10] [WARN] [1792672563.832690908] [collision_monitor]: collision_monitor STOP: obstacle 0.26 m along the path
+[collision_monitor_node-10] [WARN] [1792672563.973832987] [collision_monitor]: collision_monitor SLOW: obstacle 0.54 m along the path
+[collision_monitor_node-10] [WARN] [1792672565.702689032] [collision_monitor]: collision_monitor SLOW: obstacle 0.87 m along the path
+[collision_monitor_node-10] [WARN] [1792672566.992730489] [collision_monitor]: collision_monitor SLOW (beside): obstacle inf m along the path
+[collision_monitor_node-10] [WARN] [1792672570.461566568] [collision_monitor]: collision_monitor SLOW (beside): obstacle inf m along the path
+[scan_leg_fill_node-11] [INFO] [1792672570.610699126] [scan_leg_fill]: 70 scans: 10.5 beams filled per scan (chairs), owner removed in 100 % (scrub point 97 %), 21.7 ms per scan
+[sllidar_node-3] [INFO] [1792672573.293120834] [rplidar_node]: motor_control: 7.01 Hz (target 7.0), PWM 369, 2268 samples/rev
+[owner_fusion_node-7] [INFO] [1792672573.365689850] [owner_fusion]: keeper: 26 heartbeats (last 0.2 s ago), 94 points (frames ['lidar_link']), 94 used, 0 ignored (no TF); camera: 33 points; scrub points: 94
+[collision_monitor_node-10] [WARN] [1792672574.507195542] [collision_monitor]: collision_monitor SLOW (beside): obstacle inf m along the path
+[collision_monitor_node-10] [WARN] [1792672574.657456109] [collision_monitor]: collision_monitor SLOW (beside): obstacle inf m along the path
+[follow_manager_node-8] [INFO] [1792672574.804479774] [follow_manager]: follow: INACTIVE (Jetson planner: FOLLOW, no fresh path)
+[follow_manager_node-8] [INFO] [1792672575.321876814] [follow_manager]: follow: ACTIVE OWNER (Jetson planner: FOLLOW, no path)
+[follow_manager_node-8] [INFO] [1792672575.717466148] [follow_manager]: follow: ACTIVE PATH FOLLOW
+[collision_monitor_node-10] [WARN] [1792672576.412581995] [collision_monitor]: collision_monitor SLOW (beside): obstacle inf m along the path
+[collision_monitor_node-10] [WARN] [1792672576.880539828] [collision_monitor]: collision_monitor SLOW (beside): obstacle inf m along the path
+[follow_manager_node-8] [INFO] [1792672577.009086223] [follow_manager]: follow: INACTIVE (Jetson planner: FOLLOW, no fresh path)
+[follow_manager_node-8] [INFO] [1792672577.511824705] [follow_manager]: follow: ACTIVE OWNER (Jetson planner: FOLLOW, no path)
+[collision_monitor_node-10] [WARN] [1792672578.172907305] [collision_monitor]: collision_monitor SLOW (beside): obstacle 0.97 m along the path
+[follow_manager_node-8] [INFO] [1792672578.628524804] [follow_manager]: follow: ACTIVE PATH FOLLOW
+[follow_manager_node-8] [INFO] [1792672579.106202879] [follow_manager]: follow: INACTIVE (Jetson planner: FOLLOW, no fresh path)
+[follow_manager_node-8] [INFO] [1792672579.621824802] [follow_manager]: follow: ACTIVE OWNER (Jetson planner: FOLLOW, no path)
+[collision_monitor_node-10] [WARN] [1792672580.060790443] [collision_monitor]: collision_monitor SLOW (beside): obstacle inf m along the path
+[scan_leg_fill_node-11] [INFO] [1792672580.612652226] [scan_leg_fill]: 69 scans: 38.5 beams filled per scan (chairs), owner removed in 100 % (scrub point 96 %), 22.1 ms per scan
+[follow_manager_node-8] [INFO] [1792672581.054038164] [follow_manager]: follow: ACTIVE PATH FOLLOW
+[sllidar_node-3] [INFO] [1792672583.447762317] [rplidar_node]: motor_control: 7.03 Hz (target 7.0), PWM 372, 2257 samples/rev
+[collision_monitor_node-10] [WARN] [1792672586.706752940] [collision_monitor]: collision_monitor SLOW (beside): obstacle inf m along the path
+[ekf_state_node-5] [0m[INFO] [1792672588.211319578] [ekf_state_node]: EKF gated out 8 measurement(s) in the last 30 s (accel 8)[0m
+[follow_manager_node-8] [INFO] [1792672588.311833423] [follow_manager]: follow: ACTIVE PATH LAST_KNOWN
+[owner_fusion_node-7] [INFO] [1792672588.374555197] [owner_fusion]: keeper: 25 heartbeats (last 0.3 s ago), 83 points (frames ['lidar_link']), 83 used, 0 ignored (no TF); camera: 52 points; scrub points: 83
+[collision_monitor_node-10] [WARN] [1792672588.841642666] [collision_monitor]: collision_monitor SLOW (beside): obstacle inf m along the path
+[follow_manager_node-8] [INFO] [1792672589.121693490] [follow_manager]: follow: ACTIVE PATH FOLLOW
+[follow_manager_node-8] [INFO] [1792672590.425543474] [follow_manager]: follow: ACTIVE PATH LAST_KNOWN
+[scan_leg_fill_node-11] [INFO] [1792672590.605763578] [scan_leg_fill]: 69 scans: 5.8 beams filled per scan (chairs), owner removed in 97 % (scrub point 97 %), 18.7 ms per scan
+[collision_monitor_node-10] [WARN] [1792672590.714123475] [collision_monitor]: collision_monitor STOP: obstacle 0.26 m along the path
+[follow_manager_node-8] [INFO] [1792672590.729657526] [follow_manager]: follow: ACTIVE PATH FOLLOW
+[cmd_mux_node-9] [INFO] [1792672591.123675706] [cmd_mux]: cmd_mux: driving input -> escape
+[smart_planner_node-6] [0m[INFO] [1792672591.159309163] [local_planner_bridge]: manoeuvre (goal -124 deg - full-lock turn blocked): 2 legs R0.50 F0.10 - plan 35 ms, 6 nodes[0m
+[smart_planner_node-6] [0m[INFO] [1792672592.143124491] [local_planner_bridge]: manoeuvre (goal -124 deg - full-lock turn blocked): 1 legs R0.60 - plan 78 ms, 6 nodes (re-plan 1)[0m
+[follow_manager_node-8] [INFO] [1792672592.320567449] [follow_manager]: follow: ACTIVE PATH LAST_KNOWN
+[collision_monitor_node-10] [WARN] [1792672592.602936126] [collision_monitor]: collision_monitor SLOW (beside): obstacle inf m along the path
+[sllidar_node-3] [INFO] [1792672593.813168177] [rplidar_node]: motor_control: 6.97 Hz (target 7.0), PWM 363, 2301 samples/rev
+[smart_planner_node-6] [0m[INFO] [1792672595.033240784] [local_planner_bridge]: manoeuvre done: forward turn to the goal (-39 deg) is free - no more reversing (2 legs, 3.9 s)[0m
+[cmd_mux_node-9] [INFO] [1792672595.582531105] [cmd_mux]: cmd_mux: driving input -> navigation
+[collision_monitor_node-10] [WARN] [1792672595.591986182] [collision_monitor]: collision_monitor SLOW (beside): obstacle inf m along the path
+[collision_monitor_node-10] [WARN] [1792672596.792626008] [collision_monitor]: collision_monitor STOP: obstacle 0.28 m along the path
+[smart_planner_node-6] [0m[INFO] [1792672597.468747756] [local_planner_bridge]: Obstacle ahead — cmd weight faded to 0.20 (des_clear=0.19m), chose steer +13deg[0m
+[smart_planner_node-6] [0m[INFO] [1792672600.002597033] [local_planner_bridge]: Stall -> PRE-STEER +30deg, back 0.30m, turns 34deg, opens 0.07m -> 0.66m, exit -30deg (attempt 1)[0m
+[cmd_mux_node-9] [INFO] [1792672600.019745609] [cmd_mux]: cmd_mux: driving input -> escape
+[follow_manager_node-8] [INFO] [1792672600.065622953] [follow_manager]: trap remembered (escape) at odom (1.3, 0.5) - 2 known
+[scan_leg_fill_node-11] [INFO] [1792672600.608064491] [scan_leg_fill]: 69 scans: 16.9 beams filled per scan (chairs), owner removed in 19 % (scrub point 19 %), 20.6 ms per scan
+[smart_planner_node-6] [0m[INFO] [1792672600.995370294] [local_planner_bridge]: reverse ended after 0.17 m: goal now ahead[0m
+[smart_planner_node-6] [0m[INFO] [1792672601.424176659] [local_planner_bridge]: Obstacle ahead — cmd weight faded to 0.34 (des_clear=0.31m), chose steer -30deg[0m
+[cmd_mux_node-9] [INFO] [1792672601.519858707] [cmd_mux]: cmd_mux: driving input -> navigation
+[collision_monitor_node-10] [WARN] [1792672601.532200578] [collision_monitor]: collision_monitor SLOW: obstacle 0.46 m along the path
+[collision_monitor_node-10] [WARN] [1792672602.738021069] [collision_monitor]: collision_monitor STOP: obstacle 0.26 m along the path
+[smart_planner_node-6] [0m[INFO] [1792672603.291250416] [local_planner_bridge]: Obstacle ahead — cmd weight faded to 0.20 (des_clear=0.19m), chose steer -30deg[0m
+[owner_fusion_node-7] [INFO] [1792672603.380377808] [owner_fusion]: keeper: 27 heartbeats (last 0.0 s ago), 26 points (frames ['lidar_link']), 26 used, 0 ignored (no TF); camera: 0 points; scrub points: 26
+[sllidar_node-3] [INFO] [1792672603.989209482] [rplidar_node]: motor_control: 7.04 Hz (target 7.0), PWM 368, 2231 samples/rev
+[smart_planner_node-6] [0m[INFO] [1792672605.462250059] [local_planner_bridge]: Stall -> PRE-STEER +10deg, back 0.30m, turns 11deg, opens 0.00m -> 0.66m, exit -30deg (attempt 2)[0m
+[smart_planner_node-6] [33m[WARN] [1792672605.484524486] [local_planner_bridge]: No usable scan on '/scan' for 2 s - republishing the last costmap. Check: ros2 topic hz /scan[0m
+[cmd_mux_node-9] [INFO] [1792672605.501723080] [cmd_mux]: cmd_mux: driving input -> escape
+[smart_planner_node-6] [33m[WARN] [1792672606.013366959] [local_planner_bridge]: Reverse blocked behind the car - taking the exit early[0m
+[cmd_mux_node-9] [INFO] [1792672606.541033718] [cmd_mux]: cmd_mux: driving input -> navigation
+[smart_planner_node-6] [0m[INFO] [1792672607.227124613] [local_planner_bridge]: Obstacle ahead — cmd weight faded to 0.23 (des_clear=0.21m), chose steer -30deg[0m
+[collision_monitor_node-10] [WARN] [1792672607.336245134] [collision_monitor]: collision_monitor SLOW: obstacle 0.36 m along the path
+[collision_monitor_node-10] [WARN] [1792672607.590833074] [collision_monitor]: collision_monitor SLOW (beside): obstacle inf m along the path
+[collision_monitor_node-10] [WARN] [1792672608.273233219] [collision_monitor]: collision_monitor STOP: obstacle 0.26 m along the path
+[collision_monitor_node-10] [WARN] [1792672608.380172108] [collision_monitor]: collision_monitor SLOW (beside): obstacle inf m along the path
+[collision_monitor_node-10] [WARN] [1792672608.442224220] [collision_monitor]: collision_monitor STOP: obstacle 0.18 m along the path
+[scan_leg_fill_node-11] [INFO] [1792672610.606172694] [scan_leg_fill]: 69 scans: 28.3 beams filled per scan (chairs), owner removed in 0 % (scrub point 0 %), 23.0 ms per scan
+[smart_planner_node-6] [0m[INFO] [1792672612.097733133] [local_planner_bridge]: Stall -> PRE-STEER -30deg, back 0.60m, turns 68deg, opens 0.00m -> 0.66m, exit +10deg (attempt 3)[0m
+[cmd_mux_node-9] [INFO] [1792672612.113276221] [cmd_mux]: cmd_mux: driving input -> escape
+[collision_monitor_node-10] [WARN] [1792672612.174582006] [collision_monitor]: collision_monitor SLOW (beside): obstacle inf m along the path
+[smart_planner_node-6] [0m[INFO] [1792672613.154426642] [local_planner_bridge]: reverse ended after 0.16 m: goal now ahead[0m
+[cmd_mux_node-9] [INFO] [1792672613.689464050] [cmd_mux]: cmd_mux: driving input -> navigation
+[collision_monitor_node-10] [WARN] [1792672613.719224513] [collision_monitor]: collision_monitor SLOW (beside): obstacle inf m along the path
+[sllidar_node-3] [INFO] [1792672614.290175654] [rplidar_node]: motor_control: 6.90 Hz (target 7.0), PWM 369, 2306 samples/rev
+[collision_monitor_node-10] [WARN] [1792672614.618313342] [collision_monitor]: collision_monitor STOP: obstacle 0.26 m along the path
+[collision_monitor_node-10] [WARN] [1792672614.765637376] [collision_monitor]: collision_monitor SLOW (beside): obstacle inf m along the path
+[collision_monitor_node-10] [WARN] [1792672614.819469790] [collision_monitor]: collision_monitor STOP: obstacle 0.20 m along the path
+[smart_planner_node-6] [0m[INFO] [1792672616.934469924] [local_planner_bridge]: Stall -> PRE-STEER +30deg, back 0.60m, turns 68deg, opens 0.07m -> 0.66m, exit -30deg (attempt 4)[0m
+[cmd_mux_node-9] [INFO] [1792672616.946091171] [cmd_mux]: cmd_mux: driving input -> escape
+[smart_planner_node-6] [0m[INFO] [1792672617.859549245] [local_planner_bridge]: reverse ended after 0.16 m: goal now ahead[0m
+[ekf_state_node-5] [0m[INFO] [1792672618.247147917] [ekf_state_node]: EKF gated out 5 measurement(s) in the last 30 s (accel 5)[0m
+[owner_fusion_node-7] [INFO] [1792672618.364779078] [owner_fusion]: keeper: 25 heartbeats (last 0.5 s ago), 0 points (frames ['lidar_link']), 0 used, 0 ignored (no TF); camera: 0 points; scrub points: 0
+[cmd_mux_node-9] [INFO] [1792672618.389824392] [cmd_mux]: cmd_mux: driving input -> navigation
+[smart_planner_node-6] [0m[INFO] [1792672618.406775155] [local_planner_bridge]: Obstacle ahead — cmd weight faded to 0.23 (des_clear=0.21m), chose steer -30deg[0m
+[collision_monitor_node-10] [WARN] [1792672618.526122322] [collision_monitor]: collision_monitor SLOW: obstacle 0.36 m along the path
+[follow_manager_node-8] [INFO] [1792672618.904494896] [follow_manager]: follow: INACTIVE (Jetson planner: LOST, no fresh path)
+[collision_monitor_node-10] [WARN] [1792672619.683467304] [collision_monitor]: collision_monitor STOP: obstacle 0.26 m along the path
+[scan_leg_fill_node-11] [INFO] [1792672620.606161531] [scan_leg_fill]: 69 scans: 29.9 beams filled per scan (chairs), owner removed in 0 % (scrub point 0 %), 17.8 ms per scan
+[smart_planner_node-6] [0m[INFO] [1792672620.608216424] [local_planner_bridge]: owner lost, wall 0.07 m ahead - backing off 0.35 m at -27 deg to look for them (last seen left)[0m
+[cmd_mux_node-9] [INFO] [1792672620.656265992] [cmd_mux]: cmd_mux: driving input -> escape
+[follow_manager_node-8] [INFO] [1792672620.700994511] [follow_manager]: owner lost - search: go to last seen (2.2, 1.0) m
+[follow_manager_node-8] [INFO] [1792672620.741088657] [follow_manager]: follow: SEARCH APPROACH (Jetson planner: LOST)
+[follow_manager_node-8] [INFO] [1792672620.822240461] [follow_manager]: detour left: trap in the way
+[follow_manager_node-8] [INFO] [1792672620.839413444] [follow_manager]: follow: SEARCH APPROACH DETOUR L (Jetson planner: LOST)
+[collision_monitor_node-10] [WARN] [1792672621.064702249] [collision_monitor]: collision_monitor SLOW (beside): obstacle inf m along the path
+[smart_planner_node-6] [0m[INFO] [1792672623.581048860] [local_planner_bridge]: manoeuvre (goal +105 deg - full-lock turn blocked): 1 legs R0.50 - plan 83 ms, 5 nodes[0m
+[sllidar_node-3] [INFO] [1792672624.426383348] [rplidar_node]: motor_control: 7.01 Hz (target 7.0), PWM 368, 2243 samples/rev
+[smart_planner_node-6] [0m[INFO] [1792672625.153910380] [local_planner_bridge]: manoeuvre done: forward turn to the goal (+62 deg) is free - no more reversing (1 legs, 1.8 s)[0m
+[cmd_mux_node-9] [INFO] [1792672625.738369198] [cmd_mux]: cmd_mux: driving input -> navigation
+[collision_monitor_node-10] [WARN] [1792672625.749310543] [collision_monitor]: collision_monitor SLOW: obstacle 0.71 m along the path
+[collision_monitor_node-10] [WARN] [1792672627.985543089] [collision_monitor]: collision_monitor STOP: obstacle 0.16 m along the path
+[smart_planner_node-6] [0m[INFO] [1792672628.521408695] [local_planner_bridge]: Obstacle ahead — cmd weight faded to 0.26 (des_clear=0.24m), chose steer +30deg[0m
+[cmd_mux_node-9] [INFO] [1792672628.597609332] [cmd_mux]: cmd_mux: driving input -> escape
+[smart_planner_node-6] [0m[INFO] [1792672628.726674316] [local_planner_bridge]: manoeuvre (goal +88 deg - full-lock turn blocked): 1 legs R0.40 - plan 34 ms, 4 nodes[0m
+[collision_monitor_node-10] [WARN] [1792672629.489363604] [collision_monitor]: collision_monitor SLOW (beside): obstacle inf m along the path
+[smart_planner_node-6] [0m[INFO] [1792672630.620032006] [local_planner_bridge]: manoeuvre done: forward turn to the goal (+84 deg) is free - no more reversing (1 legs, 2.0 s)[0m
+[scan_leg_fill_node-11] [INFO] [1792672630.622931392] [scan_leg_fill]: 69 scans: 34.0 beams filled per scan (chairs), owner removed in 0 % (scrub point 0 %), 17.5 ms per scan
+[cmd_mux_node-9] [INFO] [1792672631.165474041] [cmd_mux]: cmd_mux: driving input -> navigation
+[collision_monitor_node-10] [WARN] [1792672631.573301914] [collision_monitor]: collision_monitor STOP: obstacle 0.22 m along the path
+[collision_monitor_node-10] [WARN] [1792672631.671902069] [collision_monitor]: collision_monitor SLOW: obstacle 0.34 m along the path
+[collision_monitor_node-10] [WARN] [1792672632.455325166] [collision_monitor]: collision_monitor STOP: obstacle 0.20 m along the path
+[collision_monitor_node-10] [WARN] [1792672632.738946556] [collision_monitor]: collision_monitor SLOW (beside): obstacle 0.85 m along the path
+[follow_manager_node-8] [INFO] [1792672632.821860217] [follow_manager]: follow: SEARCH APPROACH (Jetson planner: LOST)
+[collision_monitor_node-10] [WARN] [1792672632.897939410] [collision_monitor]: collision_monitor STOP: obstacle 0.06 m along the path
+[follow_manager_node-8] [INFO] [1792672632.903877551] [follow_manager]: detour left: dead end ahead
+[follow_manager_node-8] [INFO] [1792672632.933611496] [follow_manager]: follow: SEARCH APPROACH DETOUR L (Jetson planner: LOST)
+[owner_fusion_node-7] [INFO] [1792672633.365191193] [owner_fusion]: keeper: 26 heartbeats (last 0.4 s ago), 0 points (frames ['lidar_link']), 0 used, 0 ignored (no TF); camera: 0 points; scrub points: 0
+[cmd_mux_node-9] [INFO] [1792672633.684846444] [cmd_mux]: cmd_mux: driving input -> escape
+[smart_planner_node-6] [0m[INFO] [1792672633.728521897] [local_planner_bridge]: manoeuvre (goal +76 deg - full-lock turn blocked): 1 legs R0.30 - plan 74 ms, 3 nodes[0m
+[sllidar_node-3] [INFO] [1792672634.574172494] [rplidar_node]: motor_control: 7.09 Hz (target 7.0), PWM 365, 2230 samples/rev
+[smart_planner_node-6] [0m[INFO] [1792672634.869471519] [local_planner_bridge]: manoeuvre (goal +76 deg - full-lock turn blocked): 2 legs R0.30 F0.10 - plan 64 ms, 4 nodes (re-plan 1)[0m
+[collision_monitor_node-10] [WARN] [1792672635.346210342] [collision_monitor]: collision_monitor SLOW (beside): obstacle inf m along the path
+[smart_planner_node-6] [0m[INFO] [1792672636.432968182] [local_planner_bridge]: manoeuvre done: forward turn to the goal (+60 deg) is free - no more reversing (2 legs, 2.8 s)[0m
+[cmd_mux_node-9] [INFO] [1792672636.982744758] [cmd_mux]: cmd_mux: driving input -> navigation
+[follow_manager_node-8] [INFO] [1792672637.501416140] [follow_manager]: detour done - straight to the goal again
+[follow_manager_node-8] [INFO] [1792672637.514311007] [follow_manager]: follow: SEARCH APPROACH (Jetson planner: LOST)
+[collision_monitor_node-10] [WARN] [1792672637.889183070] [collision_monitor]: collision_monitor SLOW: obstacle 0.91 m along the path
+[follow_manager_node-8] [INFO] [1792672638.625145723] [follow_manager]: detour left: trap in the way
+[follow_manager_node-8] [INFO] [1792672638.640561090] [follow_manager]: follow: SEARCH APPROACH DETOUR L (Jetson planner: LOST)
+[follow_manager_node-8] [INFO] [1792672639.410918340] [follow_manager]: follow: ACTIVE PATH FOLLOW
+[collision_monitor_node-10] [WARN] [1792672639.588119540] [collision_monitor]: collision_monitor STOP: obstacle 0.26 m along the path
+[collision_monitor_node-10] [WARN] [1792672639.632015658] [collision_monitor]: collision_monitor SLOW: obstacle 0.42 m along the path
+[collision_monitor_node-10] [WARN] [1792672639.951563484] [collision_monitor]: collision_monitor STOP: obstacle 0.08 m along the path
+[collision_monitor_node-10] [WARN] [1792672640.170095451] [collision_monitor]: collision_monitor SLOW (beside): obstacle inf m along the path
+[collision_monitor_node-10] [WARN] [1792672640.604522441] [collision_monitor]: collision_monitor STOP: obstacle 0.02 m along the path
+[scan_leg_fill_node-11] [INFO] [1792672640.609383108] [scan_leg_fill]: 69 scans: 28.6 beams filled per scan (chairs), owner removed in 14 % (scrub point 13 %), 20.7 ms per scan
+[collision_monitor_node-10] [WARN] [1792672640.788953643] [collision_monitor]: collision_monitor SLOW (beside): obstacle inf m along the path
+[smart_planner_node-6] [0m[INFO] [1792672641.095514010] [local_planner_bridge]: Obstacle ahead — cmd weight faded to 0.15 (des_clear=0.03m), chose steer -4deg[0m
+[collision_monitor_node-10] [WARN] [1792672641.486216344] [collision_monitor]: collision_monitor SLOW (beside): obstacle inf m along the path
+[smart_planner_node-6] [33m[WARN] [1792672641.943438405] [local_planner_bridge]: collision monitor held the car 0.7 s - way ahead blocked, starting reverse escape[0m
+[cmd_mux_node-9] [INFO] [1792672641.962346542] [cmd_mux]: cmd_mux: driving input -> escape
+[smart_planner_node-6] [0m[INFO] [1792672642.052109892] [local_planner_bridge]: manoeuvre done: facing the way to go (0 legs, 0.1 s)[0m
+[cmd_mux_node-9] [INFO] [1792672642.572586724] [cmd_mux]: cmd_mux: driving input -> navigation
+[smart_planner_node-6] [0m[INFO] [1792672642.942455157] [local_planner_bridge]: Obstacle ahead — cmd weight faded to 0.15 (des_clear=0.02m), chose steer -4deg[0m
+[collision_monitor_node-10] [WARN] [1792672642.988924830] [collision_monitor]: collision_monitor SLOW (beside): obstacle inf m along the path
+[collision_monitor_node-10] [WARN] [1792672643.255327681] [collision_monitor]: collision_monitor SLOW (beside): obstacle inf m along the path
+[collision_monitor_node-10] [WARN] [1792672643.658970011] [collision_monitor]: collision_monitor SLOW (beside): obstacle inf m along the path
+[follow_manager_node-8] [INFO] [1792672644.731604901] [follow_manager]: follow: INACTIVE (Jetson planner: FOLLOW, no fresh path)
+[sllidar_node-3] [INFO] [1792672644.895229720] [rplidar_node]: motor_control: 6.95 Hz (target 7.0), PWM 368, 2310 samples/rev
+[follow_manager_node-8] [INFO] [1792672645.016451744] [follow_manager]: follow: ACTIVE PATH FOLLOW
+[collision_monitor_node-10] [WARN] [1792672646.441395420] [collision_monitor]: collision_monitor SLOW: obstacle 0.96 m along the path
+[follow_manager_node-8] [INFO] [1792672646.605654327] [follow_manager]: follow: INACTIVE (Jetson planner: FOLLOW, no fresh path)
+[follow_manager_node-8] [INFO] [1792672647.124762743] [follow_manager]: follow: ACTIVE OWNER (Jetson planner: FOLLOW, no path)
+[follow_manager_node-8] [INFO] [1792672647.323105526] [follow_manager]: follow: ACTIVE PATH FOLLOW
+[ekf_state_node-5] [0m[INFO] [1792672648.256329675] [ekf_state_node]: EKF gated out 17 measurement(s) in the last 30 s (yaw_rate 2, accel 15)[0m
+[owner_fusion_node-7] [INFO] [1792672648.365332031] [owner_fusion]: keeper: 26 heartbeats (last 0.1 s ago), 62 points (frames ['lidar_link']), 62 used, 0 ignored (no TF); camera: 54 points; scrub points: 64
+[follow_manager_node-8] [INFO] [1792672649.814428212] [follow_manager]: follow: INACTIVE (Jetson planner: FOLLOW, no fresh path)
+[follow_manager_node-8] [INFO] [1792672650.106954054] [follow_manager]: follow: ACTIVE PATH FOLLOW
+[scan_leg_fill_node-11] [INFO] [1792672650.606477449] [scan_leg_fill]: 69 scans: 14.0 beams filled per scan (chairs), owner removed in 100 % (scrub point 100 %), 20.5 ms per scan
+[collision_monitor_node-10] [WARN] [1792672653.212238191] [collision_monitor]: collision_monitor SLOW (beside): obstacle inf m along the path
+[collision_monitor_node-10] [WARN] [1792672654.229705602] [collision_monitor]: collision_monitor SLOW (beside): obstacle inf m along the path
+[sllidar_node-3] [INFO] [1792672655.023581269] [rplidar_node]: motor_control: 7.05 Hz (target 7.0), PWM 372, 2249 samples/rev
+[collision_monitor_node-10] [WARN] [1792672656.091138974] [collision_monitor]: collision_monitor SLOW (beside): obstacle inf m along the path
+[follow_manager_node-8] [INFO] [1792672657.931949297] [follow_manager]: follow: ACTIVE PATH LAST_KNOWN
+[collision_monitor_node-10] [WARN] [1792672658.438904543] [collision_monitor]: collision_monitor SLOW (beside): obstacle inf m along the path
+[collision_monitor_node-10] [WARN] [1792672660.419088366] [collision_monitor]: collision_monitor SLOW (beside): obstacle inf m along the path
+[scan_leg_fill_node-11] [INFO] [1792672660.606947079] [scan_leg_fill]: 69 scans: 10.1 beams filled per scan (chairs), owner removed in 75 % (scrub point 74 %), 20.9 ms per scan
+[owner_fusion_node-7] [INFO] [1792672663.410114704] [owner_fusion]: keeper: 26 heartbeats (last 0.2 s ago), 64 points (frames ['lidar_link']), 64 used, 0 ignored (no TF); camera: 11 points; scrub points: 64
+[sllidar_node-3] [INFO] [1792672665.119465597] [rplidar_node]: motor_control: 6.98 Hz (target 7.0), PWM 372, 2291 samples/rev
+[collision_monitor_node-10] [WARN] [1792672665.810766713] [collision_monitor]: collision_monitor SLOW (beside): obstacle inf m along the path
+[collision_monitor_node-10] [WARN] [1792672666.057526229] [collision_monitor]: collision_monitor SLOW (beside): obstacle inf m along the path
+[cmd_mux_node-9] [INFO] [1792672666.326199878] [cmd_mux]: cmd_mux: driving input -> escape
+[smart_planner_node-6] [0m[INFO] [1792672666.454524386] [local_planner_bridge]: manoeuvre (goal -167 deg - full-lock turn blocked): 2 legs R0.80 F0.10 - plan 66 ms, 9 nodes[0m
+[smart_planner_node-6] [0m[INFO] [1792672668.152049330] [local_planner_bridge]: manoeuvre done: forward turn to the goal (-137 deg) is free - no more reversing (1 legs, 1.9 s)[0m
+[cmd_mux_node-9] [INFO] [1792672668.680958154] [cmd_mux]: cmd_mux: driving input -> navigation
+[scan_leg_fill_node-11] [INFO] [1792672670.609183048] [scan_leg_fill]: 68 scans: 8.1 beams filled per scan (chairs), owner removed in 0 % (scrub point 0 %), 18.9 ms per scan
+[collision_monitor_node-10] [WARN] [1792672673.228644373] [collision_monitor]: collision_monitor SLOW (beside): obstacle inf m along the path
+[collision_monitor_node-10] [WARN] [1792672674.463377483] [collision_monitor]: collision_monitor SLOW (beside): obstacle inf m along the path
+[sllidar_node-3] [INFO] [1792672675.590780150] [rplidar_node]: motor_control: 7.00 Hz (target 7.0), PWM 368, 2267 samples/rev
+[ekf_state_node-5] [0m[INFO] [1792672678.261578723] [ekf_state_node]: EKF gated out 3 measurement(s) in the last 30 s (accel 3)[0m
+[owner_fusion_node-7] [INFO] [1792672678.368918868] [owner_fusion]: keeper: 25 heartbeats (last 0.2 s ago), 0 points (frames ['lidar_link']), 0 used, 0 ignored (no TF); camera: 0 points; scrub points: 0
+[scan_leg_fill_node-11] [INFO] [1792672680.606110279] [scan_leg_fill]: 70 scans: 5.3 beams filled per scan (chairs), owner removed in 0 % (scrub point 0 %), 15.8 ms per scan
+[follow_manager_node-8] [INFO] [1792672681.409483486] [follow_manager]: follow: INACTIVE (Jetson planner: FOLLOW, no fresh path)
+[follow_manager_node-8] [INFO] [1792672682.013791120] [follow_manager]: follow: ACTIVE OWNER (Jetson planner: FOLLOW, no path)
+[sllidar_node-3] [INFO] [1792672685.783632256] [rplidar_node]: motor_control: 6.95 Hz (target 7.0), PWM 368, 2291 samples/rev
+[follow_manager_node-8] [INFO] [1792672687.422502007] [follow_manager]: follow: ACTIVE PATH FOLLOW
+[collision_monitor_node-10] [WARN] [1792672690.448437641] [collision_monitor]: collision_monitor SLOW: obstacle 0.95 m along the path
+[scan_leg_fill_node-11] [INFO] [1792672690.611495705] [scan_leg_fill]: 68 scans: 12.0 beams filled per scan (chairs), owner removed in 93 % (scrub point 90 %), 19.9 ms per scan
+[owner_fusion_node-7] [INFO] [1792672693.367345664] [owner_fusion]: keeper: 26 heartbeats (last 0.1 s ago), 70 points (frames ['lidar_link']), 70 used, 0 ignored (no TF); camera: 33 points; scrub points: 72
+[sllidar_node-3] [INFO] [1792672696.149680555] [rplidar_node]: motor_control: 6.98 Hz (target 7.0), PWM 362, 2283 samples/rev
+[WARNING] [launch]: user interrupted with ctrl-c (SIGINT)
+[INFO] [gps_owner_node-12]: sending signal 'SIGINT' to process[gps_owner_node-12]
+[INFO] [scan_leg_fill_node-11]: sending signal 'SIGINT' to process[scan_leg_fill_node-11]
+[INFO] [collision_monitor_node-10]: sending signal 'SIGINT' to process[collision_monitor_node-10]
+[INFO] [cmd_mux_node-9]: sending signal 'SIGINT' to process[cmd_mux_node-9]
+[INFO] [follow_manager_node-8]: sending signal 'SIGINT' to process[follow_manager_node-8]
+[INFO] [owner_fusion_node-7]: sending signal 'SIGINT' to process[owner_fusion_node-7]
+[INFO] [smart_planner_node-6]: sending signal 'SIGINT' to process[smart_planner_node-6]
+[INFO] [ekf_state_node-5]: sending signal 'SIGINT' to process[ekf_state_node-5]
+[ERROR] [collision_monitor_node-10]: process has died [pid 3473, exit code -2, cmd '/home/a2r/A2R_BOT/a2r_bot_ws/install/a2r_bot_follow/lib/a2r_bot_follow/collision_monitor_node --ros-args -r __node:=collision_monitor --params-file /home/a2r/A2R_BOT/a2r_bot_ws/install/a2r_bot_follow/share/a2r_bot_follow/config/params.yaml'].
+[INFO] [imu_filter_node-4]: sending signal 'SIGINT' to process[imu_filter_node-4]
+[ERROR] [follow_manager_node-8]: process has died [pid 3468, exit code -2, cmd '/home/a2r/A2R_BOT/a2r_bot_ws/install/a2r_bot_follow/lib/a2r_bot_follow/follow_manager_node --ros-args -r __node:=follow_manager --params-file /home/a2r/A2R_BOT/a2r_bot_ws/install/a2r_bot_follow/share/a2r_bot_follow/config/params.yaml --params-file /tmp/launch_params_4saqndf0'].
+[INFO] [sllidar_node-3]: sending signal 'SIGINT' to process[sllidar_node-3]
+[ERROR] [scan_leg_fill_node-11]: process has died [pid 3475, exit code -2, cmd '/home/a2r/A2R_BOT/a2r_bot_ws/install/a2r_bot_follow/lib/a2r_bot_follow/scan_leg_fill_node --ros-args -r __node:=scan_leg_fill --params-file /home/a2r/A2R_BOT/a2r_bot_ws/install/a2r_bot_follow/share/a2r_bot_follow/config/params.yaml'].
+[INFO] [wheel_state_node-2]: sending signal 'SIGINT' to process[wheel_state_node-2]
+[INFO] [robot_state_publisher-1]: sending signal 'SIGINT' to process[robot_state_publisher-1]
+[ERROR] [sllidar_node-3]: process has died [pid 3425, exit code -2, cmd '/home/a2r/ros2_ws/install/sllidar_ros2/lib/sllidar_ros2/sllidar_node --ros-args -r __node:=rplidar_node --params-file /tmp/launch_params_0ogkueax'].
+[robot_state_publisher-1] [INFO] [1792672699.481269526] [rclcpp]: signal_handler(SIGINT/SIGTERM)
+[smart_planner_node-6] [0m[INFO] [1792672699.503748211] [local_planner_bridge]: Shutdown — sending STOP[0m
+[smart_planner_node-6] Failed to publish log message to rosout: publisher's context is invalid, at ./src/rcl/publisher.c:389
+[ERROR] [owner_fusion_node-7]: process has died [pid 3465, exit code -2, cmd '/home/a2r/A2R_BOT/a2r_bot_ws/install/a2r_bot_follow/lib/a2r_bot_follow/owner_fusion_node --ros-args -r __node:=owner_fusion --params-file /home/a2r/A2R_BOT/a2r_bot_ws/install/a2r_bot_follow/share/a2r_bot_follow/config/params.yaml'].
+[ERROR] [cmd_mux_node-9]: process has died [pid 3471, exit code -2, cmd '/home/a2r/A2R_BOT/a2r_bot_ws/install/a2r_bot_follow/lib/a2r_bot_follow/cmd_mux_node --ros-args -r __node:=cmd_mux --params-file /home/a2r/A2R_BOT/a2r_bot_ws/install/a2r_bot_follow/share/a2r_bot_follow/config/params.yaml'].
+[gps_owner_node-12] Traceback (most recent call last):
+[gps_owner_node-12]   File "/home/a2r/A2R_BOT/a2r_bot_ws/install/a2r_bot_follow/lib/a2r_bot_follow/gps_owner_node", line 33, in <module>
+[gps_owner_node-12]     sys.exit(load_entry_point('a2r-bot-follow==2.0.0', 'console_scripts', 'gps_owner_node')())
+[gps_owner_node-12]   File "/home/a2r/A2R_BOT/a2r_bot_ws/install/a2r_bot_follow/lib/python3.10/site-packages/a2r_bot_follow/gps_owner_node.py", line 804, in main
+[gps_owner_node-12]     node.destroy_node()
+[gps_owner_node-12]   File "/home/a2r/A2R_BOT/a2r_bot_ws/install/a2r_bot_follow/lib/python3.10/site-packages/a2r_bot_follow/gps_owner_node.py", line 795, in destroy_node
+[scan_leg_fill_node-11] Traceback (most recent call last):
+[scan_leg_fill_node-11]   File "/home/a2r/A2R_BOT/a2r_bot_ws/install/a2r_bot_follow/lib/a2r_bot_follow/scan_leg_fill_node", line 33, in <module>
+[scan_leg_fill_node-11]     sys.exit(load_entry_point('a2r-bot-follow==2.0.0', 'console_scripts', 'scan_leg_fill_node')())
+[scan_leg_fill_node-11]   File "/home/a2r/A2R_BOT/a2r_bot_ws/install/a2r_bot_follow/lib/python3.10/site-packages/a2r_bot_follow/scan_leg_fill_node.py", line 524, in main
+[gps_owner_node-12]     return super().destroy_node()
+[gps_owner_node-12]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/node.py", line 1685, in destroy_node
+[scan_leg_fill_node-11]     node.destroy_node()
+[scan_leg_fill_node-11]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/node.py", line 1685, in destroy_node
+[scan_leg_fill_node-11]     self.destroy_publisher(self._publishers[0])
+[scan_leg_fill_node-11]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/node.py", line 1565, in destroy_publisher
+[scan_leg_fill_node-11]     publisher.destroy()
+[scan_leg_fill_node-11]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/publisher.py", line 99, in destroy
+[scan_leg_fill_node-11]     self.__publisher.destroy_when_not_in_use()
+[scan_leg_fill_node-11] KeyboardInterrupt
+[sllidar_node-3] [INFO] [1792672699.622097608] [rplidar_node]: Stop motor
+[gps_owner_node-12]     self.destroy_publisher(self._publishers[0])
+[gps_owner_node-12]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/node.py", line 1565, in destroy_publisher
+[gps_owner_node-12]     publisher.destroy()
+[gps_owner_node-12] KeyboardInterrupt
+[smart_planner_node-6] Traceback (most recent call last):
+[smart_planner_node-6]   File "/home/a2r/A2R_BOT/a2r_bot_ws/install/a2r_bot_follow/lib/a2r_bot_follow/smart_planner_node", line 33, in <module>
+[smart_planner_node-6]     sys.exit(load_entry_point('a2r-bot-follow==2.0.0', 'console_scripts', 'smart_planner_node')())
+[smart_planner_node-6]   File "/home/a2r/A2R_BOT/a2r_bot_ws/install/a2r_bot_follow/lib/python3.10/site-packages/a2r_bot_follow/smart_planner_node.py", line 4802, in main
+[follow_manager_node-8] Traceback (most recent call last):
+[follow_manager_node-8]   File "/home/a2r/A2R_BOT/a2r_bot_ws/install/a2r_bot_follow/lib/a2r_bot_follow/follow_manager_node", line 33, in <module>
+[follow_manager_node-8]     sys.exit(load_entry_point('a2r-bot-follow==2.0.0', 'console_scripts', 'follow_manager_node')())
+[follow_manager_node-8]   File "/home/a2r/A2R_BOT/a2r_bot_ws/install/a2r_bot_follow/lib/python3.10/site-packages/a2r_bot_follow/follow_manager_node.py", line 1157, in main
+[follow_manager_node-8]     node.destroy_node()
+[follow_manager_node-8]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/node.py", line 1685, in destroy_node
+[follow_manager_node-8]     self.destroy_publisher(self._publishers[0])
+[follow_manager_node-8]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/node.py", line 1565, in destroy_publisher
+[follow_manager_node-8]     publisher.destroy()
+[follow_manager_node-8]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/publisher.py", line 99, in destroy
+[follow_manager_node-8]     self.__publisher.destroy_when_not_in_use()
+[follow_manager_node-8] KeyboardInterrupt
+[ERROR] [smart_planner_node-6]: process has died [pid 3462, exit code -2, cmd '/home/a2r/A2R_BOT/a2r_bot_ws/install/a2r_bot_follow/lib/a2r_bot_follow/smart_planner_node --ros-args --log-level info --ros-args -r __node:=local_planner_bridge --params-file /home/a2r/A2R_BOT/a2r_bot_ws/install/a2r_bot_follow/share/a2r_bot_follow/config/params.yaml --params-file /tmp/launch_params_n2oty8p_'].
+[collision_monitor_node-10] Traceback (most recent call last):
+[collision_monitor_node-10]   File "/home/a2r/A2R_BOT/a2r_bot_ws/install/a2r_bot_follow/lib/a2r_bot_follow/collision_monitor_node", line 33, in <module>
+[collision_monitor_node-10]     sys.exit(load_entry_point('a2r-bot-follow==2.0.0', 'console_scripts', 'collision_monitor_node')())
+[collision_monitor_node-10]   File "/home/a2r/A2R_BOT/a2r_bot_ws/install/a2r_bot_follow/lib/python3.10/site-packages/a2r_bot_follow/collision_monitor_node.py", line 305, in main
+[collision_monitor_node-10]     node.destroy_node()
+[collision_monitor_node-10]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/node.py", line 1685, in destroy_node
+[collision_monitor_node-10]     self.destroy_publisher(self._publishers[0])
+[collision_monitor_node-10]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/node.py", line 1565, in destroy_publisher
+[collision_monitor_node-10]     publisher.destroy()
+[collision_monitor_node-10]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/publisher.py", line 99, in destroy
+[collision_monitor_node-10]     self.__publisher.destroy_when_not_in_use()
+[collision_monitor_node-10] KeyboardInterrupt
+[owner_fusion_node-7] Traceback (most recent call last):
+[owner_fusion_node-7]   File "/home/a2r/A2R_BOT/a2r_bot_ws/install/a2r_bot_follow/lib/a2r_bot_follow/owner_fusion_node", line 33, in <module>
+[owner_fusion_node-7]     sys.exit(load_entry_point('a2r-bot-follow==2.0.0', 'console_scripts', 'owner_fusion_node')())
+[owner_fusion_node-7]   File "/home/a2r/A2R_BOT/a2r_bot_ws/install/a2r_bot_follow/lib/python3.10/site-packages/a2r_bot_follow/owner_fusion_node.py", line 772, in main
+[owner_fusion_node-7]     node.destroy_node()
+[owner_fusion_node-7]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/node.py", line 1685, in destroy_node
+[owner_fusion_node-7]     self.destroy_publisher(self._publishers[0])
+[owner_fusion_node-7]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/node.py", line 1565, in destroy_publisher
+[owner_fusion_node-7]     publisher.destroy()
+[owner_fusion_node-7]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/publisher.py", line 99, in destroy
+[owner_fusion_node-7]     self.__publisher.destroy_when_not_in_use()
+[owner_fusion_node-7] KeyboardInterrupt
+[cmd_mux_node-9] Traceback (most recent call last):
+[cmd_mux_node-9]   File "/home/a2r/A2R_BOT/a2r_bot_ws/install/a2r_bot_follow/lib/a2r_bot_follow/cmd_mux_node", line 33, in <module>
+[cmd_mux_node-9]     sys.exit(load_entry_point('a2r-bot-follow==2.0.0', 'console_scripts', 'cmd_mux_node')())
+[cmd_mux_node-9]   File "/home/a2r/A2R_BOT/a2r_bot_ws/install/a2r_bot_follow/lib/python3.10/site-packages/a2r_bot_follow/cmd_mux_node.py", line 178, in main
+[cmd_mux_node-9]     node.destroy_node()
+[cmd_mux_node-9]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/node.py", line 1685, in destroy_node
+[cmd_mux_node-9]     self.destroy_publisher(self._publishers[0])
+[cmd_mux_node-9]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/node.py", line 1565, in destroy_publisher
+[cmd_mux_node-9]     publisher.destroy()
+[cmd_mux_node-9]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/publisher.py", line 99, in destroy
+[cmd_mux_node-9]     self.__publisher.destroy_when_not_in_use()
+[cmd_mux_node-9] KeyboardInterrupt
+[smart_planner_node-6]     node.destroy_node()
+[imu_filter_node-4] Traceback (most recent call last):
+[imu_filter_node-4]   File "/home/a2r/A2R_BOT/a2r_bot_ws/install/a2r_bot_sensor_fusion/lib/a2r_bot_sensor_fusion/imu_filter_node", line 33, in <module>
+[imu_filter_node-4]     sys.exit(load_entry_point('a2r-bot-sensor-fusion==2.0.0', 'console_scripts', 'imu_filter_node')())
+[imu_filter_node-4]   File "/home/a2r/A2R_BOT/a2r_bot_ws/install/a2r_bot_sensor_fusion/lib/python3.10/site-packages/a2r_bot_sensor_fusion/imu_filter_node.py", line 316, in main
+[imu_filter_node-4]     node.destroy_node()
+[imu_filter_node-4]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/node.py", line 1685, in destroy_node
+[imu_filter_node-4]     self.destroy_publisher(self._publishers[0])
+[imu_filter_node-4]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/node.py", line 1565, in destroy_publisher
+[imu_filter_node-4]     publisher.destroy()
+[imu_filter_node-4]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/publisher.py", line 99, in destroy
+[imu_filter_node-4]     self.__publisher.destroy_when_not_in_use()
+[imu_filter_node-4] KeyboardInterrupt
+[smart_planner_node-6]   File "/home/a2r/A2R_BOT/a2r_bot_ws/install/a2r_bot_follow/lib/python3.10/site-packages/a2r_bot_follow/smart_planner_node.py", line 4762, in destroy_node
+[ekf_state_node-5] Traceback (most recent call last):
+[ekf_state_node-5]   File "/home/a2r/A2R_BOT/a2r_bot_ws/install/a2r_bot_sensor_fusion/lib/a2r_bot_sensor_fusion/ekf_state_node", line 33, in <module>
+[ekf_state_node-5]     sys.exit(load_entry_point('a2r-bot-sensor-fusion==2.0.0', 'console_scripts', 'ekf_state_node')())
+[ekf_state_node-5]   File "/home/a2r/A2R_BOT/a2r_bot_ws/install/a2r_bot_sensor_fusion/lib/python3.10/site-packages/a2r_bot_sensor_fusion/ekf_state_node.py", line 532, in main
+[ekf_state_node-5]     node.destroy_node()
+[ekf_state_node-5]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/node.py", line 1685, in destroy_node
+[ekf_state_node-5]     self.destroy_publisher(self._publishers[0])
+[wheel_state_node-2] Traceback (most recent call last):
+[wheel_state_node-2]   File "/home/a2r/A2R_BOT/a2r_bot_ws/install/a2r_bot_description/lib/a2r_bot_description/wheel_state_node", line 33, in <module>
+[smart_planner_node-6]     super().destroy_node()
+[smart_planner_node-6]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/node.py", line 1685, in destroy_node
+[smart_planner_node-6]     self.destroy_publisher(self._publishers[0])
+[smart_planner_node-6]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/node.py", line 1565, in destroy_publisher
+[ekf_state_node-5]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/node.py", line 1565, in destroy_publisher
+[ekf_state_node-5]     publisher.destroy()
+[ekf_state_node-5]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/publisher.py", line 99, in destroy
+[ekf_state_node-5]     self.__publisher.destroy_when_not_in_use()
+[ekf_state_node-5] KeyboardInterrupt
+[wheel_state_node-2]     sys.exit(load_entry_point('a2r-bot-description==3.0.0', 'console_scripts', 'wheel_state_node')())
+[wheel_state_node-2]   File "/home/a2r/A2R_BOT/a2r_bot_ws/install/a2r_bot_description/lib/python3.10/site-packages/a2r_bot_description/wheel_state_node.py", line 221, in main
+[wheel_state_node-2]     node.destroy_node()
+[wheel_state_node-2]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/node.py", line 1687, in destroy_node
+[wheel_state_node-2]     self.destroy_subscription(self._subscriptions[0])
+[wheel_state_node-2]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/node.py", line 1583, in destroy_subscription
+[wheel_state_node-2]     subscription.destroy()
+[wheel_state_node-2]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/subscription.py", line 80, in destroy
+[wheel_state_node-2]     self.handle.destroy_when_not_in_use()
+[wheel_state_node-2] KeyboardInterrupt
+[smart_planner_node-6]     publisher.destroy()
+[smart_planner_node-6]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/publisher.py", line 99, in destroy
+[smart_planner_node-6]     self.__publisher.destroy_when_not_in_use()
+[smart_planner_node-6] KeyboardInterrupt
+[robot_state_publisher-1] [INFO] [1792672699.878132536] [rclcpp]: signal_handler(SIGINT/SIGTERM)
+[INFO] [robot_state_publisher-1]: process has finished cleanly [pid 3421]
+[ERROR] [wheel_state_node-2]: process has died [pid 3423, exit code -2, cmd '/home/a2r/A2R_BOT/a2r_bot_ws/install/a2r_bot_description/lib/a2r_bot_description/wheel_state_node --ros-args -r __node:=wheel_state_node --params-file /home/a2r/A2R_BOT/a2r_bot_ws/install/a2r_bot_description/share/a2r_bot_description/config/description.yaml --params-file /tmp/launch_params_vh37k2hq'].
+[ERROR] [ekf_state_node-5]: process has died [pid 3434, exit code -2, cmd '/home/a2r/A2R_BOT/a2r_bot_ws/install/a2r_bot_sensor_fusion/lib/a2r_bot_sensor_fusion/ekf_state_node --ros-args --log-level info --ros-args -r __node:=ekf_state_node --params-file /home/a2r/A2R_BOT/a2r_bot_ws/install/a2r_bot_sensor_fusion/share/a2r_bot_sensor_fusion/config/fusion.yaml --params-file /tmp/launch_params_q7k8itwu'].
+[ERROR] [imu_filter_node-4]: process has died [pid 3427, exit code -2, cmd '/home/a2r/A2R_BOT/a2r_bot_ws/install/a2r_bot_sensor_fusion/lib/a2r_bot_sensor_fusion/imu_filter_node --ros-args --log-level info --ros-args -r __node:=imu_filter_node --params-file /home/a2r/A2R_BOT/a2r_bot_ws/install/a2r_bot_sensor_fusion/share/a2r_bot_sensor_fusion/config/fusion.yaml --params-file /tmp/launch_params_70n2mfv2'].
+[ERROR] [gps_owner_node-12]: process has died [pid 3477, exit code -2, cmd '/home/a2r/A2R_BOT/a2r_bot_ws/install/a2r_bot_follow/lib/a2r_bot_follow/gps_owner_node --ros-args -r __node:=gps_owner --params-file /home/a2r/A2R_BOT/a2r_bot_ws/install/a2r_bot_follow/share/a2r_bot_follow/config/params.yaml --params-file /tmp/launch_params_ogwrauzv'].

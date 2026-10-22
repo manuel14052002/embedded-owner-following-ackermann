@@ -1,0 +1,4 @@
+t_s,wall_time,event,detail
+0.0,2026-10-21T16:51:11.012,RUN_START,mode=follow scenario=OUT1 run=1
+0.005,2026-10-21T16:51:11.017,MONITOR,PASS (steer only)
+239.147,2026-10-21T16:55:10.159,RUN_END,UNSAFE

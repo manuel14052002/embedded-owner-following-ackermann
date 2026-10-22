@@ -1,0 +1,62 @@
+# =============================================================================
+#  a2r_bot_bringup — shared parameters
+# =============================================================================
+#  Each package carries its own config, and those are the authoritative ones:
+#
+#      a2r_bot_arduino/config/arduino.yaml
+#      a2r_bot_sensor_fusion/config/fusion.yaml
+#      a2r_bot_follow/config/params.yaml
+#      a2r_bot_slam/config/slam.yaml
+#      a2r_bot_pet/config/pet.yaml
+#
+#  This file exists for the handful of values that MUST agree across packages.
+#  They are duplicated in the files above because a ROS node can only read its
+#  own parameters, and there is no include mechanism. That duplication is a
+#  real hazard: change the wheelbase in one place and the local planner and
+#  the path follower will quietly disagree about what the car can do.
+#
+#  So: this file is the checklist. If you change any value here, grep for it.
+#
+#      grep -rn "wheelbase_m" src/*/config/
+#      grep -rn "robot_radius_m" src/*/config/
+# =============================================================================
+
+/**:
+  ros__parameters:
+    use_sim_time: false
+
+
+# -----------------------------------------------------------------------------
+#  Values that must agree everywhere
+# -----------------------------------------------------------------------------
+#  wheelbase_m: 0.280   (MEASURED - 0.257 was the old estimate; a2r_check.py verifies)
+#      urdf/common.xacro, follow/params.yaml, slam.yaml (navigation_node),
+#      fusion.yaml (ekf_state_node), arduino.yaml, description.yaml
+#
+#  max_steer_deg: 30.0
+#      the same six places. Must also match SERVO_TRAVEL_LIMIT in Config.h,
+#      which caps the servo at 85% of travel to stop it stalling against the
+#      linkage.
+#
+#  robot_radius_m: 0.195
+#      follow/params.yaml (local costmap inflation) and
+#      slam.yaml (global_costmap_node). If these disagree, the global planner
+#      will route through gaps the local planner then refuses to enter, and
+#      the robot will stop dead in a doorway with a valid plan on screen.
+#
+#  max_speed_mps: 1.2
+#      follow/params.yaml. navigation_node deliberately uses a LOWER 0.9:
+#      following a person is a pursuit problem where lag costs you the target;
+#      driving to a mapped waypoint is not, and the map is only ever as good
+#      as the scan matching.
+#
+#  scan_topic: /scan/fused
+#      follow/params.yaml and slam.yaml. Point both at /scan to bypass sonar
+#      fusion — but bypass it in BOTH, or the planner and the mapper will
+#      disagree about where the glass door is.
+#
+#  Frames: map -> odom -> base_footprint -> base_link
+#      slam_node publishes map->odom (and jumps it on scan-match corrections).
+#      ekf_state_node publishes odom->base_footprint (continuously, smoothly).
+#      Never run two publishers on either one.
+# -----------------------------------------------------------------------------

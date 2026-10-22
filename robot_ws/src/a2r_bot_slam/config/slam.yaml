@@ -1,0 +1,203 @@
+# =============================================================================
+#  a2r_bot_slam — parameters
+# =============================================================================
+
+slam_node:
+  ros__parameters:
+    scan_topic: "/scan"      # the lidar merged with both sonars
+    odom_topic: "/odometry/filtered"
+    map_frame: "map"
+    odom_frame: "odom"
+    base_frame: "base_footprint"
+
+    # 30 x 30 m at 5 cm = 600 x 600 cells = 360k floats. That is about 1.4 MB
+    # of log-odds, which a Pi 4 handles comfortably. Doubling the side
+    # quadruples both the memory and the per-publish conversion cost, so grow
+    # this deliberately rather than "just in case".
+    map_width_m: 30.0
+    map_height_m: 30.0
+    resolution_m: 0.05
+    map_publish_period_s: 1.0
+
+    # The lidar is rated to 8 m but its returns past about 6 m are sparse and
+    # noisy, and a wrong long return writes a corridor of false free space
+    # across the map. Truncating is cheap insurance.
+    # A2M12 is rated 0.2-12 m. Mapping uses 8 m: beyond that the
+    # returns are sparse enough that ray-casting them carves long
+    # false-free corridors through the map faster than they get
+    # corrected. min is the sensor's own 0.2 m dead zone.
+    max_range_m: 8.0
+    min_range_m: 0.20
+
+    # ---- Log-odds --------------------------------------------------------
+    # hit >> miss on purpose. A beam ENDING in a cell is strong evidence of
+    # an obstacle; a beam PASSING THROUGH one is weak evidence of free space,
+    # because it may have passed over or under something real.
+    log_odds_hit: 0.85
+    log_odds_miss: 0.25
+    # Clamps. Without them a cell seen occupied a thousand times needs a
+    # thousand contrary observations to change its mind, and a map that
+    # cannot forget is useless in a building with doors.
+    log_odds_min: -4.0
+    log_odds_max: 6.0
+    occupied_threshold: 0.65
+    free_threshold: 0.25
+
+    # ---- Scan matching ---------------------------------------------------
+    use_scan_matching: true
+    match_iterations: 6
+    match_linear_step_m: 0.08
+    match_angular_step_deg: 3.0
+    match_step_shrink: 0.55
+    match_min_beams: 60
+    # Matching against 240 beams instead of 720 is three times faster and
+    # costs almost nothing: neighbouring beams in a dense scan see the same
+    # surface, so they carry the same information.
+    match_max_beams: 240
+    match_score_floor: 0.25
+    # A correction larger than this is far more likely to be the matcher
+    # finding a wrong basin than the odometry being that wrong. Rejected.
+    match_max_correction_m: 0.45
+    match_max_correction_deg: 20.0
+
+    # ---- When to fold a scan into the map --------------------------------
+    # Integrating while stationary drives the log-odds to the clamp in
+    # seconds. That is the same information counted repeatedly, not new
+    # information, and it makes those cells needlessly hard to revise.
+    update_min_distance_m: 0.08
+    update_min_angle_deg: 4.0
+
+    publish_tf: true               # SLAM owns map -> odom; the EKF owns odom -> base
+    lidar_offset_x_m: -0.140   # RPLIDAR A2M12, rear of upper deck (= URDF lidar_x)
+    lidar_offset_y_m: 0.0
+
+
+global_costmap_node:
+  ros__parameters:
+    map_topic: "/map"
+    costmap_topic: "/global_costmap"
+    # Car is 0.31 m wide, so the inscribed radius is 0.155 m; 0.205 adds a
+    # 4 cm margin for control error. This must match a2r_bot_follow's
+    # robot_radius_m or the two layers will disagree about what fits.
+    robot_radius_m: 0.205
+    inflation_radius_m: 0.45
+    cost_scaling: 3.0
+    lethal_threshold: 65
+    update_period_s: 1.0
+    # An unknown cell touching an obstacle is almost always that obstacle's
+    # lidar shadow. Treating it as solid stops the planner routing through
+    # the blind side of a wall.
+    inflate_unknown_edges: true
+
+
+global_planner_node:
+  ros__parameters:
+    # astar | dijkstra | rrt | rrt_star
+    #
+    # A* is the default and should stay the default on a 2-D grid: it is
+    # optimal, deterministic, and 12-118x faster than Dijkstra for an
+    # identical answer (verified in scripts/test_global_planners.py).
+    #
+    # RRT* is included because it was asked for and because it genuinely
+    # rewires - its raw trees are 6-11% shorter than plain RRT's. But
+    # line-of-sight shortcutting recovers that gain for plain RRT too, so
+    # after smoothing the two land within 1.1% of each other while RRT*
+    # costs ~38x the time. Neither beats A* here. They earn their place if
+    # you later plan in a space A* cannot search - one including heading or
+    # velocity.
+    algorithm: "astar"
+
+    map_topic: "/global_costmap"
+    map_fallback_topic: "/map"
+    goal_topic: "/goal_pose"
+    pose_topic: "/slam/pose"
+    odom_topic: "/odometry/filtered"
+    plan_topic: "/plan"
+    map_frame: "map"
+
+    lethal_threshold: 65
+    # false while navigating a finished map: an unknown cell there is far
+    # more likely to be somewhere the lidar could not see into than open
+    # floor. Set true for frontier exploration, where the entire point is to
+    # plan into territory you have not visited.
+    unknown_is_free: false
+    # Makes the path prefer the middle of a corridor over the shortest line
+    # that shaves the doorframe.
+    obstacle_weight: 0.6
+    allow_diagonal: true
+    # 1.0 keeps A* admissible and therefore optimal. Raising it gives
+    # weighted A*: faster, and suboptimal by at most this factor.
+    heuristic_weight: 1.0
+    max_expansions: 400000
+
+    rrt_iterations: 6000
+    rrt_step_m: 0.30
+    rrt_goal_bias: 0.08
+    rrt_goal_tolerance_m: 0.25
+    rrt_smooth_passes: 120
+
+    simplify_path: true
+    densify_spacing_m: 0.25
+    # Both endpoints routinely land on blocked cells - the goal because
+    # someone clicked a wall in RViz, the start because inflation covers the
+    # robot's own position when it is near something. Refusing to plan is
+    # correct and useless; we snap and say so.
+    snap_endpoints: true
+    snap_radius_cells: 40
+    replan_period_s: 2.0
+    goal_reached_tolerance_m: 0.30
+
+
+navigation_node:
+  ros__parameters:
+    path_topic: "/plan"
+    pose_topic: "/slam/pose"
+    odom_topic: "/odometry/filtered"
+
+    # THIS IS THE INTERCHANGEABILITY POINT.
+    #
+    # navigation_node publishes the desired velocity on /cmd_vel - the same
+    # topic the Jetson's tracker publishes in follow mode. smart_planner_node
+    # subscribes to it either way and cannot tell the difference.
+    #
+    # So all eight local planners, the VFH+T trap detector, the three-point
+    # escape and the speed law apply unchanged in SLAM navigation, and
+    #     ros2 param set /local_planner_bridge planner rrt
+    # works identically whether the robot is following a person or driving to
+    # a mapped waypoint.
+    cmd_topic: "/cmd_vel"
+    rate_hz: 20.0
+
+    # Slower than follow mode's 1.2 m/s. Following a person is a pursuit
+    # problem where lag costs you the target; driving to a waypoint is not,
+    # and the map is only as good as the scan matching.
+    max_speed_mps: 0.9
+    min_speed_mps: 0.28
+    wheelbase_m: 0.280
+    max_steer_deg: 30.0
+
+    # Lookahead scales with speed. Fixed is either too short to be stable
+    # fast or too long to track a tight turn slowly.
+    lookahead_min_m: 0.45
+    lookahead_max_m: 1.20
+    lookahead_gain: 0.9
+
+    goal_tolerance_m: 0.25
+    slow_radius_m: 1.20
+    curvature_slow_gain: 0.55
+    path_timeout_s: 5.0
+    pose_timeout_s: 1.0
+    off_path_warn_m: 1.5
+    publish_markers: true
+
+
+map_saver_node:
+  ros__parameters:
+    map_topic: "/map"
+    default_path: "~/maps/a2r_map"
+    occupied_threshold: 0.65
+    free_threshold: 0.25
+    # Non-zero to checkpoint while mapping. A two-hour mapping run ended by a
+    # flat battery is a sad thing.
+    auto_save_period_s: 0.0
+    negate: false

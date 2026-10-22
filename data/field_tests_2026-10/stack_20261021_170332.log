@@ -1,0 +1,397 @@
+[INFO] [launch]: All log files can be found below /home/a2r/.ros/log/2026-10-21-17-03-33-992677-a2r-desktop-13626
+[INFO] [launch]: Default logging verbosity is set to INFO
+[INFO] [imu_filter_node-4]: process started with pid [13644]
+[INFO] [ekf_state_node-5]: process started with pid [13646]
+[INFO] [smart_planner_node-6]: process started with pid [13663]
+[INFO] [robot_state_publisher-1]: process started with pid [13638]
+[INFO] [wheel_state_node-2]: process started with pid [13640]
+[INFO] [sllidar_node-3]: process started with pid [13642]
+[INFO] [owner_fusion_node-7]: process started with pid [13668]
+[INFO] [follow_manager_node-8]: process started with pid [13671]
+[INFO] [cmd_mux_node-9]: process started with pid [13674]
+[INFO] [collision_monitor_node-10]: process started with pid [13676]
+[INFO] [scan_leg_fill_node-11]: process started with pid [13680]
+[INFO] [gps_owner_node-12]: process started with pid [13682]
+[sllidar_node-3] [INFO] [1792595015.837592642] [rplidar_node]: SLLidar running on ROS2 package SLLidar.ROS2 SDK Version:1.0.1, SLLIDAR SDK Version:2.1.0
+[sllidar_node-3] [INFO] [1792595015.873743582] [rplidar_node]: SLLidar S/N: 828AF8F7C7E39BD9B7E793F0025C5B1F
+[sllidar_node-3] [INFO] [1792595015.873915340] [rplidar_node]: Firmware Ver: 1.32
+[sllidar_node-3] [INFO] [1792595015.873961396] [rplidar_node]: Hardware Rev: 6
+[sllidar_node-3] [INFO] [1792595015.876835450] [rplidar_node]: SLLidar health status : 0
+[sllidar_node-3] [INFO] [1792595015.876974209] [rplidar_node]: SLLidar health status : OK.
+[sllidar_node-3] [INFO] [1792595015.913147445] [rplidar_node]: motor_control: PWM motor, target 7.0 Hz, starting PWM 448 (closed loop)
+[robot_state_publisher-1] [INFO] [1792595016.065149046] [robot_state_publisher]: got segment arduino_nano
+[robot_state_publisher-1] [INFO] [1792595016.080460147] [robot_state_publisher]: got segment arm_fl
+[robot_state_publisher-1] [INFO] [1792595016.083390664] [robot_state_publisher]: got segment arm_fr
+[robot_state_publisher-1] [INFO] [1792595016.085542686] [robot_state_publisher]: got segment arm_rl
+[robot_state_publisher-1] [INFO] [1792595016.088290557] [robot_state_publisher]: got segment arm_rr
+[robot_state_publisher-1] [INFO] [1792595016.090163118] [robot_state_publisher]: got segment base_deck
+[robot_state_publisher-1] [INFO] [1792595016.090226117] [robot_state_publisher]: got segment base_footprint
+[robot_state_publisher-1] [INFO] [1792595016.090258006] [robot_state_publisher]: got segment base_link
+[robot_state_publisher-1] [INFO] [1792595016.090287284] [robot_state_publisher]: got segment battery_label
+[robot_state_publisher-1] [INFO] [1792595016.090313691] [robot_state_publisher]: got segment battery_pack
+[robot_state_publisher-1] [INFO] [1792595016.090340450] [robot_state_publisher]: got segment cam_clamp
+[robot_state_publisher-1] [INFO] [1792595016.090366876] [robot_state_publisher]: got segment cam_face
+[robot_state_publisher-1] [INFO] [1792595016.090393265] [robot_state_publisher]: got segment cam_lens_c
+[robot_state_publisher-1] [INFO] [1792595016.090419635] [robot_state_publisher]: got segment cam_lens_l
+[robot_state_publisher-1] [INFO] [1792595016.090445357] [robot_state_publisher]: got segment cam_lens_r
+[robot_state_publisher-1] [INFO] [1792595016.090471857] [robot_state_publisher]: got segment cam_pillar
+[robot_state_publisher-1] [INFO] [1792595016.090498060] [robot_state_publisher]: got segment cam_pillar_foot
+[robot_state_publisher-1] [INFO] [1792595016.090523412] [robot_state_publisher]: got segment camera_link
+[robot_state_publisher-1] [INFO] [1792595016.090548875] [robot_state_publisher]: got segment camera_optical_frame
+[robot_state_publisher-1] [INFO] [1792595016.090576263] [robot_state_publisher]: got segment deck_post_f
+[robot_state_publisher-1] [INFO] [1792595016.090601522] [robot_state_publisher]: got segment deck_post_r
+[robot_state_publisher-1] [INFO] [1792595016.090626781] [robot_state_publisher]: got segment display_link
+[robot_state_publisher-1] [INFO] [1792595016.090652337] [robot_state_publisher]: got segment drive_shaft
+[robot_state_publisher-1] [INFO] [1792595016.090678707] [robot_state_publisher]: got segment face_eye_l
+[robot_state_publisher-1] [INFO] [1792595016.090705281] [robot_state_publisher]: got segment face_eye_r
+[robot_state_publisher-1] [INFO] [1792595016.090730503] [robot_state_publisher]: got segment face_mouth
+[robot_state_publisher-1] [INFO] [1792595016.090756725] [robot_state_publisher]: got segment face_panel
+[robot_state_publisher-1] [INFO] [1792595016.090782317] [robot_state_publisher]: got segment face_screen_link
+[robot_state_publisher-1] [INFO] [1792595016.090808891] [robot_state_publisher]: got segment front_bulkhead
+[robot_state_publisher-1] [INFO] [1792595016.090834465] [robot_state_publisher]: got segment front_bumper
+[robot_state_publisher-1] [INFO] [1792595016.090860076] [robot_state_publisher]: got segment front_bumper_arm
+[robot_state_publisher-1] [INFO] [1792595016.090886002] [robot_state_publisher]: got segment front_left_hub
+[robot_state_publisher-1] [INFO] [1792595016.090913076] [robot_state_publisher]: got segment front_left_rim
+[robot_state_publisher-1] [INFO] [1792595016.090938742] [robot_state_publisher]: got segment front_left_rim_mark_a
+[robot_state_publisher-1] [INFO] [1792595016.091095352] [robot_state_publisher]: got segment front_left_rim_mark_b
+[robot_state_publisher-1] [INFO] [1792595016.091130241] [robot_state_publisher]: got segment front_left_steer_link
+[robot_state_publisher-1] [INFO] [1792595016.091156611] [robot_state_publisher]: got segment front_left_tread
+[robot_state_publisher-1] [INFO] [1792595016.091183185] [robot_state_publisher]: got segment front_left_wheel
+[robot_state_publisher-1] [INFO] [1792595016.091211592] [robot_state_publisher]: got segment front_right_hub
+[robot_state_publisher-1] [INFO] [1792595016.091237666] [robot_state_publisher]: got segment front_right_rim
+[robot_state_publisher-1] [INFO] [1792595016.091264999] [robot_state_publisher]: got segment front_right_rim_mark_a
+[robot_state_publisher-1] [INFO] [1792595016.091291758] [robot_state_publisher]: got segment front_right_rim_mark_b
+[robot_state_publisher-1] [INFO] [1792595016.091318036] [robot_state_publisher]: got segment front_right_steer_link
+[robot_state_publisher-1] [INFO] [1792595016.091344406] [robot_state_publisher]: got segment front_right_tread
+[robot_state_publisher-1] [INFO] [1792595016.091370721] [robot_state_publisher]: got segment front_right_wheel
+[robot_state_publisher-1] [INFO] [1792595016.091396350] [robot_state_publisher]: got segment gearbox
+[robot_state_publisher-1] [INFO] [1792595016.091422406] [robot_state_publisher]: got segment imu_link
+[robot_state_publisher-1] [INFO] [1792595016.091448239] [robot_state_publisher]: got segment jetson_case
+[robot_state_publisher-1] [INFO] [1792595016.091473424] [robot_state_publisher]: got segment jetson_fan
+[robot_state_publisher-1] [INFO] [1792595016.091499664] [robot_state_publisher]: got segment lidar_base
+[robot_state_publisher-1] [INFO] [1792595016.091525368] [robot_state_publisher]: got segment lidar_cap
+[robot_state_publisher-1] [INFO] [1792595016.091679663] [robot_state_publisher]: got segment lidar_link
+[robot_state_publisher-1] [INFO] [1792595016.107215077] [robot_state_publisher]: got segment lidar_ring
+[robot_state_publisher-1] [INFO] [1792595016.107265410] [robot_state_publisher]: got segment lidar_standoff_fl
+[robot_state_publisher-1] [INFO] [1792595016.107296335] [robot_state_publisher]: got segment lidar_standoff_fr
+[robot_state_publisher-1] [INFO] [1792595016.107323372] [robot_state_publisher]: got segment lidar_standoff_rl
+[robot_state_publisher-1] [INFO] [1792595016.107351279] [robot_state_publisher]: got segment lidar_standoff_rr
+[robot_state_publisher-1] [INFO] [1792595016.107378687] [robot_state_publisher]: got segment lower_nose
+[robot_state_publisher-1] [INFO] [1792595016.107404723] [robot_state_publisher]: got segment lower_nose_cl
+[robot_state_publisher-1] [INFO] [1792595016.107431001] [robot_state_publisher]: got segment lower_nose_cr
+[robot_state_publisher-1] [INFO] [1792595016.107457723] [robot_state_publisher]: got segment motor
+[robot_state_publisher-1] [INFO] [1792595016.107485038] [robot_state_publisher]: got segment pca9685
+[robot_state_publisher-1] [INFO] [1792595016.107511371] [robot_state_publisher]: got segment perfboard
+[robot_state_publisher-1] [INFO] [1792595016.107536834] [robot_state_publisher]: got segment rear_axle
+[robot_state_publisher-1] [INFO] [1792595016.107563704] [robot_state_publisher]: got segment rear_bumper
+[robot_state_publisher-1] [INFO] [1792595016.107589648] [robot_state_publisher]: got segment rear_left_hub
+[robot_state_publisher-1] [INFO] [1792595016.107616852] [robot_state_publisher]: got segment rear_left_rim
+[robot_state_publisher-1] [INFO] [1792595016.107642870] [robot_state_publisher]: got segment rear_left_rim_mark_a
+[robot_state_publisher-1] [INFO] [1792595016.107669981] [robot_state_publisher]: got segment rear_left_rim_mark_b
+[robot_state_publisher-1] [INFO] [1792595016.107697833] [robot_state_publisher]: got segment rear_left_tread
+[robot_state_publisher-1] [INFO] [1792595016.107726518] [robot_state_publisher]: got segment rear_left_wheel
+[robot_state_publisher-1] [INFO] [1792595016.107752166] [robot_state_publisher]: got segment rear_right_hub
+[robot_state_publisher-1] [INFO] [1792595016.107783406] [robot_state_publisher]: got segment rear_right_rim
+[robot_state_publisher-1] [INFO] [1792595016.107809480] [robot_state_publisher]: got segment rear_right_rim_mark_a
+[robot_state_publisher-1] [INFO] [1792595016.107836369] [robot_state_publisher]: got segment rear_right_rim_mark_b
+[robot_state_publisher-1] [INFO] [1792595016.107862091] [robot_state_publisher]: got segment rear_right_tread
+[robot_state_publisher-1] [INFO] [1792595016.107888924] [robot_state_publisher]: got segment rear_right_wheel
+[robot_state_publisher-1] [INFO] [1792595016.107914776] [robot_state_publisher]: got segment rpi_case
+[robot_state_publisher-1] [INFO] [1792595016.107941368] [robot_state_publisher]: got segment rpi_ports
+[robot_state_publisher-1] [INFO] [1792595016.107967331] [robot_state_publisher]: got segment screen_post_l
+[robot_state_publisher-1] [INFO] [1792595016.107995164] [robot_state_publisher]: got segment screen_post_r
+[robot_state_publisher-1] [INFO] [1792595016.108020960] [robot_state_publisher]: got segment shock_fl_body
+[robot_state_publisher-1] [INFO] [1792595016.108047238] [robot_state_publisher]: got segment shock_fl_spring
+[robot_state_publisher-1] [INFO] [1792595016.108074330] [robot_state_publisher]: got segment shock_fr_body
+[robot_state_publisher-1] [INFO] [1792595016.108101571] [robot_state_publisher]: got segment shock_fr_spring
+[robot_state_publisher-1] [INFO] [1792595016.108127422] [robot_state_publisher]: got segment shock_rl_body
+[robot_state_publisher-1] [INFO] [1792595016.108155681] [robot_state_publisher]: got segment shock_rl_spring
+[robot_state_publisher-1] [INFO] [1792595016.108183496] [robot_state_publisher]: got segment shock_rr_body
+[robot_state_publisher-1] [INFO] [1792595016.108209625] [robot_state_publisher]: got segment shock_rr_spring
+[robot_state_publisher-1] [INFO] [1792595016.108235866] [robot_state_publisher]: got segment standoff_fl
+[robot_state_publisher-1] [INFO] [1792595016.108262532] [robot_state_publisher]: got segment standoff_fr
+[robot_state_publisher-1] [INFO] [1792595016.108325458] [robot_state_publisher]: got segment standoff_ml
+[robot_state_publisher-1] [INFO] [1792595016.108353365] [robot_state_publisher]: got segment standoff_mr
+[robot_state_publisher-1] [INFO] [1792595016.108379902] [robot_state_publisher]: got segment standoff_rl
+[robot_state_publisher-1] [INFO] [1792595016.108406698] [robot_state_publisher]: got segment standoff_rr
+[robot_state_publisher-1] [INFO] [1792595016.108432883] [robot_state_publisher]: got segment steer_servo
+[robot_state_publisher-1] [INFO] [1792595016.108459716] [robot_state_publisher]: got segment terminals_a
+[robot_state_publisher-1] [INFO] [1792595016.108487512] [robot_state_publisher]: got segment terminals_b
+[robot_state_publisher-1] [INFO] [1792595016.108514809] [robot_state_publisher]: got segment top_deck
+[robot_state_publisher-1] [INFO] [1792595016.108540494] [robot_state_publisher]: got segment track_rod
+[robot_state_publisher-1] [INFO] [1792595016.108570401] [robot_state_publisher]: got segment ultrasonic_front_link
+[robot_state_publisher-1] [INFO] [1792595016.108634011] [robot_state_publisher]: got segment ultrasonic_rear_link
+[robot_state_publisher-1] [INFO] [1792595016.110333778] [robot_state_publisher]: got segment us_front_barrel_l
+[robot_state_publisher-1] [INFO] [1792595016.110460666] [robot_state_publisher]: got segment us_front_barrel_r
+[robot_state_publisher-1] [INFO] [1792595016.110504536] [robot_state_publisher]: got segment us_front_face_l
+[robot_state_publisher-1] [INFO] [1792595016.110535313] [robot_state_publisher]: got segment us_front_face_r
+[robot_state_publisher-1] [INFO] [1792595016.110562591] [robot_state_publisher]: got segment xt60
+[sllidar_node-3] [INFO] [1792595016.150303674] [rplidar_node]: current scan mode: Sensitivity, sample rate: 16 Khz, max_distance: 16.0 m, scan frequency:7.0 Hz, 
+[sllidar_node-3] [INFO] [1792595017.826767571] [rplidar_node]: motor_control: 11.93 Hz (target 7.0), PWM 308, 1330 samples/rev
+[follow_manager_node-8] [INFO] [1792595021.349522662] [follow_manager]: follow_manager up: stand-off 1.20 m, search ON (/followme/owner_lost), trap memory ON
+[imu_filter_node-4] [0m[INFO] [1792595021.544137401] [imu_filter_node]: imu_filter_node up — madgwick, mag on, calibrating gyro bias[0m
+[follow_manager_node-8] [INFO] [1792595021.699469016] [follow_manager]: follow: INACTIVE (no /followme/state)
+[cmd_mux_node-9] [INFO] [1792595022.728577701] [cmd_mux]: cmd_mux: pc(200) /cmd_vel_pc, teleop(100) /cmd_vel_teleop, escape(50) /cmd_vel_escape, navigation(10) /cmd_vel_nav -> /cmd_vel_mux; lock /estop_lock
+[wheel_state_node-2] [INFO] [1792595022.783395293] [wheel_state_node]: wheel_state_node → /joint_states @ 15 Hz (L=0.280 m, T=0.250 m, r=0.060 m)
+[collision_monitor_node-10] [INFO] [1792595022.880525932] [collision_monitor]: collision_monitor: /cmd_vel_mux -> /local_planner/cmd_out
+[cmd_mux_node-9] [INFO] [1792595023.044413842] [cmd_mux]: cmd_mux: driving input -> none
+[scan_leg_fill_node-11] [INFO] [1792595025.337155440] [scan_leg_fill]: /scan -> /scan/planner (owner removed) + /scan/merged (owner kept): chair-leg gaps <= 0.60 m closed, posts -> 0.06 m discs
+[scan_leg_fill_node-11] [INFO] [1792595025.483513468] [scan_leg_fill]: laser pose from TF: x=-0.140 y=0.001 yaw=0.0 deg
+[gps_owner_node-12] [INFO] [1792595025.727935648] [gps_owner]: gps_owner (a2r_step3f) up - mode INDOOR
+[owner_fusion_node-7] [INFO] [1792595025.764107885] [owner_fusion]: owner source: Jetson lidar_owner_keeper (/owner_keeper/position) - the Pi's own lidar tracker is off; camera only without a keeper
+[owner_fusion_node-7] [INFO] [1792595025.801284596] [owner_fusion]: owner_fusion up (camera <-> lidar owner tracking)
+[ekf_state_node-5] [0m[INFO] [1792595025.802670809] [ekf_state_node]: ekf_state_node up — 50 Hz, sources: imu_rate imu_accel command scan_match[0m
+[owner_fusion_node-7] [WARN] [1792595025.879831879] [owner_fusion]: no lidar_owner_keeper heartbeat: following the camera only
+[smart_planner_node-6] [0m[INFO] [1792595025.994894342] [local_planner_bridge]: output_mode=topic — a2r_bot_arduino owns the serial port[0m
+[smart_planner_node-6] [0m[INFO] [1792595026.227504064] [local_planner_bridge]: SmartPlanner ready | planner=pure_pursuit | out=topic | heading_memory=off | costmap 4.0 m @ 0.05 m | lethal r=0.175 m infl=0.22 m | v∈[0.168,1.2] m/s steer=±30° [DRY RUN][0m
+[cmd_mux_node-9] [INFO] [1792595026.242749609] [cmd_mux]: cmd_mux: driving input -> navigation
+[smart_planner_node-6] [0m[INFO] [1792595027.096065169] [local_planner_bridge]: owner lost, wall 0.14 m ahead - backing off 0.35 m at -27 deg to look for them (last seen left)[0m
+[cmd_mux_node-9] [INFO] [1792595027.137692887] [cmd_mux]: cmd_mux: driving input -> escape
+[follow_manager_node-8] [INFO] [1792595027.233048075] [follow_manager]: trap remembered (escape) at odom (0.4, 0.0) - 1 known
+[sllidar_node-3] [INFO] [1792595028.729729208] [rplidar_node]: motor_control: 6.93 Hz (target 7.0), PWM 355, 2288 samples/rev
+[cmd_mux_node-9] [INFO] [1792595029.880168757] [cmd_mux]: cmd_mux: driving input -> navigation
+[smart_planner_node-6] [0m[INFO] [1792595031.113764558] [local_planner_bridge]: owner lost, wall 0.14 m ahead - backing off 0.35 m at -27 deg to look for them (last seen left)[0m
+[cmd_mux_node-9] [INFO] [1792595031.125025667] [cmd_mux]: cmd_mux: driving input -> escape
+[cmd_mux_node-9] [INFO] [1792595034.053849869] [cmd_mux]: cmd_mux: driving input -> navigation
+[scan_leg_fill_node-11] [INFO] [1792595034.952199791] [scan_leg_fill]: 66 scans: 0.3 beams filled per scan (chairs), owner removed in 0 % (scrub point 0 %), 15.2 ms per scan
+[smart_planner_node-6] [0m[INFO] [1792595035.236412831] [local_planner_bridge]: owner lost, wall 0.14 m ahead - backing off 0.35 m at -27 deg to look for them (last seen left)[0m
+[cmd_mux_node-9] [INFO] [1792595035.255484961] [cmd_mux]: cmd_mux: driving input -> escape
+[cmd_mux_node-9] [INFO] [1792595038.023051494] [cmd_mux]: cmd_mux: driving input -> navigation
+[sllidar_node-3] [INFO] [1792595038.917880051] [rplidar_node]: motor_control: 6.99 Hz (target 7.0), PWM 358, 2271 samples/rev
+[owner_fusion_node-7] [INFO] [1792595040.771146493] [owner_fusion]: keeper: 0 heartbeats (last never), 0 points (frames -), 0 used, 0 ignored (no TF); camera: 0 points; scrub points: 0
+[scan_leg_fill_node-11] [INFO] [1792595044.949482407] [scan_leg_fill]: 69 scans: 0.0 beams filled per scan (chairs), owner removed in 0 % (scrub point 0 %), 14.6 ms per scan
+[sllidar_node-3] [INFO] [1792595049.093973013] [rplidar_node]: motor_control: 6.99 Hz (target 7.0), PWM 358, 2269 samples/rev
+[smart_planner_node-6] [0m[INFO] [1792595049.403220550] [local_planner_bridge]: owner lost, wall 0.24 m ahead - backing off 0.35 m at -27 deg to look for them (last seen left)[0m
+[cmd_mux_node-9] [INFO] [1792595049.424317055] [cmd_mux]: cmd_mux: driving input -> escape
+[cmd_mux_node-9] [INFO] [1792595052.358237963] [cmd_mux]: cmd_mux: driving input -> navigation
+[smart_planner_node-6] [0m[INFO] [1792595053.525109105] [local_planner_bridge]: owner lost, wall 0.24 m ahead - backing off 0.35 m at -27 deg to look for them (last seen left)[0m
+[cmd_mux_node-9] [INFO] [1792595053.556341171] [cmd_mux]: cmd_mux: driving input -> escape
+[scan_leg_fill_node-11] [INFO] [1792595054.956275569] [scan_leg_fill]: 69 scans: 0.0 beams filled per scan (chairs), owner removed in 0 % (scrub point 0 %), 13.0 ms per scan
+[ekf_state_node-5] [33m[WARN] [1792595055.166650128] [ekf_state_node]: no IMU for 16007.9 s — running on commands alone[0m
+[owner_fusion_node-7] [INFO] [1792595055.776874684] [owner_fusion]: keeper: 0 heartbeats (last never), 0 points (frames -), 0 used, 0 ignored (no TF); camera: 0 points; scrub points: 0
+[cmd_mux_node-9] [INFO] [1792595056.490190043] [cmd_mux]: cmd_mux: driving input -> navigation
+[smart_planner_node-6] [0m[INFO] [1792595057.533415280] [local_planner_bridge]: owner lost, wall 0.24 m ahead - backing off 0.35 m at -27 deg to look for them (last seen left)[0m
+[cmd_mux_node-9] [INFO] [1792595057.542621255] [cmd_mux]: cmd_mux: driving input -> escape
+[sllidar_node-3] [INFO] [1792595059.269972382] [rplidar_node]: motor_control: 7.00 Hz (target 7.0), PWM 358, 2273 samples/rev
+[cmd_mux_node-9] [INFO] [1792595060.327276728] [cmd_mux]: cmd_mux: driving input -> navigation
+[smart_planner_node-6] [0m[INFO] [1792595061.525553010] [local_planner_bridge]: owner lost, wall 0.24 m ahead - backing off 0.35 m at -27 deg to look for them (last seen left)[0m
+[cmd_mux_node-9] [INFO] [1792595061.537493003] [cmd_mux]: cmd_mux: driving input -> escape
+[cmd_mux_node-9] [INFO] [1792595064.463554242] [cmd_mux]: cmd_mux: driving input -> navigation
+[scan_leg_fill_node-11] [INFO] [1792595064.951283923] [scan_leg_fill]: 69 scans: 0.3 beams filled per scan (chairs), owner removed in 0 % (scrub point 0 %), 15.0 ms per scan
+[sllidar_node-3] [INFO] [1792595069.432251419] [rplidar_node]: motor_control: 6.99 Hz (target 7.0), PWM 358, 2267 samples/rev
+[owner_fusion_node-7] [INFO] [1792595070.770176589] [owner_fusion]: keeper: 0 heartbeats (last never), 0 points (frames -), 0 used, 0 ignored (no TF); camera: 0 points; scrub points: 0
+[scan_leg_fill_node-11] [INFO] [1792595074.950603914] [scan_leg_fill]: 68 scans: 0.0 beams filled per scan (chairs), owner removed in 0 % (scrub point 0 %), 13.9 ms per scan
+[sllidar_node-3] [INFO] [1792595079.603192267] [rplidar_node]: motor_control: 6.99 Hz (target 7.0), PWM 358, 2274 samples/rev
+[scan_leg_fill_node-11] [INFO] [1792595084.950710641] [scan_leg_fill]: 69 scans: 4.9 beams filled per scan (chairs), owner removed in 0 % (scrub point 0 %), 14.1 ms per scan
+[ekf_state_node-5] [33m[WARN] [1792595085.190754720] [ekf_state_node]: no IMU for 16038.0 s — running on commands alone[0m
+[owner_fusion_node-7] [INFO] [1792595085.771042572] [owner_fusion]: keeper: 0 heartbeats (last never), 0 points (frames -), 0 used, 0 ignored (no TF); camera: 0 points; scrub points: 0
+[sllidar_node-3] [INFO] [1792595089.781977248] [rplidar_node]: motor_control: 7.00 Hz (target 7.0), PWM 358, 2263 samples/rev
+[scan_leg_fill_node-11] [INFO] [1792595094.951092403] [scan_leg_fill]: 69 scans: 6.5 beams filled per scan (chairs), owner removed in 0 % (scrub point 0 %), 14.1 ms per scan
+[sllidar_node-3] [INFO] [1792595099.950705500] [rplidar_node]: motor_control: 6.99 Hz (target 7.0), PWM 358, 2271 samples/rev
+[owner_fusion_node-7] [INFO] [1792595100.769976494] [owner_fusion]: keeper: 0 heartbeats (last never), 0 points (frames -), 0 used, 0 ignored (no TF); camera: 0 points; scrub points: 0
+[scan_leg_fill_node-11] [INFO] [1792595104.948738331] [scan_leg_fill]: 69 scans: 3.4 beams filled per scan (chairs), owner removed in 0 % (scrub point 0 %), 13.8 ms per scan
+[sllidar_node-3] [INFO] [1792595110.125376657] [rplidar_node]: motor_control: 6.98 Hz (target 7.0), PWM 358, 2265 samples/rev
+[scan_leg_fill_node-11] [INFO] [1792595114.949897699] [scan_leg_fill]: 69 scans: 0.0 beams filled per scan (chairs), owner removed in 0 % (scrub point 0 %), 12.9 ms per scan
+[ekf_state_node-5] [33m[WARN] [1792595115.206575092] [ekf_state_node]: no IMU for 16068.0 s — running on commands alone[0m
+[owner_fusion_node-7] [INFO] [1792595115.775594667] [owner_fusion]: keeper: 0 heartbeats (last never), 0 points (frames -), 0 used, 0 ignored (no TF); camera: 0 points; scrub points: 0
+[sllidar_node-3] [INFO] [1792595120.304411673] [rplidar_node]: motor_control: 6.97 Hz (target 7.0), PWM 358, 2279 samples/rev
+[scan_leg_fill_node-11] [INFO] [1792595124.948426862] [scan_leg_fill]: 68 scans: 0.6 beams filled per scan (chairs), owner removed in 0 % (scrub point 0 %), 12.9 ms per scan
+[sllidar_node-3] [INFO] [1792595130.475326947] [rplidar_node]: motor_control: 6.98 Hz (target 7.0), PWM 358, 2271 samples/rev
+[owner_fusion_node-7] [INFO] [1792595130.770853466] [owner_fusion]: keeper: 0 heartbeats (last never), 0 points (frames -), 0 used, 0 ignored (no TF); camera: 0 points; scrub points: 0
+[scan_leg_fill_node-11] [INFO] [1792595134.949476915] [scan_leg_fill]: 69 scans: 0.0 beams filled per scan (chairs), owner removed in 0 % (scrub point 0 %), 13.2 ms per scan
+[sllidar_node-3] [INFO] [1792595140.645749188] [rplidar_node]: motor_control: 6.99 Hz (target 7.0), PWM 358, 2270 samples/rev
+[scan_leg_fill_node-11] [INFO] [1792595144.949444532] [scan_leg_fill]: 69 scans: 0.0 beams filled per scan (chairs), owner removed in 0 % (scrub point 0 %), 13.5 ms per scan
+[ekf_state_node-5] [33m[WARN] [1792595145.225423331] [ekf_state_node]: no IMU for 16098.0 s — running on commands alone[0m
+[owner_fusion_node-7] [INFO] [1792595145.774314876] [owner_fusion]: keeper: 0 heartbeats (last never), 0 points (frames -), 0 used, 0 ignored (no TF); camera: 0 points; scrub points: 0
+[sllidar_node-3] [INFO] [1792595150.815351231] [rplidar_node]: motor_control: 6.99 Hz (target 7.0), PWM 358, 2270 samples/rev
+[scan_leg_fill_node-11] [INFO] [1792595154.950743824] [scan_leg_fill]: 69 scans: 0.0 beams filled per scan (chairs), owner removed in 0 % (scrub point 0 %), 13.1 ms per scan
+[owner_fusion_node-7] [INFO] [1792595160.770222856] [owner_fusion]: keeper: 0 heartbeats (last never), 0 points (frames -), 0 used, 0 ignored (no TF); camera: 0 points; scrub points: 0
+[sllidar_node-3] [INFO] [1792595160.987438349] [rplidar_node]: motor_control: 6.99 Hz (target 7.0), PWM 358, 2271 samples/rev
+[scan_leg_fill_node-11] [INFO] [1792595164.951459621] [scan_leg_fill]: 69 scans: 0.0 beams filled per scan (chairs), owner removed in 0 % (scrub point 0 %), 13.3 ms per scan
+[sllidar_node-3] [INFO] [1792595171.142116049] [rplidar_node]: motor_control: 6.99 Hz (target 7.0), PWM 358, 2277 samples/rev
+[scan_leg_fill_node-11] [INFO] [1792595174.949988080] [scan_leg_fill]: 69 scans: 0.3 beams filled per scan (chairs), owner removed in 0 % (scrub point 0 %), 12.8 ms per scan
+[ekf_state_node-5] [33m[WARN] [1792595175.247664714] [ekf_state_node]: no IMU for 16128.0 s — running on commands alone[0m
+[owner_fusion_node-7] [INFO] [1792595175.771232227] [owner_fusion]: keeper: 0 heartbeats (last never), 0 points (frames -), 0 used, 0 ignored (no TF); camera: 0 points; scrub points: 0
+[sllidar_node-3] [INFO] [1792595181.318243362] [rplidar_node]: motor_control: 6.99 Hz (target 7.0), PWM 358, 2267 samples/rev
+[scan_leg_fill_node-11] [INFO] [1792595184.950254917] [scan_leg_fill]: 68 scans: 0.3 beams filled per scan (chairs), owner removed in 0 % (scrub point 0 %), 13.7 ms per scan
+[owner_fusion_node-7] [INFO] [1792595190.786185337] [owner_fusion]: keeper: 0 heartbeats (last never), 0 points (frames -), 0 used, 0 ignored (no TF); camera: 0 points; scrub points: 0
+[sllidar_node-3] [INFO] [1792595191.482238369] [rplidar_node]: motor_control: 6.99 Hz (target 7.0), PWM 358, 2273 samples/rev
+[scan_leg_fill_node-11] [INFO] [1792595194.952489425] [scan_leg_fill]: 69 scans: 1.1 beams filled per scan (chairs), owner removed in 0 % (scrub point 0 %), 13.9 ms per scan
+[sllidar_node-3] [INFO] [1792595201.632721041] [rplidar_node]: motor_control: 7.00 Hz (target 7.0), PWM 358, 2266 samples/rev
+[scan_leg_fill_node-11] [INFO] [1792595204.959844881] [scan_leg_fill]: 69 scans: 0.3 beams filled per scan (chairs), owner removed in 0 % (scrub point 0 %), 12.4 ms per scan
+[ekf_state_node-5] [33m[WARN] [1792595205.250673339] [ekf_state_node]: no IMU for 16158.0 s — running on commands alone[0m
+[owner_fusion_node-7] [INFO] [1792595205.772101329] [owner_fusion]: keeper: 0 heartbeats (last never), 0 points (frames -), 0 used, 0 ignored (no TF); camera: 0 points; scrub points: 0
+[sllidar_node-3] [INFO] [1792595211.799651564] [rplidar_node]: motor_control: 7.00 Hz (target 7.0), PWM 358, 2275 samples/rev
+[scan_leg_fill_node-11] [INFO] [1792595214.948534092] [scan_leg_fill]: 69 scans: 0.0 beams filled per scan (chairs), owner removed in 0 % (scrub point 0 %), 12.9 ms per scan
+[owner_fusion_node-7] [INFO] [1792595220.770686587] [owner_fusion]: keeper: 0 heartbeats (last never), 0 points (frames -), 0 used, 0 ignored (no TF); camera: 0 points; scrub points: 0
+[sllidar_node-3] [INFO] [1792595221.966301238] [rplidar_node]: motor_control: 6.98 Hz (target 7.0), PWM 358, 2272 samples/rev
+[scan_leg_fill_node-11] [INFO] [1792595224.949522183] [scan_leg_fill]: 69 scans: 0.3 beams filled per scan (chairs), owner removed in 0 % (scrub point 0 %), 13.0 ms per scan
+[sllidar_node-3] [INFO] [1792595232.349091135] [rplidar_node]: motor_control: 7.02 Hz (target 7.0), PWM 359, 2261 samples/rev
+[scan_leg_fill_node-11] [INFO] [1792595234.951556322] [scan_leg_fill]: 68 scans: 0.0 beams filled per scan (chairs), owner removed in 0 % (scrub point 0 %), 13.3 ms per scan
+[ekf_state_node-5] [33m[WARN] [1792595235.265631493] [ekf_state_node]: no IMU for 16188.0 s — running on commands alone[0m
+[owner_fusion_node-7] [INFO] [1792595235.777926490] [owner_fusion]: keeper: 0 heartbeats (last never), 0 points (frames -), 0 used, 0 ignored (no TF); camera: 0 points; scrub points: 0
+[sllidar_node-3] [INFO] [1792595242.489538171] [rplidar_node]: motor_control: 7.01 Hz (target 7.0), PWM 359, 2269 samples/rev
+[scan_leg_fill_node-11] [INFO] [1792595244.948578385] [scan_leg_fill]: 69 scans: 0.0 beams filled per scan (chairs), owner removed in 0 % (scrub point 0 %), 13.1 ms per scan
+[owner_fusion_node-7] [INFO] [1792595250.770807416] [owner_fusion]: keeper: 0 heartbeats (last never), 0 points (frames -), 0 used, 0 ignored (no TF); camera: 0 points; scrub points: 0
+[sllidar_node-3] [INFO] [1792595252.628758623] [rplidar_node]: motor_control: 7.02 Hz (target 7.0), PWM 359, 2267 samples/rev
+[scan_leg_fill_node-11] [INFO] [1792595254.949065646] [scan_leg_fill]: 69 scans: 0.0 beams filled per scan (chairs), owner removed in 0 % (scrub point 0 %), 12.7 ms per scan
+[sllidar_node-3] [INFO] [1792595262.759987722] [rplidar_node]: motor_control: 7.02 Hz (target 7.0), PWM 359, 2258 samples/rev
+[scan_leg_fill_node-11] [INFO] [1792595264.951534634] [scan_leg_fill]: 70 scans: 0.0 beams filled per scan (chairs), owner removed in 0 % (scrub point 0 %), 12.2 ms per scan
+[ekf_state_node-5] [33m[WARN] [1792595265.262482586] [ekf_state_node]: no IMU for 16218.0 s — running on commands alone[0m
+[owner_fusion_node-7] [INFO] [1792595265.770386112] [owner_fusion]: keeper: 0 heartbeats (last never), 0 points (frames -), 0 used, 0 ignored (no TF); camera: 0 points; scrub points: 0
+[sllidar_node-3] [INFO] [1792595272.884609383] [rplidar_node]: motor_control: 7.02 Hz (target 7.0), PWM 359, 2264 samples/rev
+[scan_leg_fill_node-11] [INFO] [1792595274.950899032] [scan_leg_fill]: 69 scans: 0.9 beams filled per scan (chairs), owner removed in 0 % (scrub point 0 %), 14.2 ms per scan
+[owner_fusion_node-7] [INFO] [1792595280.769770735] [owner_fusion]: keeper: 0 heartbeats (last never), 0 points (frames -), 0 used, 0 ignored (no TF); camera: 0 points; scrub points: 0
+[sllidar_node-3] [INFO] [1792595283.007342595] [rplidar_node]: motor_control: 7.03 Hz (target 7.0), PWM 359, 2259 samples/rev
+[scan_leg_fill_node-11] [INFO] [1792595284.948848273] [scan_leg_fill]: 69 scans: 0.3 beams filled per scan (chairs), owner removed in 0 % (scrub point 0 %), 12.0 ms per scan
+[sllidar_node-3] [INFO] [1792595293.141400156] [rplidar_node]: motor_control: 7.01 Hz (target 7.0), PWM 359, 2266 samples/rev
+[scan_leg_fill_node-11] [INFO] [1792595294.951861351] [scan_leg_fill]: 69 scans: 0.0 beams filled per scan (chairs), owner removed in 0 % (scrub point 0 %), 13.6 ms per scan
+[ekf_state_node-5] [33m[WARN] [1792595295.284847042] [ekf_state_node]: no IMU for 16248.0 s — running on commands alone[0m
+[owner_fusion_node-7] [INFO] [1792595295.771037160] [owner_fusion]: keeper: 0 heartbeats (last never), 0 points (frames -), 0 used, 0 ignored (no TF); camera: 0 points; scrub points: 0
+[sllidar_node-3] [INFO] [1792595303.260715243] [rplidar_node]: motor_control: 7.01 Hz (target 7.0), PWM 359, 2265 samples/rev
+[scan_leg_fill_node-11] [INFO] [1792595304.955784144] [scan_leg_fill]: 69 scans: 0.6 beams filled per scan (chairs), owner removed in 0 % (scrub point 0 %), 13.3 ms per scan
+[owner_fusion_node-7] [INFO] [1792595310.777032331] [owner_fusion]: keeper: 0 heartbeats (last never), 0 points (frames -), 0 used, 0 ignored (no TF); camera: 0 points; scrub points: 0
+[sllidar_node-3] [INFO] [1792595313.394708841] [rplidar_node]: motor_control: 7.01 Hz (target 7.0), PWM 359, 2261 samples/rev
+[scan_leg_fill_node-11] [INFO] [1792595314.948412236] [scan_leg_fill]: 69 scans: 0.3 beams filled per scan (chairs), owner removed in 0 % (scrub point 0 %), 12.5 ms per scan
+[sllidar_node-3] [INFO] [1792595323.520034720] [rplidar_node]: motor_control: 7.02 Hz (target 7.0), PWM 359, 2257 samples/rev
+[scan_leg_fill_node-11] [INFO] [1792595324.950527412] [scan_leg_fill]: 69 scans: 0.3 beams filled per scan (chairs), owner removed in 0 % (scrub point 0 %), 13.3 ms per scan
+[ekf_state_node-5] [33m[WARN] [1792595325.306478059] [ekf_state_node]: no IMU for 16278.1 s — running on commands alone[0m
+[owner_fusion_node-7] [INFO] [1792595325.770359068] [owner_fusion]: keeper: 0 heartbeats (last never), 0 points (frames -), 0 used, 0 ignored (no TF); camera: 0 points; scrub points: 0
+[WARNING] [launch]: user interrupted with ctrl-c (SIGINT)
+[INFO] [gps_owner_node-12]: sending signal 'SIGINT' to process[gps_owner_node-12]
+[INFO] [scan_leg_fill_node-11]: sending signal 'SIGINT' to process[scan_leg_fill_node-11]
+[INFO] [collision_monitor_node-10]: sending signal 'SIGINT' to process[collision_monitor_node-10]
+[INFO] [cmd_mux_node-9]: sending signal 'SIGINT' to process[cmd_mux_node-9]
+[INFO] [follow_manager_node-8]: sending signal 'SIGINT' to process[follow_manager_node-8]
+[INFO] [owner_fusion_node-7]: sending signal 'SIGINT' to process[owner_fusion_node-7]
+[INFO] [smart_planner_node-6]: sending signal 'SIGINT' to process[smart_planner_node-6]
+[INFO] [ekf_state_node-5]: sending signal 'SIGINT' to process[ekf_state_node-5]
+[INFO] [imu_filter_node-4]: sending signal 'SIGINT' to process[imu_filter_node-4]
+[INFO] [sllidar_node-3]: sending signal 'SIGINT' to process[sllidar_node-3]
+[INFO] [wheel_state_node-2]: sending signal 'SIGINT' to process[wheel_state_node-2]
+[INFO] [robot_state_publisher-1]: sending signal 'SIGINT' to process[robot_state_publisher-1]
+[robot_state_publisher-1] [INFO] [1792595330.866939288] [rclcpp]: signal_handler(SIGINT/SIGTERM)
+[ERROR] [sllidar_node-3]: process has died [pid 13642, exit code -2, cmd '/home/a2r/ros2_ws/install/sllidar_ros2/lib/sllidar_ros2/sllidar_node --ros-args -r __node:=rplidar_node --params-file /tmp/launch_params_widqmbqs'].
+[smart_planner_node-6] [0m[INFO] [1792595330.997119000] [local_planner_bridge]: Shutdown — sending STOP[0m
+[smart_planner_node-6] Failed to publish log message to rosout: publisher's context is invalid, at ./src/rcl/publisher.c:389
+[gps_owner_node-12] Traceback (most recent call last):
+[gps_owner_node-12]   File "/home/a2r/A2R_BOT/a2r_bot_ws/install/a2r_bot_follow/lib/a2r_bot_follow/gps_owner_node", line 33, in <module>
+[gps_owner_node-12]     sys.exit(load_entry_point('a2r-bot-follow==2.0.0', 'console_scripts', 'gps_owner_node')())
+[gps_owner_node-12]   File "/home/a2r/A2R_BOT/a2r_bot_ws/install/a2r_bot_follow/lib/python3.10/site-packages/a2r_bot_follow/gps_owner_node.py", line 804, in main
+[gps_owner_node-12]     node.destroy_node()
+[gps_owner_node-12]   File "/home/a2r/A2R_BOT/a2r_bot_ws/install/a2r_bot_follow/lib/python3.10/site-packages/a2r_bot_follow/gps_owner_node.py", line 795, in destroy_node
+[gps_owner_node-12]     return super().destroy_node()
+[gps_owner_node-12]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/node.py", line 1685, in destroy_node
+[gps_owner_node-12]     self.destroy_publisher(self._publishers[0])
+[gps_owner_node-12]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/node.py", line 1565, in destroy_publisher
+[gps_owner_node-12]     publisher.destroy()
+[gps_owner_node-12]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/publisher.py", line 99, in destroy
+[gps_owner_node-12]     self.__publisher.destroy_when_not_in_use()
+[gps_owner_node-12] KeyboardInterrupt
+[sllidar_node-3] [INFO] [1792595331.017658250] [rplidar_node]: Stop motor
+[collision_monitor_node-10] Traceback (most recent call last):
+[collision_monitor_node-10]   File "/home/a2r/A2R_BOT/a2r_bot_ws/install/a2r_bot_follow/lib/a2r_bot_follow/collision_monitor_node", line 33, in <module>
+[collision_monitor_node-10]     sys.exit(load_entry_point('a2r-bot-follow==2.0.0', 'console_scripts', 'collision_monitor_node')())
+[collision_monitor_node-10]   File "/home/a2r/A2R_BOT/a2r_bot_ws/install/a2r_bot_follow/lib/python3.10/site-packages/a2r_bot_follow/collision_monitor_node.py", line 305, in main
+[collision_monitor_node-10]     node.destroy_node()
+[collision_monitor_node-10]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/node.py", line 1691, in destroy_node
+[collision_monitor_node-10]     self.destroy_service(self._services[0])
+[collision_monitor_node-10]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/node.py", line 1615, in destroy_service
+[collision_monitor_node-10]     service.destroy()
+[collision_monitor_node-10]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/service.py", line 93, in destroy
+[ERROR] [ekf_state_node-5]: process has died [pid 13646, exit code -2, cmd '/home/a2r/A2R_BOT/a2r_bot_ws/install/a2r_bot_sensor_fusion/lib/a2r_bot_sensor_fusion/ekf_state_node --ros-args --log-level info --ros-args -r __node:=ekf_state_node --params-file /home/a2r/A2R_BOT/a2r_bot_ws/install/a2r_bot_sensor_fusion/share/a2r_bot_sensor_fusion/config/fusion.yaml --params-file /tmp/launch_params_7ayoqrqp'].
+[owner_fusion_node-7] Traceback (most recent call last):
+[owner_fusion_node-7]   File "/home/a2r/A2R_BOT/a2r_bot_ws/install/a2r_bot_follow/lib/a2r_bot_follow/owner_fusion_node", line 33, in <module>
+[owner_fusion_node-7]     sys.exit(load_entry_point('a2r-bot-follow==2.0.0', 'console_scripts', 'owner_fusion_node')())
+[owner_fusion_node-7]   File "/home/a2r/A2R_BOT/a2r_bot_ws/install/a2r_bot_follow/lib/python3.10/site-packages/a2r_bot_follow/owner_fusion_node.py", line 772, in main
+[owner_fusion_node-7]     node.destroy_node()
+[owner_fusion_node-7]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/node.py", line 1687, in destroy_node
+[owner_fusion_node-7]     self.destroy_subscription(self._subscriptions[0])
+[owner_fusion_node-7]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/node.py", line 1583, in destroy_subscription
+[owner_fusion_node-7]     subscription.destroy()
+[owner_fusion_node-7]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/subscription.py", line 80, in destroy
+[owner_fusion_node-7]     self.handle.destroy_when_not_in_use()
+[owner_fusion_node-7] KeyboardInterrupt
+[cmd_mux_node-9] Traceback (most recent call last):
+[cmd_mux_node-9]   File "/home/a2r/A2R_BOT/a2r_bot_ws/install/a2r_bot_follow/lib/a2r_bot_follow/cmd_mux_node", line 33, in <module>
+[cmd_mux_node-9]     sys.exit(load_entry_point('a2r-bot-follow==2.0.0', 'console_scripts', 'cmd_mux_node')())
+[cmd_mux_node-9]   File "/home/a2r/A2R_BOT/a2r_bot_ws/install/a2r_bot_follow/lib/python3.10/site-packages/a2r_bot_follow/cmd_mux_node.py", line 178, in main
+[cmd_mux_node-9]     node.destroy_node()
+[cmd_mux_node-9]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/node.py", line 1691, in destroy_node
+[cmd_mux_node-9]     self.destroy_service(self._services[0])
+[cmd_mux_node-9]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/node.py", line 1615, in destroy_service
+[scan_leg_fill_node-11] Traceback (most recent call last):
+[scan_leg_fill_node-11]   File "/home/a2r/A2R_BOT/a2r_bot_ws/install/a2r_bot_follow/lib/a2r_bot_follow/scan_leg_fill_node", line 33, in <module>
+[scan_leg_fill_node-11]     sys.exit(load_entry_point('a2r-bot-follow==2.0.0', 'console_scripts', 'scan_leg_fill_node')())
+[scan_leg_fill_node-11]   File "/home/a2r/A2R_BOT/a2r_bot_ws/install/a2r_bot_follow/lib/python3.10/site-packages/a2r_bot_follow/scan_leg_fill_node.py", line 524, in main
+[scan_leg_fill_node-11]     node.destroy_node()
+[scan_leg_fill_node-11]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/node.py", line 1687, in destroy_node
+[scan_leg_fill_node-11]     self.destroy_subscription(self._subscriptions[0])
+[scan_leg_fill_node-11]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/node.py", line 1583, in destroy_subscription
+[collision_monitor_node-10]     self.__service.destroy_when_not_in_use()
+[collision_monitor_node-10] KeyboardInterrupt
+[follow_manager_node-8] Traceback (most recent call last):
+[follow_manager_node-8]   File "/home/a2r/A2R_BOT/a2r_bot_ws/install/a2r_bot_follow/lib/a2r_bot_follow/follow_manager_node", line 33, in <module>
+[cmd_mux_node-9]     service.destroy()
+[cmd_mux_node-9]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/service.py", line 93, in destroy
+[cmd_mux_node-9]     self.__service.destroy_when_not_in_use()
+[cmd_mux_node-9] KeyboardInterrupt
+[smart_planner_node-6] Traceback (most recent call last):
+[smart_planner_node-6]   File "/home/a2r/A2R_BOT/a2r_bot_ws/install/a2r_bot_follow/lib/a2r_bot_follow/smart_planner_node", line 33, in <module>
+[smart_planner_node-6]     sys.exit(load_entry_point('a2r-bot-follow==2.0.0', 'console_scripts', 'smart_planner_node')())
+[imu_filter_node-4] Traceback (most recent call last):
+[imu_filter_node-4]   File "/home/a2r/A2R_BOT/a2r_bot_ws/install/a2r_bot_sensor_fusion/lib/a2r_bot_sensor_fusion/imu_filter_node", line 33, in <module>
+[imu_filter_node-4]     sys.exit(load_entry_point('a2r-bot-sensor-fusion==2.0.0', 'console_scripts', 'imu_filter_node')())
+[follow_manager_node-8]     sys.exit(load_entry_point('a2r-bot-follow==2.0.0', 'console_scripts', 'follow_manager_node')())
+[follow_manager_node-8]   File "/home/a2r/A2R_BOT/a2r_bot_ws/install/a2r_bot_follow/lib/python3.10/site-packages/a2r_bot_follow/follow_manager_node.py", line 1168, in main
+[smart_planner_node-6]   File "/home/a2r/A2R_BOT/a2r_bot_ws/install/a2r_bot_follow/lib/python3.10/site-packages/a2r_bot_follow/smart_planner_node.py", line 4802, in main
+[imu_filter_node-4]   File "/home/a2r/A2R_BOT/a2r_bot_ws/install/a2r_bot_sensor_fusion/lib/python3.10/site-packages/a2r_bot_sensor_fusion/imu_filter_node.py", line 316, in main
+[imu_filter_node-4]     node.destroy_node()
+[ERROR] [cmd_mux_node-9]: process has died [pid 13674, exit code -2, cmd '/home/a2r/A2R_BOT/a2r_bot_ws/install/a2r_bot_follow/lib/a2r_bot_follow/cmd_mux_node --ros-args -r __node:=cmd_mux --params-file /home/a2r/A2R_BOT/a2r_bot_ws/install/a2r_bot_follow/share/a2r_bot_follow/config/params.yaml'].
+[scan_leg_fill_node-11]     subscription.destroy()
+[scan_leg_fill_node-11]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/subscription.py", line 80, in destroy
+[scan_leg_fill_node-11]     self.handle.destroy_when_not_in_use()
+[scan_leg_fill_node-11] KeyboardInterrupt
+[ERROR] [scan_leg_fill_node-11]: process has died [pid 13680, exit code -2, cmd '/home/a2r/A2R_BOT/a2r_bot_ws/install/a2r_bot_follow/lib/a2r_bot_follow/scan_leg_fill_node --ros-args -r __node:=scan_leg_fill --params-file /home/a2r/A2R_BOT/a2r_bot_ws/install/a2r_bot_follow/share/a2r_bot_follow/config/params.yaml'].
+[follow_manager_node-8]     node.destroy_node()
+[follow_manager_node-8]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/node.py", line 1687, in destroy_node
+[ERROR] [follow_manager_node-8]: process has died [pid 13671, exit code -2, cmd '/home/a2r/A2R_BOT/a2r_bot_ws/install/a2r_bot_follow/lib/a2r_bot_follow/follow_manager_node --ros-args -r __node:=follow_manager --params-file /home/a2r/A2R_BOT/a2r_bot_ws/install/a2r_bot_follow/share/a2r_bot_follow/config/params.yaml --params-file /tmp/launch_params_onipnzg3'].
+[imu_filter_node-4]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/node.py", line 1691, in destroy_node
+[imu_filter_node-4]     self.destroy_service(self._services[0])
+[follow_manager_node-8]     self.destroy_subscription(self._subscriptions[0])
+[follow_manager_node-8]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/node.py", line 1583, in destroy_subscription
+[follow_manager_node-8]     subscription.destroy()
+[follow_manager_node-8]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/subscription.py", line 80, in destroy
+[follow_manager_node-8]     self.handle.destroy_when_not_in_use()
+[follow_manager_node-8] KeyboardInterrupt
+[robot_state_publisher-1] [INFO] [1792595331.167226015] [rclcpp]: signal_handler(SIGINT/SIGTERM)
+[smart_planner_node-6]     node.destroy_node()
+[imu_filter_node-4]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/node.py", line 1615, in destroy_service
+[imu_filter_node-4]     service.destroy()
+[imu_filter_node-4]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/service.py", line 93, in destroy
+[smart_planner_node-6]   File "/home/a2r/A2R_BOT/a2r_bot_ws/install/a2r_bot_follow/lib/python3.10/site-packages/a2r_bot_follow/smart_planner_node.py", line 4762, in destroy_node
+[imu_filter_node-4]     self.__service.destroy_when_not_in_use()
+[ERROR] [collision_monitor_node-10]: process has died [pid 13676, exit code -2, cmd '/home/a2r/A2R_BOT/a2r_bot_ws/install/a2r_bot_follow/lib/a2r_bot_follow/collision_monitor_node --ros-args -r __node:=collision_monitor --params-file /home/a2r/A2R_BOT/a2r_bot_ws/install/a2r_bot_follow/share/a2r_bot_follow/config/params.yaml'].
+[ERROR] [owner_fusion_node-7]: process has died [pid 13668, exit code -2, cmd '/home/a2r/A2R_BOT/a2r_bot_ws/install/a2r_bot_follow/lib/a2r_bot_follow/owner_fusion_node --ros-args -r __node:=owner_fusion --params-file /home/a2r/A2R_BOT/a2r_bot_ws/install/a2r_bot_follow/share/a2r_bot_follow/config/params.yaml'].
+[imu_filter_node-4] KeyboardInterrupt
+[ERROR] [smart_planner_node-6]: process has died [pid 13663, exit code -2, cmd '/home/a2r/A2R_BOT/a2r_bot_ws/install/a2r_bot_follow/lib/a2r_bot_follow/smart_planner_node --ros-args --log-level info --ros-args -r __node:=local_planner_bridge --params-file /home/a2r/A2R_BOT/a2r_bot_ws/install/a2r_bot_follow/share/a2r_bot_follow/config/params.yaml --params-file /tmp/launch_params_ovjcodgc'].
+[smart_planner_node-6]     super().destroy_node()
+[wheel_state_node-2] Traceback (most recent call last):
+[smart_planner_node-6]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/node.py", line 1685, in destroy_node
+[wheel_state_node-2]   File "/home/a2r/A2R_BOT/a2r_bot_ws/install/a2r_bot_description/lib/a2r_bot_description/wheel_state_node", line 33, in <module>
+[smart_planner_node-6]     self.destroy_publisher(self._publishers[0])
+[wheel_state_node-2]     sys.exit(load_entry_point('a2r-bot-description==3.0.0', 'console_scripts', 'wheel_state_node')())
+[wheel_state_node-2]   File "/home/a2r/A2R_BOT/a2r_bot_ws/install/a2r_bot_description/lib/python3.10/site-packages/a2r_bot_description/wheel_state_node.py", line 221, in main
+[wheel_state_node-2]     node.destroy_node()
+[wheel_state_node-2]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/node.py", line 1696, in destroy_node
+[smart_planner_node-6]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/node.py", line 1565, in destroy_publisher
+[smart_planner_node-6]     publisher.destroy()
+[smart_planner_node-6]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/publisher.py", line 99, in destroy
+[smart_planner_node-6]     self.__publisher.destroy_when_not_in_use()
+[smart_planner_node-6] KeyboardInterrupt
+[wheel_state_node-2]     self.__node.destroy_when_not_in_use()
+[wheel_state_node-2] KeyboardInterrupt
+[INFO] [robot_state_publisher-1]: process has finished cleanly [pid 13638]
+[ERROR] [wheel_state_node-2]: process has died [pid 13640, exit code -2, cmd '/home/a2r/A2R_BOT/a2r_bot_ws/install/a2r_bot_description/lib/a2r_bot_description/wheel_state_node --ros-args -r __node:=wheel_state_node --params-file /home/a2r/A2R_BOT/a2r_bot_ws/install/a2r_bot_description/share/a2r_bot_description/config/description.yaml --params-file /tmp/launch_params_uiknxcrj'].
+[ERROR] [gps_owner_node-12]: process has died [pid 13682, exit code -2, cmd '/home/a2r/A2R_BOT/a2r_bot_ws/install/a2r_bot_follow/lib/a2r_bot_follow/gps_owner_node --ros-args -r __node:=gps_owner --params-file /home/a2r/A2R_BOT/a2r_bot_ws/install/a2r_bot_follow/share/a2r_bot_follow/config/params.yaml --params-file /tmp/launch_params_uui65lw5'].
+[ERROR] [imu_filter_node-4]: process has died [pid 13644, exit code -2, cmd '/home/a2r/A2R_BOT/a2r_bot_ws/install/a2r_bot_sensor_fusion/lib/a2r_bot_sensor_fusion/imu_filter_node --ros-args --log-level info --ros-args -r __node:=imu_filter_node --params-file /home/a2r/A2R_BOT/a2r_bot_ws/install/a2r_bot_sensor_fusion/share/a2r_bot_sensor_fusion/config/fusion.yaml --params-file /tmp/launch_params_pg_yfi09'].

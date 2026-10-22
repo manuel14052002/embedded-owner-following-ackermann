@@ -1,0 +1,36 @@
+# twist_mux priorities for the a2r_bot follow pipeline.
+# Highest ACTIVE priority wins; a topic is active while it keeps publishing
+# (within its timeout). All inputs use the a2r_bot drive convention:
+#   linear.x = throttle fraction -1..1, angular.z = steering fraction -1..1
+#
+#   estop_lock   (Bool, 255)  publish true to block everything below
+#   teleop       (100)        ros2 run teleop_twist_keyboard teleop_twist_keyboard
+#                               --ros-args -r cmd_vel:=/cmd_vel_teleop
+#   escape       (50)         smart_planner's reverse / three-point turn
+#   navigation   (10)         smart_planner following the owner
+#
+# Output -> /cmd_vel_mux -> collision_monitor -> /local_planner/cmd_out -> bridge
+twist_mux:
+  ros__parameters:
+    topics:
+      teleop:
+        topic   : cmd_vel_teleop
+        timeout : 0.5
+        priority: 100
+      escape:
+        topic   : cmd_vel_escape
+        # 0.25 s was shorter than the planner's own 0.2 s cycle, so one late
+        # cycle dropped the escape and twist_mux fell back to navigation
+        # mid-manoeuvre. The car then lurched forward into what it was
+        # reversing away from, and the escape restarted from the beginning.
+        timeout : 0.6
+        priority: 50
+      navigation:
+        topic   : cmd_vel_nav
+        timeout : 0.6        # matches the planner's cmd_timeout_s
+        priority: 10
+    locks:
+      estop:
+        topic   : estop_lock
+        timeout : 0.0
+        priority: 255

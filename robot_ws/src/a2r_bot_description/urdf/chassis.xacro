@@ -1,0 +1,99 @@
+<?xml version="1.0"?>
+<!--
+  chassis.xacro — RC monster-truck chassis
+  ════════════════════════════════════════════════════════════════════════════
+  TWO LAYERS, deliberately separated:
+
+    STRUCTURAL   base_footprint → base_link. base_link's COLLISION is one
+                 clean 0.40 × 0.31 box: the planner footprint. Its VISUAL is
+                 the narrow black RC tub, because that is what the real car
+                 looks like between the wheels.
+
+    COSMETIC     suspension, shocks, bumpers, gearbox — zero collision and
+                 negligible inertia. styling:=false drops all of it and
+                 nothing about the robot's behaviour changes.
+
+  base_link = midpoint between the axles, chassis_z above the ground.
+  ════════════════════════════════════════════════════════════════════════════
+-->
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <xacro:macro name="a2r_chassis" params="styling:=true">
+
+    <link name="base_footprint"/>
+
+    <joint name="base_footprint_joint" type="fixed">
+      <parent link="base_footprint"/>
+      <child  link="base_link"/>
+      <origin xyz="0 0 ${chassis_z}" rpy="0 0 0"/>
+    </joint>
+
+    <!-- ══ base_link: visual = RC tub, collision = planner footprint ═════ -->
+    <link name="base_link">
+      <visual>
+        <origin xyz="0 0 -0.012"/>
+        <geometry><box size="0.300 0.110 0.050"/></geometry>
+        <material name="body_black"/>
+      </visual>
+      <collision>
+        <geometry><box size="${chassis_len} ${chassis_wid} ${chassis_hgt}"/></geometry>
+      </collision>
+      <xacro:box_inertial mass="2.4" x="${chassis_len}" y="${chassis_wid}" z="${chassis_hgt}">
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+      </xacro:box_inertial>
+    </link>
+
+    <xacro:if value="${styling}">
+
+      <!-- ── Rear gearbox + motor (RWD) ──────────────────────────────── -->
+      <xacro:deco_box name="gearbox" parent="base_link" x="-0.105" y="0" z="0.002"
+                      sx="0.075" sy="0.095" sz="0.060" material="body_shadow"/>
+      <xacro:deco_cyl name="motor" parent="base_link" x="-0.060" y="-0.030" z="0.012"
+                      roll="1.5708" radius="0.018" length="0.050" material="gunmetal"/>
+
+      <!-- ── Front bulkhead + steering servo ──────────────────────────── -->
+      <xacro:deco_box name="front_bulkhead" parent="base_link" x="0.118" y="0" z="-0.004"
+                      sx="0.055" sy="0.090" sz="0.050" material="body_shadow"/>
+      <xacro:deco_box name="steer_servo" parent="base_link" x="0.070" y="0" z="0.018"
+                      sx="0.040" sy="0.020" sz="0.038" material="pcb_black"/>
+
+      <!-- ── Bumpers ──────────────────────────────────────────────────── -->
+      <xacro:deco_box name="front_bumper" parent="base_link" x="0.212" y="0" z="-0.018"
+                      pitch="0.35" sx="0.020" sy="0.150" sz="0.024" material="body_black"/>
+      <xacro:deco_box name="front_bumper_arm" parent="base_link" x="0.175" y="0" z="-0.022"
+                      sx="0.060" sy="0.030" sz="0.012" material="body_black"/>
+      <xacro:deco_box name="rear_bumper" parent="base_link" x="-0.205" y="0" z="-0.010"
+                      sx="0.018" sy="0.120" sz="0.022" material="body_black"/>
+
+      <!-- ── Suspension arms (lower wishbones) ────────────────────────── -->
+      <xacro:deco_box name="arm_fl" parent="base_link" x="${ half_wb}" y="0.068"  z="${wheel_z - 0.008}"
+                      sx="0.030" sy="0.070" sz="0.008" material="body_black"/>
+      <xacro:deco_box name="arm_fr" parent="base_link" x="${ half_wb}" y="-0.068" z="${wheel_z - 0.008}"
+                      sx="0.030" sy="0.070" sz="0.008" material="body_black"/>
+      <xacro:deco_box name="arm_rl" parent="base_link" x="${-half_wb}" y="0.068"  z="${wheel_z - 0.008}"
+                      sx="0.030" sy="0.070" sz="0.008" material="body_black"/>
+      <xacro:deco_box name="arm_rr" parent="base_link" x="${-half_wb}" y="-0.068" z="${wheel_z - 0.008}"
+                      sx="0.030" sy="0.070" sz="0.008" material="body_black"/>
+
+      <!-- ── Coil-over shocks: chrome spring over a black body, raked out ─ -->
+      <xacro:macro name="a2r_shock" params="name x y lean">
+        <xacro:deco_cyl name="${name}_body" parent="base_link" x="${x}" y="${y}" z="0.012"
+                        roll="${lean}" radius="0.006" length="0.085" material="body_shadow"/>
+        <xacro:deco_cyl name="${name}_spring" parent="base_link" x="${x}" y="${y}" z="0.004"
+                        roll="${lean}" radius="0.0105" length="0.048" material="chrome"/>
+      </xacro:macro>
+      <xacro:a2r_shock name="shock_fl" x="${ half_wb - 0.018}" y="0.062"  lean="-0.30"/>
+      <xacro:a2r_shock name="shock_fr" x="${ half_wb - 0.018}" y="-0.062" lean="0.30"/>
+      <xacro:a2r_shock name="shock_rl" x="${-half_wb + 0.022}" y="0.062"  lean="-0.30"/>
+      <xacro:a2r_shock name="shock_rr" x="${-half_wb + 0.022}" y="-0.062" lean="0.30"/>
+
+      <!-- ── Posts that carry the lower deck on the tub ───────────────── -->
+      <xacro:deco_cyl name="deck_post_f" parent="base_link" x="0.100" y="0" z="0.045"
+                      radius="0.006" length="0.050" material="body_shadow"/>
+      <xacro:deco_cyl name="deck_post_r" parent="base_link" x="-0.150" y="0" z="0.050"
+                      radius="0.006" length="0.040" material="body_shadow"/>
+
+    </xacro:if>
+  </xacro:macro>
+
+</robot>

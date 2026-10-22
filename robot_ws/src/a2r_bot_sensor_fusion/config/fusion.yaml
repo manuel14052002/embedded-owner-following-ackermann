@@ -1,0 +1,194 @@
+# =============================================================================
+#  a2r_bot_sensor_fusion — parameters
+# =============================================================================
+#  Tuning order, if things are wrong:
+#    1. Get the IMU right first.  Everything downstream inherits its errors.
+#    2. Then the EKF.  Check /odometry/filtered against a tape measure.
+#    3. Only then touch scan fusion.  A wrong pose makes good scans useless.
+# =============================================================================
+
+imu_filter_node:
+  ros__parameters:
+    gyro_z_sign: -1.0   # a2r_yaw_fix
+
+    # 'madgwick' or 'mahony'.  Madgwick is the default: one knob, well
+    # behaved.  Switch to Mahony if the gyro bias drifts with temperature
+    # over a long run — its integral term tracks the bias actively.
+    algorithm: "madgwick"
+
+    # Madgwick's only tuning parameter.  It is the rate at which the filter
+    # is allowed to correct gyro drift using the accelerometer, in rad/s.
+    #   too low  -> heading drifts, attitude lags reality
+    #   too high -> every bump and every hard acceleration tips the estimate
+    # 0.06 suits a car that accelerates gently.  A quadrotor would want more.
+    beta: 0.06
+
+    # Mahony gains, only used when algorithm is "mahony".
+    kp: 1.0
+    ki: 0.05
+
+    # The magnetometer gives absolute yaw.  Turn it OFF if the GY-91 is
+    # mounted near the motor or the ESC leads: a compass that follows the
+    # throttle is worse than no compass, because the EKF believes it.
+    use_mag: true
+
+    # Degrees east of true north at your location.  Look it up — it ranges
+    # from about -20 to +20 degrees depending where on Earth you are, and it
+    # only matters if you care about true rather than magnetic heading.
+    mag_declination_deg: 0.0
+
+    # Magnetometer calibration.  Spin the robot slowly through all
+    # orientations, log /imu/mag, fit an ellipsoid; hard_iron is its centre,
+    # soft_iron_scale normalises its axes.  Leaving these at defaults gives a
+    # heading that is wrong by a bearing-dependent amount — typically 10 to 30
+    # degrees, worst where the steel in the chassis is thickest.
+    mag_hard_iron: [0.0, 0.0, 0.0]
+    mag_soft_iron_scale: [1.0, 1.0, 1.0]
+
+    frame_id: "imu_link"
+
+    # Gyro bias estimation at startup.  The robot must be still.
+    auto_calibrate_on_start: true
+    gyro_bias_samples: 300
+    stationary_accel_tol: 0.35      # m/s^2 away from 9.81
+    stationary_gyro_tol: 0.05       # rad/s
+
+    # Published covariances.  Measured from a stationary GY-91 over 5 minutes.
+    orientation_variance: 2.5e-3
+    gyro_variance: 4.0e-4
+    accel_variance: 8.0e-3
+
+    # Skip integration across gaps longer than this rather than applying one
+    # enormous rotation step.
+    max_dt_s: 0.2
+
+
+ekf_state_node:
+  ros__parameters:
+    steer_sign: 1.0   # a2r_yaw_fix
+    rate_hz: 50.0
+    odom_frame: "odom"
+    base_frame: "base_footprint"
+
+    # Publish the odom -> base_footprint transform.  Set false only if
+    # something else in your graph is already publishing it; two publishers
+    # on one transform produces a pose that visibly vibrates in RViz.
+    publish_tf: true
+
+    command_topic: "/local_planner/cmd_out"
+    command_is_normalised: true
+
+    wheelbase_m: 0.280
+    max_speed_mps: 1.2
+    max_steer_deg: 30.0
+
+    # Which measurements to fuse.  Turning one off is the first debugging
+    # step when the estimate misbehaves.
+    use_imu_yaw: false   # v2.7: magnetometer heading rejected 97 % of the time next to two motors (log: "yaw 1462"/30 s); heading from the gyro
+    use_imu_yaw_rate: true
+    use_imu_accel: true
+    use_command: true
+    use_scan_match: true
+
+    # Accelerations are transient; bleed the acceleration state towards zero
+    # with this time constant so the filter does not coast forever.
+    accel_decay_tau_s: 0.35
+
+    # Roughly how long the drivetrain takes to obey a command.  Used to
+    # down-weight a command that has not taken effect yet.
+    command_lag_s: 0.12
+
+    # ---- Process noise, per second -------------------------------------
+    # Raise these if the filter is too stiff and lags reality; lower them if
+    # the estimate is jittery.  q_accel is deliberately large: acceleration
+    # genuinely does change fast, and pretending otherwise makes the filter
+    # fight the accelerometer.
+    q_position: 1.0e-4
+    q_heading: 2.0e-4
+    q_velocity: 6.0e-3
+    q_yaw_rate: 0.5       # a2r_step2: was 3.0e-2 - a K-turn changes the yaw rate by ~5 rad/s^2; the old value
+                          # gated the gyro out (simulated heading error 86 deg -> 4-9 deg with this fix)
+    q_accel: 5.0e-1
+
+    # ---- Measurement noise ----------------------------------------------
+    # Note the asymmetry: r_command_v is 100x r_imu_yaw_rate.  That is
+    # intentional.  The gyro measures what happened; the command only states
+    # what was asked for, and on a slipping tyre or a stalled servo those are
+    # very different things.
+    r_imu_yaw: 2.5e-3
+    r_imu_yaw_rate: 4.0e-4
+    r_imu_accel: 2.0e-1
+    r_command_v: 4.0e-2
+    r_command_w: 8.0e-2
+    r_scan_xy: 4.0e-3
+    r_scan_yaw: 2.0e-3
+
+    # Chi-square gate in sigma.  Measurements beyond this are discarded.
+    # 4.0 accepts about 99.99% of genuine measurements in 1-D.
+    gate_sigma: 4.0
+
+    imu_timeout_s: 0.5
+
+    # Assert zero velocity when the gyro is quiet and no command is active.
+    # This is what stops the estimated position from wandering while parked.
+    zero_velocity_snap: true
+    zero_velocity_speed_eps: 0.02
+
+
+scan_fusion_node:
+  ros__parameters:
+    scan_topic: "/scan"
+    output_topic: "/scan/fused"
+    odom_topic: "/odometry/filtered"
+    frame_id: ""                 # "" keeps whatever frame the lidar used
+
+    # 72 sectors = 5 degrees each.  Finer gives sharper obstacle bearings but
+    # spreads each sonar reading over more sectors with no extra information.
+    # Coarser blurs thin obstacles into their neighbours.
+    sector_count: 72
+    publish_overlay: true        # /scan/sonar_overlay, for RViz debugging
+
+    # Sonar geometry.  The centres are bearings in base_footprint; the offsets
+    # are how far ahead of / behind the origin each sensor is mounted, and are
+    # added to the raw reading so the planner reasons about the robot origin.
+    front_centre_deg: 0.0
+    rear_centre_deg: 180.0
+    sonar_fov_deg: 60.0
+    sonar_min_range_m: 0.28
+    sonar_max_range_m: 5.0
+    sonar_timeout_s: 0.6
+    front_offset_x_m: 0.180
+    rear_offset_x_m: -0.205
+    # Keep equal to lidar_offset_x in a2r_bot_follow/config/params.yaml: the
+    # fused scan is published in the lidar's frame, so the sonar has to be
+    # expressed from there too (it used to be converted to base_link and then
+    # offset again downstream).
+    scan_frame_offset_x_m: -0.140
+
+    # BOTH sonars fitted: front on D0/D1, rear on D4/D5 (firmware 3.1.0).
+    # A non-finite range is still treated as "no information", so if either
+    # sonar drops out its sectors fall back to the lidar alone.
+
+    # Variances, metres squared.  The lidar is the more precise instrument;
+    # the sonar is the more *reliable* one on glass and matte black.
+    lidar_variance: 9.0e-4       # (30 mm)^2
+    sonar_variance: 2.5e-3       # (50 mm)^2
+    process_variance: 4.0e-3
+    gate_sigma: 3.5
+
+    # The safety rule.  When true, a sonar reading may only ever pull a
+    # sector's range IN, never push it out.  Leave this on.  With it off,
+    # a sonar that misses a table leg will erase the lidar's detection of it.
+    sonar_only_shortens: true
+
+    # A jump larger than this must be confirmed by a second reading before it
+    # is believed.  Rejects single spurious echoes and sonar crosstalk.
+    sonar_disagreement_m: 0.35
+    sonar_confirm_count: 2
+
+    max_prediction_dt_s: 0.5
+    # RPLidar A2M12 is rated to 12 m, but returns past ~8 m off matte
+    # indoor surfaces are sparse and noisy, and a single wrong long
+    # return writes a corridor of false free space across the costmap.
+    # 0 = trust the driver's own range_max instead.
+    range_max_clamp_m: 8.0

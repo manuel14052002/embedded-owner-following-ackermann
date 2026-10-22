@@ -1,0 +1,409 @@
+# =============================================================================
+#  params.yaml — a2r_bot_follow
+# =============================================================================
+#  One file controls the whole follow pipeline.
+#
+#  The node is launched under the name `local_planner_bridge` for continuity
+#  with the original workspace, so that is the key below. The `/**` wildcard
+#  at the end catches it under any other name too, which saves an afternoon
+#  the first time someone renames the node and their parameters silently stop
+#  being applied.
+# =============================================================================
+
+local_planner_bridge:
+  ros__parameters:
+
+    # ── Planner selection ─────────────────────────────────────────
+    # dwa | apf | teb | vfh | pure_pursuit | fgm | lattice | rrt
+    #
+    # This replaces the old arrangement where the active planner was chosen
+    # by commenting out six of seven dispatch lines in the source. Change it
+    # here, at launch (planner:=vfh), or live:
+    #
+    #     ros2 param set /local_planner_bridge planner fgm
+    #
+    # planner_fallback is used if the selected planner raises. After three
+    # faults the node switches to it permanently and says so in the log.
+    planner:          "dwa"
+    planner_fallback: "dwa"
+
+    # ── Who is in charge: follow goal / Jetson vs. local planner ──
+    arbitration_mode:       "jetson_first"
+    pass_cost_max:          60
+    avoid_cost_max:         75
+    avoid_w_cost:           5.0    # v2.2: was 3.0 - prefer arcs with more clearance
+    avoid_w_flip:           0.35
+    avoid_steer_samples:    21
+    safety_lookahead_s:     2.5    # v2.2: was 1.0 - bend round early
+    safety_lookahead_min_m: 1.1    # v2.2: was 0.5 (0.59 m at 0.24 m/s: saw obstacles too late)
+    clear_hold_s:           0.4
+    lost_continue_s:        0.4    # a2r_v121: was 0.0 - a goal gap from CPU jitter no longer stops the car
+    lost_speed_scale:       0.6
+    lost_turn_decay_s:      1.2
+    goal_hold_s:            2.0    # v2.4: was 4.0 - bridge a drop-out, do not drive a stale goal
+    use_jetson_cmd_fallback: false   # goal is the only authority (FollowMe /cmd_vel ignored)
+    jetson_angular_sign:    1.0      # -1.0 if the fallback is ever turned back on
+    footprint_nose_m:       0.20   # also check paths at the bumper, not just the centre
+    footprint_tail_m:       0.20   # ...and at the tail when reversing
+    monitor_escape_s:       0.7    # v2.4: was 1.0 - the 3 s stare in front of obstacles
+    escape_dists:           [0.30, 0.45, 0.60]   # a2r_merge: was up to 1.2 m
+    escape_force_after_s:   0.6    # a2r_merge: was 1.5 s hard-coded ("reverse gains little - waiting")
+    goal_face_max_m:        0.45   # a2r_merge: facing reverse never longer than this
+    goal_face_cooldown_s:   1.0    # a2r_merge: was 3.0 - the car stood 3 s with the owner beside it
+    lost_backoff_enabled:   true   # a2r_merge: owner lost + wall in front -> back off and look
+    lost_backoff_m:         0.35
+    lost_backoff_front_m:   0.45
+    escape_presteer_s:      0.25   # v2.4: was 0.45 - the ESC handshake (0.3 s) swings the servo too
+    # a2r_pi_update2: planned multi-point turns (maneuver.py) - corridor U-turns, owner behind
+    maneuver_enabled:        true
+    maneuver_speed:          0.18    # m/s - just above min_drive_speed
+    maneuver_stop_buffer_m:  0.20    # >= collision_monitor crawl stop zone (0.06 + 0.18*0.35 + 0.06 = 0.18)
+    maneuver_margin_m:       0.04
+    maneuver_verify_margin_m: 0.03   # = collision_monitor margin_m
+    maneuver_step_m:         0.10
+    maneuver_time_budget_s:  0.6     # a2r_step3: was 0.8 - fewer-leg plans search ~2x more nodes (car stands still meanwhile)
+    # old: maneuver_time_budget_s 0.8     # a2r_merge: was 2.0 - the search is ~2x faster now; 2 s of 100 % CPU stalled everything
+    maneuver_max_expand:     2500    # a2r_merge: was 6000
+    maneuver_max_reverse_m:  1.2     # a2r_merge: all reverse legs of one plan
+    maneuver_max_rev_leg_m:  0.5     # a2r_merge: one reverse leg (old plans backed 0.8-2.1 m)
+    maneuver_owner_keep_m:   0.75    # a2r_merge: plans never bring base_link closer to the owner
+    maneuver_away_w:         0.8     # a2r_merge: cost of a reverse that moves AWAY from the owner
+    maneuver_rev_cut_min_m:  0.15    # a2r_merge: reverse at least this, then stop once the forward turn is free
+    owner_topic:             "/follow/owner"   # a2r_merge: lidar-leg owner track (owner_fusion)
+    maneuver_face_deg:       45.0    # a2r_merge: was 75 - beyond 45 deg the owner-aware K-turn turns the car, not a blind reverse    # owner further round than this at the stand-off -> K-turn (FACE-OWNER below)
+    maneuver_face_tol_deg:   18.0
+    maneuver_drive_tol_deg:  30.0
+    maneuver_max_legs:       16
+    maneuver_max_s:          60.0
+    maneuver_switch_w:       2.5     # a2r_step3: a direction change costs like 2.5 m of driving -> fewest legs
+    maneuver_h_weight:       1.5     # a2r_step3: was 2.0 (code default) - less greedy, fewer legs (+~2x search)
+    maneuver_rev_leg_k:      1.0     # a2r_step3: one reverse leg may be as long as the turn needs
+    maneuver_rev_total_k:    1.5     # a2r_step3: total reverse <= 1.5 x the arc the turn needs
+    maneuver_partial_min_gain_deg: 20.0   # a2r_fix_freeze: no full route -> drive the best partial turn, re-plan (0 = off)
+    owner_search_s:         0.0    # was 10: follow_manager runs the search now
+    goal_timeout_s:         0.8    # a2r_pi_owner_only: was 1.5 - do not drive a stale goal
+    pet_state_topic:        "/followme/state"
+    lost_states:            "SEARCH,FIND,LOST"
+    stop_states:            "WAIT,STEADY,NO_OWNER,CLAIMING,IDLE,COMPLETED"
+
+    # ── Output routing ────────────────────────────────────────────
+    # topic  : publish a Twist and let a2r_bot_arduino own the serial port.
+    # serial : open the port here, as the original did.
+    #
+    # Leave this on "topic". A serial port has exactly one reader, so if this
+    # node owns it, the IMU, both sonars and the battery cannot reach ROS at
+    # all — which is most of what the sensor-fusion stack needs.
+    output_mode:   "topic"
+    cmd_out_topic: "/cmd_vel_nav"          # -> twist_mux (follow pipeline)
+    imu_topic:     "/imu/data"
+    # ── Serial / firmware ─────────────────────────────────────────
+    port:    "/dev/ttyARDUINO"    # udev symlink; "auto" scans VID/PID;
+    baud:    921600               # must match SERIAL_BAUD in the firmware
+    dry_run: false                # true = log DRIVE frames, no serial
+
+    # ── Ackermann kinematics (Wild Dagger WR-01 class) ────────────
+    max_speed_mps:       1.2
+    max_speed_cmd:       0.2      # firmware throttle cap (70 %)
+    goal_turn_speed: 0.199      # m/s (speed cap: fix_speed_cap.py)
+    goal_max_speed: 0.24      # m/s (speed cap: fix_speed_cap.py)
+    goal_k_ang:      1.0       # v2.2: scale on the pure-pursuit curvature
+    goal_pp_lookahead_m: 1.2   # pure pursuit lookahead floor (m)
+    goal_bearing_deadband_deg: 3.0
+    wheelbase_m:         0.280      # MEASURED: 400 mm tyre-to-tyre - 120 mm tyre
+    max_steer_deg:       30.0
+    min_speed_for_steer: 0.15
+
+    # ── Speed management / anti-stall ─────────────────────────────
+    min_drive_speed:    0.168      # 0.28 never crawl slower than this while moving
+    clearance_gain:     0.6       # linear slow-down near cost, 40 % floor
+    stall_time_s:       1.5       # stuck this long → reverse escape (3.0 was a long stare)
+    # FRONT-SONAR-ONLY BUILD: the rear DYP-A21 is removed, and the lidar is
+    # partly occluded to the rear by the battery and the Jetson. The escape
+    # manoeuvre therefore reverses on degraded information. 0.25 rather than
+    # 0.35 buys reaction time; raise it again once the rear sonar is refitted.
+    reverse_speed:      0.199      # no sonars: lidar-only reversing, keep it gentle
+    reverse_time_s:     3.0       # fallback only; duration comes from the chosen distance
+    reverse_cooldown_s: 1.2   # a2r_merge: was 2.0       # v2.9: was 1.2 - fewer back-to-back escapes (log: 22 attempts, jerking)
+    esc_reverse_delay_s: 0.35   # fw 3.5.2: 150 ms brake + 150 ms neutral from standstill
+
+    # ── Footprint (base_link, metres) ─────────────────────────────
+    # MEASURED. The planner sweeps THIS rectangle along the arc, exactly as
+    # collision_monitor does, instead of approximating the car as a 0.195 m
+    # circle. That approximation is why the planner kept choosing arcs the
+    # monitor then vetoed, leaving the car stopped in front of obstacles.
+    footprint_front_m:      0.215
+    footprint_rear_m:      -0.210
+    footprint_half_width_m: 0.155
+    footprint_margin_m:     0.04   # must stay > collision_monitor's margin_m
+    # A footprint hit nearer than max(hard_min_m, hard_time_s*v) is lethal;
+    # further away it only shortens clear_dist, so the car keeps creeping
+    # toward the gap instead of freezing 1.3 m from the first wall it sees.
+    hard_min_m:             0.22   # v3.0: was 0.35 - a wall 30 cm along a full-lock arc killed the turn
+    hard_time_s:            0.4   # v3.0: was 0.5
+    self_filter_pad_m:      0.01
+    cm_block_s:             0.8    # collision_monitor STOP this long -> escape
+
+    # ── Rates / watchdog ──────────────────────────────────────────
+    cmd_rate_hz:   25.0   # a2r_merge: was 50 - the plan changes at 5-7 Hz; half the pipeline traffic
+    cmd_timeout_s: 0.6            # Jetson silent → STOP
+    plan_rate_hz:  7.0    # a2r_merge: was 5 - one plan per lidar sweep (7 Hz)
+
+    # ── Topics ────────────────────────────────────────────────────
+    cmd_vel_topic: "/cmd_vel"     # published by tracker_node.py on the Jetson
+
+    # The FUSED scan, not the raw lidar. /scan/fused is the lidar merged with
+    # both DYP-A21 sonars, which is what sees glass doors and kerbs. Point
+    # this back at "/scan" to run without the fusion stack.
+    scan_topic:    "/scan/planner"   # chairs solid, owner removed (scan_leg_fill)
+
+    # ── Costmap + footprint-based inflation ───────────────────────
+    # Car is 0.31 m wide → inscribed radius 0.155 + 0.05 margin = 0.205.
+    # Inflation reaches 0.32 m: strong cost gradient but tight test spaces
+    # remain passable — tuned NOT to paralyse the robot.
+    costmap_size_m:       4.0
+    costmap_res_m:        0.05
+    robot_radius_m:       0.175   # v3.0: was 0.205 - soft cost only, footprint does collisions
+    inflation_radius_m:   0.35   # v3.0: was 0.32 - corridor centre band 0.81 m -> 1.01 m
+    inflation_cost_scale: 5.0   # v3.0: was 6.0 - cost falls off faster near walls
+    costmap_frame:        "base_link"
+    lidar_offset_x:       -0.140  # RPLIDAR A2M12 at the REAR of the upper deck (= URDF lidar_x)
+    lidar_offset_y:       0.001   # sheet: 55 mm right vs 53 mm left standoff gap
+    lidar_yaw_offset:     0.0     # A2M12 via sllidar_ros2, inverted:false: 0 deg = robot forward
+    scan_max_range:       3.5
+    scan_min_range:       0.15    # was 0.40: BLIND to anything within ~25 cm of the
+                                  # bumper, so the planner never saw what stopped it.
+                                  # Own-body returns are removed by footprint now.
+    scan_min_valid_frac:  0.45    # reject sweeps far sparser than usual
+    self_filter_x:        0.24    # drop returns inside the body outline
+    self_filter_y:        0.18
+    scan_near_keep_m:     0.80    # a sweep that sees this close is never dropped
+    scan_voxel_m:         0.02    # v2.8: footprint sweep uses one point per 2 cm square
+
+    # ── v2.8 smooth output (50 Hz, between the 5 Hz planner and the motors) ──
+    out_smoothing:        true
+    out_accel_mps2:       0.8     # 0 -> 0.24 m/s in ~0.2 s (starts at the stall floor)
+    out_decel_mps2:       1.5     # collision_monitor still stops instantly
+    out_steer_slew_dps:   150.0   # servo steps of 18 deg every 200 ms -> a smooth swing
+    goal_restart_m:       0.20    # stand-off hysteresis: stop at 1.3 m, go again at 1.5 m
+    trap_range_m:         2.0     # VFH+T: only obstacles this close can form a pocket
+
+    # ── Shared planner settings ───────────────────────────────────
+    horizon_m:          1.3
+    rollout_dt:         0.1
+    lethal_cost_thresh: 90
+
+    # ── DWA (active planner) ──────────────────────────────────────
+    dwa_v_samples:     4
+    dwa_steer_samples: 15
+    dwa_w_cmd:         1.0
+    dwa_w_clearance:   1.2
+    dwa_w_speed:       0.35
+    dwa_w_prox:        3.5       # early-turn strength (avoid arcs blocked ahead)
+    approach_slow_m:   0.90      # v2.9: was 0.50 - planner eases off earlier, not just the monitor
+    approach_min_frac: 0.45      # speed floor as fraction of desired while approaching
+    heading_memory:    false
+
+    # ── Shared skill layer (ALL seven planners, not just DWA) ─────
+    # These used to be hardcoded inside _plan_dwa. Every planner now reads
+    # them, so tuning here changes the whole comparison consistently.
+    commit_penalty:    0.45      # cost of flipping to the other side mid-dodge
+    commit_bonus:      0.15      # reward for staying on the committed side
+    fade_floor:        0.15      # min cmd weight when the command is blocked
+    steer_slew_dps:    90.0      # servo slew limit, deg/s (0 disables)
+
+    # ── VFH+T trap detection (Neamah, Elek, Korondi 2024) ────────
+    trap_group_dist_m:  0.40      # adjacency threshold (2·rr) for grouping scan points
+    trap_span_deg:      160.0     # obstacle group > this azimuth → internal trap
+    trap_concave_frac:  0.70      # 70 % of points must pass concaveness check
+    trap_exit_w:        2.5       # bias toward detected exit (ALL planners now)
+    orbit_detect_s:     8.0       # sustained same-direction turn → orbit trap
+    orbit_steer_deg:    12.0      # steer angle threshold for "turning hard"
+
+    # ── 8) RRT — sampling planner ─────────────────────────────────
+    # Defaults measured by scripts/test_rrt_offline.py; see the table in
+    # smart_planner_node.py. Lower rrt_iterations first if the Pi overruns
+    # the plan loop — it has the gentlest quality gradient of the five.
+    rrt_iterations:       900     # tree-growth budget per cycle
+    rrt_step_m:           0.22    # edge length; SHORTER IS NOT BETTER, see below
+    rrt_goal_bias:        0.15    # fraction of samples aimed at the goal
+    rrt_goal_tol_m:       0.28    # close enough to stop growing
+    rrt_reuse_frac:       0.5     # how much of last cycle's tree to keep
+    rrt_smooth_passes:    40      # shortcut-smoothing attempts
+    rrt_lookahead_m:      0.55    # pure-pursuit lookahead along the RRT path
+    rrt_sample_span_deg:  220.0   # sampling cone; 180 cannot round a corner
+    rrt_greedy_steps:     30      # RRT-Connect extension length
+    rrt_max_nodes:        1400    # hard cap — this was the binding constraint
+
+    # On rrt_step_m: a finer step turns less per node (the turning circle is
+    # enforced per edge), so the tree needs far more nodes to fan out and hits
+    # the cap sooner. Measured: dropping 0.22 -> 0.12 took the S-curve solve
+    # rate from 96% to 20%. If you change it, re-run the offline test.
+
+
+# Catches the node under any name, and sets anything shared across nodes.
+# ═════════════════════════════════════════════════════════════════════════════
+#  FOLLOW PIPELINE (fix_follow_pipeline.py)
+#   Jetson FollowMe --/followme/owner_position--> owner_fusion --/follow/owner-->
+#   follow_manager --/follow/goal--> smart_planner --/cmd_vel_nav--> twist_mux
+#   --/cmd_vel_mux--> collision_monitor --/local_planner/cmd_out--> serial bridge
+# ═════════════════════════════════════════════════════════════════════════════
+owner_fusion:
+  ros__parameters:
+    phone_gate_m: 1.0   # a2r_keeper_link
+    phone_gate: true   # a2r_keeper_link
+    keeper_topic: "/owner_keeper/position"   # a2r_keeper_link
+    keeper_silent_camera: true   # a2r_pi_update3
+    scan_topic:            "/scan"                 # raw lidar
+    owner_topics:          "/followme/owner_position,/owner_position"
+    camera_frame_fallback: "camera_optical_frame"  # URDF frame if RealSense TF is missing
+    odom_topic:            "/odometry/filtered"    # EKF; robot motion compensation
+    fused_topic:           "/owner_fused_position" # FollowMe keeps following on this
+    assoc_gate_m:          0.6
+    track_gate_m:          0.4
+    lidar_only_max_s:      10.0    # FollowMe's value: follow on lidar alone this long
+    reinit_gate_m:         0.5     # camera sees owner elsewhere -> drop wrong lidar track
+    still_drop_s:          4.0     # lidar-only track motionless this long -> dropped
+    body_front_m:          0.215
+    body_rear_m:          -0.210
+    body_half_width_m:     0.155
+    max_range_m:           4.0     # was 6.0 default
+    owner_source:          "jetson"   # a2r_fix: jetson = keeper tracks (light on the Pi) | pi = Pi tracks
+    keeper_cam_gate_m:     0.7   # a2r_v4: keeper point further than this from the camera owner = ignored
+    keeper_jump_gate_m:    0.6   # a2r_v4: max keeper jump (+ speed * dt) without camera
+    keeper_jump_speed_mps: 1.8
+
+follow_manager:
+  ros__parameters:
+    mode: "indoor"            # a2r_step3: overridden by the launch argument mode:=outdoor and the phone page
+    gps_timeout_s: 12.0       # a2r_step3
+    gps_arrive_m: 4.0         # a2r_step3: GPS gets the car this close, then lidar/camera search
+    gps_grace_s: 2.0          # a2r_step3g: owner unseen this long -> GPS before the Jetson's last-known path
+    hold_states: "WAIT,NO_OWNER,CLAIMING"   # a2r_pi_update4: these FollowMe states stop the car
+    phone_timeout_s: 0.6   # a2r_pi_update3
+    phone_topic: "/phone_owner/estimate"   # a2r_pi_update3
+    phone_follow: true   # a2r_pi_update3
+    scan_topic:             "/scan/planner"   # harmony: same world as the planner (owner removed)
+    follow_distance_m:      1.6    # stand-off from the owner
+    occlusion_coast_s:      2.0    # a2r_v12: keep predicting the owner this long after the last fix
+    coast_max_speed_mps:    1.2    # a2r_v12
+    coast_goal_max_m:       1.0    # a2r_v12: slower while coasting
+    los_check:              true   # a2r_v12: blocked line of sight -> goal behind the obstacle
+    los_half_width_m:       0.18   # a2r_v12
+    los_standoff_m:         0.6    # a2r_v12
+    kf_q_acc:               0.6    # a2r_v121: owner Kalman - accel noise (gate growth)
+    kf_sigma_meas_m:        0.08   # a2r_v121
+    kf_gate_max_m:          0.7    # a2r_v121: never associate further than this from the prediction
+    kf_max_sigma_m:         1.0    # a2r_v121: prediction ends when 1-sigma > this (~1.8 s walking)
+    meas_latency_s:         0.25   # a2r_v121: used only when the stamp is not plausible
+    meas_max_age_s:         1.0    # a2r_v121
+    los_hold_s:             0.5    # a2r_v121: LOS hysteresis
+    jetson_takeover:        true   # a2r_v121: Pi track drives when the Jetson path only holds
+    owner_timeout_s:        0.8    # a2r_pi_owner_only: was 1.5 - a stale owner is no target
+    lead_s:                 0.3
+    require_followme_state: true   # only follow while FollowMe says FOLLOW/SEARCH
+    follow_states:          "FOLLOW,SEARCH"
+    blocked_owner_states:   "NO_OWNER,CLAIMING"
+    state_timeout_s:        3.0    # was 2.0 (code default): Wi-Fi gaps flapped INACTIVE
+    # owner search on the Pi (pairs with patch_ext_search, search_mode:=external)
+    search_enabled: true   # a2r_search_back
+    search_with_planner: true   # a2r_search_back
+    goal_rate_hz:           10.0   # a2r_merge: was 20 - the planner consumes 7 Hz
+    path_topic:             "/owner/path"    # a2r_pi_update: Jetson A* path (look-ahead points)
+    owner_status_topic:     "/owner/status"
+    path_timeout_s: 2.0   # a2r_pi_update3: was 0.9 | a2r_pi_update2: was 0.6 - the path is moved with the car now
+    planner_alive_s:        3.0
+    lookahead_m:            0.9
+    path_requires_followme_state: false   # a2r_pi_update2: FollowMe WAIT/NO_OWNER no longer blocks the Jetson path
+    path_fallback_owner_s: 0.5   # a2r_pi_update3: was 1.5 | a2r_pi_update2: Jetson FOLLOW but no path this long -> owner goal (0 = off)
+    owner_lost_topic:       "/followme/owner_lost"
+    last_seen_topic: "/phone_owner/last_seen"
+    search_standoff_m:      0.9   # v3.0: was 1.0 - go to where the legs were, not 1 m short
+    search_approach_s:      20.0     # v3.0: was 8.0 - corridors/U-shapes take longer to reach
+    search_sweep_s:         6.0    # alternate the full-lock sweep side every N s
+    search_total_s:         0.0    # v2.7: 0 = never give up - approach, sweep, roam, repeat until found
+    search_start_s:         1.0    # a2r_merge: was 2.5    # v2.4: owner unseen 1.5 + 2.5 s before searching (log: searched every drop-out)
+    search_radius_m:        1.5
+    search_bearing_deg:     110.0  # > goal_turn_bearing_deg 75 -> full-lock arcs
+    # v2.2 straight following + trap memory (VFH routing of the goal)
+    owner_smooth_alpha:     0.35   # odom-frame owner low-pass (1 = off)
+    trap_enabled:           true
+    trap_radius_m:          0.7
+    trap_ttl_s:             30.0   # v2.3: was 180 - forget a dead end after 1.5 min
+    route_look_m:           2.5
+    route_robot_radius_m:   0.24   # v3.0: was 0.32 - follow_manager saw side openings as shut
+    detour_dist_m:          1.4
+
+collision_monitor:
+  ros__parameters:
+    input_topic:            "/cmd_vel_mux"
+    output_topic:           "/local_planner/cmd_out"   # final, executed command
+    scan_topic:             "/scan/merged"   # chairs solid, owner KEPT (stops before the owner): sees glass/kerbs
+    footprint_front_m:      0.215
+    footprint_rear_m:      -0.210
+    footprint_half_width_m: 0.155
+    margin_m:               0.03
+    stop_distance_m:        0.12   # v3.0: was 0.20 (v2.9) - at turn speed STOP fired 0.37 m out; now 0.29 m, ~22 cm left after braking
+    reaction_time_s:        0.55   # v2.9: was 0.35 - cover scan latency + ESC brake/neutral
+    slowdown_time_s:        2.5    # v2.9: was 1.8 - begin slowing ~1.1 m out, not 0.7 m
+    min_drive_speed:        0.168   # same as the planner: the car stalls below this
+    scan_timeout_s:         0.5    # no fresh scan -> stop
+    ignore_stale_scan:      false
+    velocity_polygon_gain_s: 0.9   # v2.9: was 0.6 - more sideways margin at speed
+    velocity_polygon_floor:  0.40  # v2.9: was 0.5 - slow more when passing close beside
+    # v2.8: MUST equal the planner's max_speed_mps (and fusion.yaml's). The
+    # command is a fraction; at 1.8 this node read the planner's 0.24 m/s as
+    # 0.36 m/s - stopped/slowed early - and its SLOW floor (0.168/1.8 = 0.093)
+    # sat BELOW the stall floor the planner uses (0.168/1.2 = 0.14), so the
+    # car stalled in the slow band and lurched off again: the jerking.
+    # If the real car is faster than 1.2 m/s at full throttle, measure it
+    # (python3 ~/a2r_measure.py speed) and change it in ALL THREE places.
+    max_speed_mps:          1.2
+    scan_voxel_m:           0.015  # v2.8: thin the ~2500-point scan (1.5 cm squares)
+    # a2r_pi_update2: crawl profile ONLY while the planner drives a multi-point turn (<= 0.20 m/s,
+    # flag on /collision_monitor/crawl). Stop zone 0.06 + v*0.35 + 0.06 = 0.18 m at 0.18 m/s
+    # instead of 0.28 m - a 1.1 m corridor becomes turnable. crawl_stop_distance_m: -1 = off.
+    crawl_stop_distance_m:  0.06
+    crawl_reaction_time_s:  0.35
+    crawl_max_speed_mps:    0.20
+    state_rate_hz:          10.0   # a2r_merge: state JSON at 10 Hz + every change (was every command)
+
+
+cmd_mux:
+  ros__parameters:
+    # name:topic:priority:timeout_s  - highest ACTIVE priority drives
+    inputs: "pc:/cmd_vel_pc:200:0.5,teleop:/cmd_vel_teleop:100:0.5,escape:/cmd_vel_escape:50:0.5,navigation:/cmd_vel_nav:10:0.8"
+    lock_topic:   "/estop_lock"      # Bool true = e-stop, everything blocked
+    output_topic: "/cmd_vel_mux"     # -> collision_monitor
+
+/**:
+  ros__parameters:
+    use_sim_time: false
+
+gps_owner:
+  ros__parameters:
+    # a2r_step3: OUTDOOR owner tracking (SIM7600 GNSS + Firebase, and the phone page over Wi-Fi)
+    port: "auto"              # a2r_step3e: find the SIM7600 command port by asking it (was /dev/ttyUSB2)
+    baud: 115200
+    sim_pin: ""        # set your SIM PIN locally, do not commit it
+    apn: "online"
+    firebase_url: "https://YOUR-FIREBASE-PROJECT-default-rtdb.REGION.firebasedatabase.app/live_location.json"
+    firebase_enabled: true
+    firebase_period_s: 3.0
+    gps_period_s: 1.0
+    robot_sigma_m: 5.0       # a2r_step3f: only used when the modem gives no HDOP
+    owner_max_age_s: 15.0
+    min_baseline_m: 6.0       # a2r_step3f: was 4 - shorter pairs were mostly GPS noise
+    firebase_sigma_m: 6.0     # a2r_step3f: phone position error (the app sends no accuracy)
+    smooth_m: 3               # a2r_step3f: moving-average half window (Lee et al. 2018, eq. 12)
+
+scan_leg_fill:
+  ros__parameters:
+    leg_veto_enabled: false   # a2r_fix: no trained leg model on this robot
+    post_radius_m: 0.06    # a2r_pi_no_phantoms: was 0.25 - 4-leg chairs: small discs, no phantom walls
+    # v2.8: with the 0.16 deg lidar a leg is several beams - ask for ~40 % of
+    # the beams a 2 cm leg would give at that range (1 far away, up to 4 close
+    # up), and reject "legs" that sit beside something nearer (edge pixels).
+    adaptive_min_points: true
+    leg_ref_width_m:     0.02
+    min_points:          2
+    max_range_m:         3.5      # was 3.0: chairs are now visible further out

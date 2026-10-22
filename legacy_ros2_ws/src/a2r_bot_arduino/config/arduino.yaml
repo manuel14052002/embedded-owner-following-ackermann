@@ -1,0 +1,105 @@
+# =============================================================================
+#  a2r_bot_arduino — parameters
+# =============================================================================
+#  serial_bridge_node is the ONLY process in the workspace permitted to open
+#  the Arduino's serial port. If you ever see "device or resource busy",
+#  something else grabbed it — check that a2r_bot_follow is running with
+#  output_mode: topic (the default) and not output_mode: serial.
+# =============================================================================
+
+serial_bridge_node:
+  ros__parameters:
+
+    # ---- Port -------------------------------------------------------------
+    # "auto" walks the USB VID/PID table for known Arduino boards. Prefer an
+    # explicit path once the udev rule is installed — auto-detection cannot
+    # tell two identical USB-serial chips apart.
+    port: "/dev/ttyTHS1"
+    # MUST match SERIAL_BAUD in Config.h. Raised from 115200 because at
+    # that speed a 78-byte IMU line already in flight delays the next
+    # DRIVE frame by 6.8 ms - most of a 100 Hz control period, arriving
+    # at random. At 921600 the same line costs 0.85 ms.
+    baud: 921600
+    dry_run: false                # true = log frames, never open the port
+    reconnect_period_s: 0.5
+    serial_silence_s: 1.0         # fw 3.4.0 link beat is 20 Hz; 8 s used before it
+    open_settle_s: 0.2            # Nano ESP32 does not reset on open (2.0 for AVR Nano)
+    rtt_warn_ms: 60.0             # warn if Pi->Arduino->Pi command round-trip exceeds this
+    idle_keepalive_hz: 5.0        # STOP resend rate while idle
+
+    # ---- Drive input ------------------------------------------------------
+    # Where the bridge reads what to send down the wire.
+    #
+    # In follow and navigation modes the local planner publishes normalised
+    # throttle/steer on /local_planner/cmd_out. To drive straight from a node
+    # that speaks real units, point this at /cmd_vel and set
+    # input_is_normalised: false — the bridge then does the Ackermann
+    # conversion using the two constants below.
+    drive_topic: "/local_planner/cmd_out"
+    input_is_normalised: true
+    min_throttle: 0.14            # HARD cap: moving command never below this (fraction)
+    max_throttle: 0.20            # HARD cap: never above this, fwd or reverse
+    max_steer_frac: 1.0             # full steering lock allowed (limit removed)
+    invert_steering: true        # true if the car steers the wrong way
+    max_speed_mps: 1.2            # only used when input_is_normalised: false
+    max_steer_deg: 30.0           # likewise
+
+    send_rate_hz: 50.0
+
+    # If no drive message arrives within this window the bridge sends STOP.
+    # The firmware has its own 500 ms failsafe underneath, so a hung bridge
+    # stops the car and a crashed Pi also stops the car — two independent
+    # timeouts, because the failure you did not think of is the one that
+    # happens.
+    cmd_timeout_s: 0.5
+
+    # ---- Frames -----------------------------------------------------------
+    # These must exist in the URDF or RViz will drop the messages silently.
+    imu_frame: "imu_link"
+    us_front_frame: "ultrasonic_front_link"
+    us_rear_frame: "ultrasonic_rear_link"
+
+    # ---- Ultrasonics ------------------------------------------------------
+    # DYP-A21 beam geometry, copied into sensor_msgs/Range.
+    us_fov_rad: 1.047             # 60 degrees
+    us_min_range: 0.03
+    us_max_range: 5.0
+
+    # ---- Covariances ------------------------------------------------------
+    # Variances, not standard deviations, and they are what the EKF actually
+    # trusts. These came from logging a stationary GY-91 for five minutes.
+    # Measure your own unit at rest rather than copying the datasheet's best
+    # case — overstating your confidence here is how a filter ends up
+    # following a drifting gyro with total conviction.
+    imu_gyro_variance: 4.0e-4     # (rad/s)^2
+    imu_accel_variance: 8.0e-3    # (m/s^2)^2
+    mag_variance: 1.0e-5          # (tesla)^2
+
+    # ---- Battery ----------------------------------------------------------
+    # Tattu TAA67504S25X9: 4S1P LiPo, 14.8 V nominal, 6750 mAh, 25C.
+    # Swapping to a different pack is a config change, not a code change.
+    battery_cells: 4
+    battery_design_capacity_ah: 6.75
+
+
+firmware_monitor_node:
+  ros__parameters:
+    # Turns the bridge's telemetry into one latched Bool on /arduino/healthy,
+    # so that consumers asking "can I drive?" do not each reimplement their
+    # own staleness logic and end up with three different answers.
+    stale_after_s: 3.0
+    log_period_s: 10.0
+    battery_warn_percent: 25.0
+    battery_error_percent: 12.0
+    imu_stale_after_s: 1.0
+    range_stale_after_s: 1.5
+
+    # FRONT SONAR ONLY on this build - the rear DYP-A21 is physically
+    # removed. Without this, the monitor would report "rear sonar silent"
+    # forever, pin /arduino/healthy to false, and leave the pet face stuck
+    # on "sad" while the robot is in fact perfectly well.
+    #
+    # Set expect_rear_sonar back to true when you refit it. Must agree with
+    # US_REAR_ENABLED in the firmware's Config.h.
+    expect_front_sonar: false
+    expect_rear_sonar: false      # rear DYP-A21 refitted on D4/D5

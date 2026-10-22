@@ -1,0 +1,46 @@
+# =============================================================================
+#  sketch.yaml — arduino-cli build profile for the A2R_bot firmware
+# =============================================================================
+#  This file is what lets the firmware be built by the same `make` that builds
+#  the ROS workspace, instead of being a separate point-and-click step in the
+#  Arduino IDE.
+#
+#      arduino-cli compile --profile nano_esp32
+#      arduino-cli upload  --profile nano_esp32 -p /dev/ttyARDUINO
+#
+#  or, from the workspace root and far more simply:
+#
+#      make firmware
+#      make flash
+#
+#  NOTE ON LIBRARIES: there are none, and that is deliberate. The firmware
+#  includes only <Arduino.h> and <Wire.h>, both of which ship with the core.
+#  The PCA9685 driver, the MAX7219 driver, the MPU9250/AK8963/BMP280 drivers
+#  and the JSON parser are all written out in this sketch.
+#
+#  That means this builds on a fresh machine with nothing but the core
+#  installed - no library version drift, no "works on my laptop", and no
+#  chasing an Adafruit API change six months from now. It is also why the
+#  whole thing compiles under g++ against stub headers in CI, which is how
+#  scripts/check_firmware.sh verifies it without any hardware attached.
+# =============================================================================
+
+profiles:
+
+  # Arduino Nano ESP32 (ABX00083) — the board this robot uses.
+  nano_esp32:
+    notes: A2R_bot firmware for Arduino Nano ESP32
+    fqbn: arduino:esp32:nano_nora
+    platforms:
+      - platform: arduino:esp32
+
+  # Classic 5 V Nano. The firmware auto-detects the board in Config.h and
+  # switches ADC resolution, reference voltage and the ultrasonic backend.
+  # Kept working, but the ESP32 is the supported target.
+  nano_avr:
+    notes: A2R_bot firmware for the classic Arduino Nano (ATmega328P)
+    fqbn: arduino:avr:nano:cpu=atmega328
+    platforms:
+      - platform: arduino:avr
+
+default_profile: nano_esp32

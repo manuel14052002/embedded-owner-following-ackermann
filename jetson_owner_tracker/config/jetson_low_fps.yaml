@@ -1,0 +1,125 @@
+# Profile for ~8-12 fps (e.g. Jetson running PyTorch models). The defaults
+# assume ~30 fps; every per-frame motion/time parameter is scaled by ~3 so
+# the tracker allows the larger per-frame displacement of a person walking at
+# low frame rate. Identity thresholds, margins and confirmation *counts* are
+# unchanged (they are evidence counts, not durations). The detector
+# threshold is lowered to 0.20 because owners at the image edge or behind
+# furniture were being dropped at 0.30; detector confidence has only 5% weight
+# in association, so this does not let strangers win.
+# If you reach ~30 fps (TensorRT engine), go back to default.yaml.
+detector:
+  backend: ultralytics
+  model_path: yolo11n.pt
+  confidence_threshold: 0.2
+  nms_iou_threshold: 0.5
+  image_size: 640
+  half_precision: true
+  max_detections: 50
+  min_box_height: 24.0
+  person_class_id: 0
+reid:
+  backend: torchreid
+  model_name: osnet_x0_25
+  model_path: ''
+  input_height: 256
+  input_width: 128
+  batch_size: 32
+  half_precision: true
+  fallback_backends:
+  - torchvision
+  - histogram
+  prefilter_by_motion_gate: false
+motion:
+  std_weight_position: 0.1
+  std_weight_velocity: 0.018750000000000003
+  measurement_std_weight: 0.05
+  gating_chi2: 9.4877
+  gate_growth_per_frame: 0.15000000000000002
+  max_gate_multiplier: 4.0
+  velocity_damping_when_lost: 0.97
+  velocity_sigma: 0.03
+  velocity_sigma_min_px: 1.0
+  velocity_gate_z: 3.0
+  velocity_memory_frames: 10
+  min_frames_for_reliable_velocity: 3
+  tracklet_match_iou: 0.5
+  tracklet_ambiguity_gap: 0.1
+  tracklet_velocity_smoothing: 0.5
+  tracklet_max_missed_frames: 2
+  tracklet_isolation_frames: 1
+  velocity_strikes_to_exclude: 4
+  max_speed_heights_per_frame: 0.18
+  reachability_base_heights: 0.5
+association:
+  tracking_weights:
+    appearance: 0.4
+    iou: 0.2
+    position: 0.15
+    scale: 0.1
+    motion: 0.1
+    detection: 0.05
+  reid_weights:
+    appearance: 0.7
+    iou: 0.0
+    position: 0.05
+    scale: 0.1
+    motion: 0.1
+    detection: 0.05
+  appearance_similarity_floor: 0.2
+  appearance_similarity_ceiling: 0.85
+  position_sigma: 0.5
+  scale_sigma: 0.25
+  min_appearance_similarity: 0.35
+  distractor_margin: 0.05
+identity:
+  identity_threshold: 0.55
+  min_score_margin: 0.12
+  reid_threshold: 0.6
+  reid_score_threshold: 0.6
+  reid_min_score_margin: 0.15
+  reid_min_motion_score: 0.05
+  confirmation_frames: 4
+  reid_confirmation_frames: 5
+  continuity_iou: 0.3
+  pending_match_iou: 0.3
+  short_gap_frames: 2
+  click_ambiguity_ratio: 0.15
+  gallery_size: 30
+  gallery_top_k: 5
+  anchor_weight: 0.4
+  gallery_update_confidence: 0.8
+  gallery_update_min_similarity: 0.55
+  gallery_update_min_margin: 0.2
+  gallery_dedup_similarity: 0.97
+  gallery_update_interval: 2
+  gallery_min_stable_frames: 4
+  gallery_isolation_iou: 0.1
+  distractor_bank_size: 64
+  distractor_isolation_iou: 0.05
+  distractor_max_owner_similarity: 0.8
+confidence:
+  appearance_weight: 0.35
+  motion_weight: 0.15
+  spatial_weight: 0.15
+  detection_weight: 0.05
+  identity_weight: 0.3
+  margin_saturation: 0.3
+  smoothing: 0.6
+  miss_decay: 0.85
+  ambiguous_decay: 0.95
+state:
+  tracking_threshold: 0.75
+  low_confidence_threshold: 0.5
+  ambiguous_threshold: 0.3
+  lost_after_missed_frames: 10
+  lost_after_unresolved_frames: 30
+  max_prediction_frames: 20
+logging:
+  enabled: true
+  csv_path: logs/owner_track.csv
+  interval: 1
+  flush_every: 30
+runtime:
+  device: auto
+  seed: 0
+  deterministic: true

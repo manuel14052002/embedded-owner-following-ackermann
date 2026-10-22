@@ -1,0 +1,133 @@
+<?xml version="1.0"?>
+<!--
+  wheels.xacro — Ackermann running gear
+  ════════════════════════════════════════════════════════════════════════════
+  Front corner chain:   base_link → *_steer_link (revolute, Z) → *_wheel (continuous, Y)
+  Rear  corner chain:   base_link → *_wheel (continuous, Y)
+
+  The steering joints are REAL joints, not decoration. a2r_bot_description's
+  wheel_state_node.py drives them from the steering angle the local planner
+  actually commanded, so what you see turning in RViz is what the servo is
+  being told to do. That makes RViz a live debugger for the steering channel:
+  if the wheels in RViz saw back and forth, so is the real servo.
+
+  Each wheel is a knobbly monster-truck tyre on a dark dish rim with a hex hub.
+  Two light marks on the rim spin with the wheel, which is the cheapest
+  possible cue that the drive channel is alive.
+  ════════════════════════════════════════════════════════════════════════════
+-->
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <!-- ══ One wheel: tyre + tread + dish rim + hub ══════════════════════ -->
+  <xacro:macro name="a2r_wheel" params="prefix parent x y styling:=true">
+
+    <link name="${prefix}_wheel">
+      <!-- Tyre -->
+      <visual>
+        <origin rpy="1.5708 0 0"/>
+        <geometry><cylinder radius="${wheel_radius}" length="${wheel_width}"/></geometry>
+        <material name="tyre"/>
+      </visual>
+      <collision>
+        <origin rpy="1.5708 0 0"/>
+        <geometry><cylinder radius="${wheel_radius}" length="${wheel_width}"/></geometry>
+      </collision>
+      <xacro:cylinder_inertial mass="0.18" radius="${wheel_radius}" length="${wheel_width}">
+        <origin rpy="1.5708 0 0"/>
+      </xacro:cylinder_inertial>
+    </link>
+
+    <joint name="${prefix}_wheel_joint" type="continuous">
+      <parent link="${parent}"/>
+      <child  link="${prefix}_wheel"/>
+      <origin xyz="${x} ${y} ${0 if parent != 'base_link' else wheel_z}"/>
+      <axis xyz="0 1 0"/>
+      <dynamics damping="0.02" friction="0.01"/>
+    </joint>
+
+    <xacro:if value="${styling}">
+      <!-- Chunky knobbly monster-truck tyre on a dark dish rim. -->
+      <xacro:property name="side" value="${1 if y >= 0 else -1}"/>
+
+      <!-- Tread band: slightly bigger radius, narrower, reads as lugs -->
+      <xacro:deco_cyl name="${prefix}_tread" parent="${prefix}_wheel"
+                      x="0" y="0" z="0" roll="1.5708"
+                      radius="${wheel_radius + 0.003}" length="${wheel_width*0.55}" material="tyre"/>
+
+      <!-- Dish rim, outboard face -->
+      <xacro:deco_cyl name="${prefix}_rim" parent="${prefix}_wheel"
+                      x="0" y="${side*(wheel_width/2 - 0.012)}" z="0" roll="1.5708"
+                      radius="${rim_radius}" length="0.026" material="gunmetal"/>
+
+      <!-- Two light marks on the rim: they spin with the wheel, the
+           cheapest cue in RViz that the drive channel is alive. -->
+      <xacro:deco_box name="${prefix}_rim_mark_a" parent="${prefix}_wheel"
+                      x="0" y="${side*(wheel_width/2 + 0.001)}" z="${rim_radius*0.6}"
+                      sx="0.008" sy="0.002" sz="${rim_radius*0.6}" material="rim_silver"/>
+      <xacro:deco_box name="${prefix}_rim_mark_b" parent="${prefix}_wheel"
+                      x="0" y="${side*(wheel_width/2 + 0.001)}" z="${-rim_radius*0.6}"
+                      sx="0.008" sy="0.002" sz="${rim_radius*0.6}" material="rim_silver"/>
+
+      <!-- Hex hub nut -->
+      <xacro:deco_cyl name="${prefix}_hub" parent="${prefix}_wheel"
+                      x="0" y="${side*(wheel_width/2 + 0.002)}" z="0" roll="1.5708"
+                      radius="0.008" length="0.006" material="chrome"/>
+    </xacro:if>
+  </xacro:macro>
+
+  <!-- ══ Steering knuckle: the revolute joint the servo actually drives ══ -->
+  <xacro:macro name="a2r_knuckle" params="prefix x y">
+    <link name="${prefix}_steer_link">
+      <visual>
+        <geometry><box size="0.016 0.020 0.030"/></geometry>
+        <material name="gunmetal"/>
+      </visual>
+      <xacro:box_inertial mass="0.04" x="0.016" y="0.020" z="0.030">
+        <origin xyz="0 0 0"/>
+      </xacro:box_inertial>
+    </link>
+
+    <joint name="${prefix}_steer_joint" type="revolute">
+      <parent link="base_link"/>
+      <child  link="${prefix}_steer_link"/>
+      <origin xyz="${x} ${y} ${wheel_z}"/>
+      <axis xyz="0 0 1"/>
+      <limit lower="${-max_steer_rad}" upper="${max_steer_rad}"
+             effort="6.0" velocity="8.0"/>
+      <dynamics damping="0.05" friction="0.02"/>
+    </joint>
+  </xacro:macro>
+
+  <!-- ══ Full running gear ══════════════════════════════════════════════ -->
+  <xacro:macro name="a2r_running_gear" params="styling:=true">
+
+    <!-- FRONT: knuckle then wheel (wheel hangs off the knuckle → it steers) -->
+    <xacro:a2r_knuckle prefix="front_left"  x="${ half_wb}" y="${ half_track}"/>
+    <xacro:a2r_knuckle prefix="front_right" x="${ half_wb}" y="${-half_track}"/>
+    <xacro:a2r_wheel prefix="front_left"  parent="front_left_steer_link"
+                     x="0" y="0" styling="${styling}"/>
+    <xacro:a2r_wheel prefix="front_right" parent="front_right_steer_link"
+                     x="0" y="0" styling="${styling}"/>
+
+    <!-- REAR: driven axle, no steering -->
+    <xacro:a2r_wheel prefix="rear_left"  parent="base_link"
+                     x="${-half_wb}" y="${ half_track}" styling="${styling}"/>
+    <xacro:a2r_wheel prefix="rear_right" parent="base_link"
+                     x="${-half_wb}" y="${-half_track}" styling="${styling}"/>
+
+    <xacro:if value="${styling}">
+      <!-- Rear axle tube + drive shaft, hinting at the single-motor RWD layout -->
+      <xacro:deco_cyl name="rear_axle" parent="base_link"
+                      x="${-half_wb}" y="0" z="${wheel_z}" roll="1.5708"
+                      radius="0.006" length="${track - wheel_width}" material="chrome"/>
+      <xacro:deco_cyl name="drive_shaft" parent="base_link"
+                      x="${-half_wb/2}" y="0" z="${wheel_z}" pitch="1.5708"
+                      radius="0.005" length="${half_wb}" material="gunmetal"/>
+      <!-- Steering track rod, spanning the two knuckles -->
+      <xacro:deco_cyl name="track_rod" parent="base_link"
+                      x="${half_wb - 0.020}" y="0" z="${wheel_z}" roll="1.5708"
+                      radius="0.004" length="${track - 0.05}" material="chrome"/>
+    </xacro:if>
+  </xacro:macro>
+
+</robot>

@@ -1,0 +1,114 @@
+# FollowMe (Rollo et al., arXiv:2311.12992) - default configuration.
+# Mirrors the dataclass defaults in followme/config.py exactly (tested).
+# Paper constants: reid.feature_dim D=256 (VI), calibration 2/3 : 1/3 split and
+# lambda_d = mu_d + 2 sigma_d (III-B, VI-B), gestures.consecutive_required xi=5 (III-D),
+# localization.expiration_time_s t_exp=3 s and navigation.max_velocity_mps v_max=0.3 m/s (VI),
+# safety radius = 1.4 * v_max * t_exp (Eq. 3) when navigation.safety_radius_m is null.
+
+
+
+segmentation:
+  backend: ultralytics
+  model_path: yolo11n-seg.pt
+  confidence_threshold: 0.4
+  nms_iou_threshold: 0.5
+  image_size: 640
+  half_precision: true
+  max_detections: 20
+  min_box_height: 48.0
+  min_mask_fraction: 0.05
+  person_class_id: 0
+  remove_background: true
+
+reid:
+  backend: mmt
+  model_path: ''
+  feature_dim: 256
+  input_height: 256
+  input_width: 128
+  batch_size: 16
+  half_precision: false
+  l2_normalize: true
+  torchreid_model_name: osnet_x0_25
+
+calibration:
+  num_samples: 150
+  calibration_fraction: 0.6666666666666666
+  threshold_k: 2.0
+  metric: eq1
+  min_interval_s: 0.066
+  duration_s: null
+  require_single_person: true
+  sigma_floor_relative: 0.05
+  sigma_floor_absolute: 1.0e-06
+  distance_bins_m:
+  - 1.0
+  - 2.0
+  - 3.0
+  - 4.5
+  min_bins_covered: 2
+  shuffle_seed: 0
+
+identity:
+  top_k: 3
+  negative_margin: 0.03
+  max_negatives: 300
+  negative_max_iou: 0.05
+  negative_confident_factor: 0.8
+  online_update: true
+  max_online: 150
+  online_interval_s: 1.0
+  online_confident_factor: 0.7
+  online_min_negative_margin: 0.1
+  online_max_iou: 0.1
+  online_duplicate_sim: 0.97
+
+localization:
+  min_depth_m: 0.3
+  max_depth_m: 8.0
+  mask_erosion_px: 5
+  pixel_stride: 2
+  min_points: 50
+  centroid: mean
+  depth_inlier_band_m: 0.0
+  expiration_time_s: 3.0
+  bbox_range_fallback: false
+  assumed_person_height_m: 1.7
+  confirm_frames: 1
+  confirm_radius_m: 0.5
+  gate_m: null
+  max_person_speed_mps: 1.5
+  process_noise_accel: 1.0
+  measurement_noise_m: 0.1
+
+gestures:
+  enabled: true
+  backend: auto
+  task_model_path: hand_landmarker.task
+  classifier_path: models/gesture_svm.joblib
+  consecutive_required: 5
+  min_detection_confidence: 0.6
+  min_tracking_confidence: 0.5
+  only_target_person: true
+  crop_padding: 0.15
+  mirror_left_hands: true
+  svm_c: 10.0
+  svm_gamma: scale
+
+navigation:
+  max_velocity_mps: 0.3
+  safety_factor: 1.4
+  safety_radius_m: null
+  goal_update_distance_m: 0.2
+  goal_update_period_s: 1.0
+  goal_standoff_m: 0.0
+  search_angular_speed: 0.5
+  search_linear_speed: 0.0
+  search_max_angle_rad: 6.283185307179586
+
+state_machine:
+  initial_state: WAIT
+  steady_requires_follow_gesture: false
+  wait_from_any_state: true
+
+device: auto

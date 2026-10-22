@@ -1,0 +1,44 @@
+# ROS 2 / colcon
+build/
+install/
+log/
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+.pytest_cache/
+
+# Models and large binaries (build locally, see jetson_owner_tracker/README_FOLLOWME.md)
+*.engine
+*.onnx
+*.pt
+*.pth
+*.npz
+*.bag
+*.db3
+*.mp4
+
+# Editors / OS
+*.bak
+*.bak_*
+*~
+.DS_Store
+Thumbs.db
+
+# KiCad temporary files
+*-backups/
+*.lck
+fp-info-cache
+hs_err_pid*.log
+*.kicad_prl
+
+# MATLAB outputs
+analysis/thesis_figures_matlab/figures_matlab/
+
+# Local secrets (SIM PIN, Firebase URL overrides)
+*.local.yaml
+.env
+
+*.orig

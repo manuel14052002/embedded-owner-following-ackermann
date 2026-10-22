@@ -1,0 +1,53 @@
+# Human Tracker Configuration
+
+# Camera settings
+camera:
+  frame_rate: 30
+  rgb_width: 640
+  rgb_height: 480
+  depth_width: 640
+  depth_height: 480
+  enable_depth: true
+
+# Tracker settings
+tracker:
+  # Publishing options
+  publish_annotated_image: true
+  publish_control_commands: true
+  
+  # Following behavior
+  target_follow_distance: 1.5  # meters
+  max_linear_speed: 0.5        # m/s
+  max_angular_speed: 1.0       # rad/s
+  
+  # Control gains (proportional control)
+  linear_gain: 0.5
+  angular_gain: 1.0
+  
+  # Dead zones
+  distance_dead_zone: 0.2      # meters
+  angular_dead_zone: 0.1       # radians
+
+# Gesture detection settings
+gesture_detector:
+  min_detection_confidence: 0.7
+  min_tracking_confidence: 0.5
+  hand_raise_duration: 2.0     # seconds required to lock target
+
+# Person tracking settings
+person_tracker:
+  min_detection_confidence: 0.5
+  min_tracking_confidence: 0.5
+  model_complexity: 1          # 0, 1, or 2 (higher = more accurate but slower)
+
+# Performance optimization for Jetson Nano
+performance:
+  # Use GPU acceleration when available
+  use_gpu: true
+  
+  # Number of threads for MediaPipe
+  num_threads: 4
+  
+  # Image processing options
+  enable_image_preprocessing: true
+  preprocessing_scale: 1.0     # Scale factor for input images (1.0 = no scaling)

@@ -1,0 +1,177 @@
+<?xml version="1.0"?>
+<!--
+  electronics.xacro — the two-deck stack, as built (photos 2026-09-25)
+  ════════════════════════════════════════════════════════════════════════════
+  LOWER DECK  (base_deck)  aluminium plate with an octagonal nose
+      perfboard: Arduino Nano ESP32 + green screw terminals
+      PCA9685 PWM board (ch0 servo, ch1 ESC)
+      grey battery pack, rear-left, XT60 lead out the right side
+      green printed pillar + RealSense D435 on the nose  — see sensors.xacro
+      GY-91 IMU at the centre                             — see sensors.xacro
+
+  UPPER DECK  (top_deck)   aluminium plate on brass standoffs, set to the REAR
+      two green printed compute cases (rear: Jetson w/ fan, front: Pi 4)
+      touchscreen on top of the front case (this is a2r_bot_pet's screen)
+      RPLIDAR A2M12 on brass standoffs at the rear edge   — see sensors.xacro
+
+  base_deck and top_deck origins sit directly above base_link (x = y = 0),
+  so an x in either deck frame is also an x in base_link. The plates
+  themselves are offset with <origin> inside the visual.
+  ════════════════════════════════════════════════════════════════════════════
+-->
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <xacro:macro name="a2r_electronics" params="styling:=true">
+
+    <!-- ══ LOWER DECK ════════════════════════════════════════════════════ -->
+    <link name="base_deck">
+      <visual>
+        <origin xyz="${lower_cx} 0 0"/>
+        <geometry><box size="${lower_len} ${lower_deck_wid} ${deck_thk}"/></geometry>
+        <material name="aluminium"/>
+      </visual>
+      <xacro:box_inertial mass="0.15" x="${lower_len}" y="${lower_deck_wid}" z="${deck_thk}">
+        <origin xyz="${lower_cx} 0 0"/>
+      </xacro:box_inertial>
+    </link>
+    <joint name="base_deck_joint" type="fixed">
+      <parent link="base_link"/>
+      <child  link="base_deck"/>
+      <origin xyz="0 0 ${base_deck_z}"/>
+    </joint>
+
+    <!-- ══ UPPER DECK ════════════════════════════════════════════════════ -->
+    <link name="top_deck">
+      <visual>
+        <origin xyz="${upper_cx} 0 0"/>
+        <geometry><box size="${upper_len} ${upper_deck_wid} ${deck_thk}"/></geometry>
+        <material name="aluminium"/>
+      </visual>
+      <xacro:box_inertial mass="0.13" x="${upper_len}" y="${upper_deck_wid}" z="${deck_thk}">
+        <origin xyz="${upper_cx} 0 0"/>
+      </xacro:box_inertial>
+    </link>
+    <joint name="top_deck_joint" type="fixed">
+      <parent link="base_deck"/>
+      <child  link="top_deck"/>
+      <origin xyz="0 0 ${top_deck_z}"/>
+    </joint>
+
+    <xacro:if value="${styling}">
+
+      <!-- ── Octagonal nose of the lower deck ─────────────────────────── -->
+      <xacro:property name="nose_len" value="${lower_deck_nose_x - lower_deck_front_x}"/>
+      <xacro:deco_box name="lower_nose" parent="base_deck"
+                      x="${lower_deck_front_x + nose_len/2}" y="0" z="0"
+                      sx="${nose_len}" sy="${lower_deck_wid*0.62}" sz="${deck_thk}" material="aluminium"/>
+      <xacro:deco_box name="lower_nose_cl" parent="base_deck"
+                      x="${lower_deck_front_x + 0.004}" y="${lower_deck_wid*0.33}" z="0" yaw="0.785"
+                      sx="0.045" sy="0.045" sz="${deck_thk}" material="aluminium"/>
+      <xacro:deco_box name="lower_nose_cr" parent="base_deck"
+                      x="${lower_deck_front_x + 0.004}" y="${-lower_deck_wid*0.33}" z="0" yaw="0.785"
+                      sx="0.045" sy="0.045" sz="${deck_thk}" material="aluminium"/>
+
+      <!-- ── Brass standoffs, lower → upper deck ──────────────────────── -->
+      <xacro:property name="so_z" value="${deck_gap/2}"/>
+      <xacro:deco_cyl name="standoff_fl" parent="base_deck" x="0.095"  y="0.070"  z="${so_z}"
+                      radius="${standoff_r}" length="${standoff_h}" material="brass"/>
+      <xacro:deco_cyl name="standoff_fr" parent="base_deck" x="0.095"  y="-0.070" z="${so_z}"
+                      radius="${standoff_r}" length="${standoff_h}" material="brass"/>
+      <xacro:deco_cyl name="standoff_rl" parent="base_deck" x="-0.170" y="0.070"  z="${so_z}"
+                      radius="${standoff_r}" length="${standoff_h}" material="brass"/>
+      <xacro:deco_cyl name="standoff_rr" parent="base_deck" x="-0.170" y="-0.070" z="${so_z}"
+                      radius="${standoff_r}" length="${standoff_h}" material="brass"/>
+      <xacro:deco_cyl name="standoff_ml" parent="base_deck" x="-0.030" y="0.070"  z="${so_z}"
+                      radius="${standoff_r}" length="${standoff_h}" material="brass"/>
+      <xacro:deco_cyl name="standoff_mr" parent="base_deck" x="-0.030" y="-0.070" z="${so_z}"
+                      radius="${standoff_r}" length="${standoff_h}" material="brass"/>
+
+      <!-- ── LOWER DECK components ────────────────────────────────────── -->
+      <!-- Perfboard with Arduino Nano ESP32 + screw terminals -->
+      <xacro:deco_box name="perfboard" parent="base_deck" x="0.000" y="0.015" z="0.010"
+                      sx="0.090" sy="0.070" sz="0.0016" material="pcb_brown"/>
+      <xacro:deco_box name="arduino_nano" parent="base_deck" x="0.010" y="0.020" z="0.016"
+                      sx="0.045" sy="0.018" sz="0.008" material="pcb_blue"/>
+      <xacro:deco_box name="terminals_a" parent="base_deck" x="-0.030" y="0.040" z="0.017"
+                      sx="0.015" sy="0.020" sz="0.012" material="terminal_green"/>
+      <xacro:deco_box name="terminals_b" parent="base_deck" x="-0.030" y="-0.010" z="0.017"
+                      sx="0.015" sy="0.020" sz="0.012" material="terminal_green"/>
+      <!-- PCA9685 16-ch PWM -->
+      <xacro:deco_box name="pca9685" parent="base_deck" x="0.065" y="-0.045" z="0.008"
+                      sx="0.026" sy="0.062" sz="0.010" material="pcb_blue"/>
+      <!-- Grey battery pack, rear-left, + its XT60 -->
+      <xacro:deco_box name="battery_pack" parent="base_deck" x="-0.130" y="0.040" z="${deck_thk/2 + 0.020}"
+                      sx="0.100" sy="0.048" sz="0.040" material="battery_grey"/>
+      <xacro:deco_box name="battery_label" parent="base_deck" x="-0.130" y="0.0645" z="${deck_thk/2 + 0.020}"
+                      sx="0.030" sy="0.001" sz="0.024" material="light_white"/>
+      <xacro:deco_box name="xt60" parent="base_deck" x="-0.080" y="-0.078" z="0.010"
+                      sx="0.016" sy="0.012" sz="0.008" material="xt60_yellow"/>
+
+      <!-- ── UPPER DECK components ────────────────────────────────────── -->
+      <!-- Rear green case (Jetson, fan grille on top) -->
+      <xacro:deco_box name="jetson_case" parent="top_deck" x="-0.055" y="0" z="${deck_thk/2 + 0.019}"
+                      sx="0.105" sy="0.125" sz="0.038" material="print_green"/>
+      <xacro:deco_cyl name="jetson_fan" parent="top_deck" x="-0.055" y="0.020" z="${deck_thk/2 + 0.0385}"
+                      radius="0.020" length="0.002" material="pcb_black"/>
+      <!-- Front green case (Pi 4, ports on the side) -->
+      <xacro:deco_box name="rpi_case" parent="top_deck" x="0.050" y="0" z="${deck_thk/2 + 0.024}"
+                      sx="0.105" sy="0.120" sz="0.048" material="print_green"/>
+      <xacro:deco_box name="rpi_ports" parent="top_deck" x="0.050" y="-0.061" z="${deck_thk/2 + 0.016}"
+                      sx="0.060" sy="0.003" sz="0.012" material="pcb_black"/>
+      <!-- Brass posts that lift the touchscreen off the front case -->
+      <xacro:deco_cyl name="screen_post_l" parent="top_deck" x="0.050" y="0.055"  z="${deck_thk/2 + 0.056}"
+                      radius="0.002" length="0.016" material="brass"/>
+      <xacro:deco_cyl name="screen_post_r" parent="top_deck" x="0.050" y="-0.055" z="${deck_thk/2 + 0.056}"
+                      radius="0.002" length="0.016" material="brass"/>
+    </xacro:if>
+
+    <!-- ══════════════════════════════════════════════════════════════════
+         MAX7219 battery readout frame. Referenced by the firmware README,
+         not visible on the current build, so it is a small plain box at the
+         rear of the lower deck — frame kept, no fake glowing digits.
+         ══════════════════════════════════════════════════════════════════ -->
+    <link name="display_link">
+      <visual>
+        <geometry><box size="0.004 0.050 0.019"/></geometry>
+        <material name="pcb_black"/>
+      </visual>
+      <xacro:null_inertial/>
+    </link>
+    <joint name="display_joint" type="fixed">
+      <parent link="base_deck"/>
+      <child  link="display_link"/>
+      <origin xyz="${lower_deck_rear_x + 0.004} -0.040 ${deck_thk/2 + 0.010}" rpy="0 0 ${pi}"/>
+    </joint>
+
+    <!-- ══════════════════════════════════════════════════════════════════
+         FACE SCREEN — the touchscreen lying almost flat on the front case.
+         Link +X is the screen normal (points up, tipped slightly back).
+         ══════════════════════════════════════════════════════════════════ -->
+    <link name="face_screen_link">
+      <visual>
+        <geometry><box size="0.008 0.120 0.078"/></geometry>
+        <material name="pcb_black"/>
+      </visual>
+      <xacro:box_inertial mass="0.11" x="0.008" y="0.120" z="0.078">
+        <origin xyz="0 0 0"/>
+      </xacro:box_inertial>
+    </link>
+    <joint name="face_screen_joint" type="fixed">
+      <parent link="top_deck"/>
+      <child  link="face_screen_link"/>
+      <origin xyz="0.050 0 ${deck_thk/2 + 0.068}" rpy="0 -1.671 0"/>
+    </joint>
+
+    <xacro:if value="${styling}">
+      <xacro:deco_box name="face_panel" parent="face_screen_link" x="0.0045"
+                      sx="0.001" sy="0.106" sz="0.064" material="glass"/>
+      <xacro:deco_box name="face_eye_l" parent="face_screen_link" x="0.0052" y="0.024" z="0.006"
+                      sx="0.001" sy="0.022" sz="0.026" material="screen_cyan"/>
+      <xacro:deco_box name="face_eye_r" parent="face_screen_link" x="0.0052" y="-0.024" z="0.006"
+                      sx="0.001" sy="0.022" sz="0.026" material="screen_cyan"/>
+      <xacro:deco_box name="face_mouth" parent="face_screen_link" x="0.0052" y="0" z="-0.018"
+                      sx="0.001" sy="0.030" sz="0.005" material="screen_cyan"/>
+    </xacro:if>
+
+  </xacro:macro>
+</robot>

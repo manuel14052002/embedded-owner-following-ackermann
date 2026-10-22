@@ -1,0 +1,17 @@
+# Python Dependencies for Human Tracker ROS 2 Package
+
+# Computer Vision
+opencv-python>=4.7.0
+opencv-contrib-python>=4.7.0
+
+# Intel RealSense
+pyrealsense2>=2.50.0
+
+# MediaPipe for gesture and pose detection
+mediapipe>=0.10.0
+
+# Numerical computing
+numpy>=1.21.0
+
+# Optional: for enhanced performance monitoring
+psutil>=5.9.0

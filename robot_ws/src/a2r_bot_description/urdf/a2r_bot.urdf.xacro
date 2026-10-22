@@ -1,0 +1,89 @@
+<?xml version="1.0"?>
+<!--
+  a2r_bot.urdf.xacro — TOP-LEVEL ROBOT MODEL
+  ════════════════════════════════════════════════════════════════════════════
+  Build it:
+      xacro a2r_bot.urdf.xacro > a2r_bot.urdf
+      xacro a2r_bot.urdf.xacro styling:=false > a2r_bot_plain.urdf
+      check_urdf a2r_bot.urdf
+
+  Launch args (see launch/display.launch.py)
+      styling:=true|false     cosmetic bodywork on/off (false = ~14 links,
+                              useful on a Pi where RViz is CPU-bound)
+      use_meshes:=true|false  load STL/DAE bodywork instead of primitives
+                              (drop files in meshes/ first — see its README)
+      lidar:=rplidar|ydlidar  (robot has an RPLIDAR A2M12) visual only; the frame is the
+                              same either way so nothing downstream changes
+
+  Kinematic tree
+  ──────────────
+      base_footprint
+        └── base_link ─────────────── (RC tub, shocks, bumpers — cosmetic)
+              ├── front_left_steer_link  → front_left_wheel   [revolute + continuous]
+              ├── front_right_steer_link → front_right_wheel  [revolute + continuous]
+              ├── rear_left_wheel                              [continuous]
+              ├── rear_right_wheel                             [continuous]
+              ├── ultrasonic_front_link
+              ├── ultrasonic_rear_link
+              └── base_deck
+                    ├── imu_link, camera_link → camera_optical_frame
+                    └── top_deck
+                          ├── lidar_link
+                          ├── display_link       (MAX7219 battery readout)
+                          └── face_screen_link   (a2r_bot_pet LCD)
+  ════════════════════════════════════════════════════════════════════════════
+-->
+<robot name="a2r_bot" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <!-- ══ ARGUMENTS ═══════════════════════════════════════════════════════ -->
+  <xacro:arg name="styling"     default="true"/>
+  <xacro:arg name="use_meshes"  default="false"/>
+  <xacro:arg name="lidar"       default="rplidar"/>
+  <xacro:arg name="use_gazebo"  default="false"/>
+
+  <xacro:property name="styling"    value="$(arg styling)"/>
+  <xacro:property name="use_meshes" value="$(arg use_meshes)"/>
+
+  <!-- ══ MODULES ═════════════════════════════════════════════════════════ -->
+  <xacro:include filename="$(find a2r_bot_description)/urdf/common.xacro"/>
+  <xacro:include filename="$(find a2r_bot_description)/urdf/chassis.xacro"/>
+  <xacro:include filename="$(find a2r_bot_description)/urdf/wheels.xacro"/>
+  <xacro:include filename="$(find a2r_bot_description)/urdf/electronics.xacro"/>
+  <xacro:include filename="$(find a2r_bot_description)/urdf/sensors.xacro"/>
+
+  <!-- ══ ASSEMBLY ════════════════════════════════════════════════════════ -->
+  <xacro:a2r_chassis      styling="${styling}"/>
+  <xacro:a2r_running_gear styling="${styling}"/>
+  <xacro:a2r_electronics  styling="${styling}"/>
+  <xacro:a2r_sensors      parent_deck_top="top_deck"
+                          parent_deck_base="base_deck"
+                          styling="${styling}"/>
+
+  <!-- ══ OPTIONAL HIGH-FIDELITY BODYWORK ═════════════════════════════════
+       When meshes/body.dae exists and use_meshes:=true, one mesh replaces
+       all thirty styling boxes. The primitives stay as the fallback so the
+       repo is always viewable with zero assets checked in.                 -->
+  <xacro:if value="${use_meshes}">
+    <link name="body_shell">
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <geometry>
+          <mesh filename="package://a2r_bot_description/meshes/body.dae" scale="1 1 1"/>
+        </geometry>
+      </visual>
+      <xacro:null_inertial/>
+    </link>
+    <joint name="body_shell_joint" type="fixed">
+      <parent link="base_link"/>
+      <child  link="body_shell"/>
+      <origin xyz="0 0 0.03"/>
+    </joint>
+  </xacro:if>
+
+  <!-- ══ OPTIONAL GAZEBO / ros2_control ══════════════════════════════════ -->
+  <xacro:if value="$(arg use_gazebo)">
+    <xacro:include filename="$(find a2r_bot_description)/urdf/a2r_bot.gazebo.xacro"/>
+    <xacro:a2r_gazebo/>
+  </xacro:if>
+
+</robot>

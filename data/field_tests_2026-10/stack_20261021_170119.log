@@ -1,0 +1,325 @@
+[INFO] [launch]: All log files can be found below /home/a2r/.ros/log/2026-10-21-17-01-22-697148-a2r-desktop-13444
+[INFO] [launch]: Default logging verbosity is set to INFO
+[INFO] [imu_filter_node-4]: process started with pid [13462]
+[INFO] [ekf_state_node-5]: process started with pid [13464]
+[INFO] [smart_planner_node-6]: process started with pid [13466]
+[INFO] [robot_state_publisher-1]: process started with pid [13456]
+[INFO] [wheel_state_node-2]: process started with pid [13458]
+[INFO] [sllidar_node-3]: process started with pid [13460]
+[INFO] [owner_fusion_node-7]: process started with pid [13468]
+[INFO] [follow_manager_node-8]: process started with pid [13470]
+[INFO] [cmd_mux_node-9]: process started with pid [13472]
+[INFO] [collision_monitor_node-10]: process started with pid [13474]
+[INFO] [scan_leg_fill_node-11]: process started with pid [13476]
+[INFO] [gps_owner_node-12]: process started with pid [13478]
+[sllidar_node-3] [INFO] [1792594887.539938094] [rplidar_node]: SLLidar running on ROS2 package SLLidar.ROS2 SDK Version:1.0.1, SLLIDAR SDK Version:2.1.0
+[sllidar_node-3] [INFO] [1792594888.074124813] [rplidar_node]: SLLidar S/N: 828AF8F7C7E39BD9B7E793F0025C5B1F
+[sllidar_node-3] [INFO] [1792594888.074398552] [rplidar_node]: Firmware Ver: 1.32
+[sllidar_node-3] [INFO] [1792594888.074471737] [rplidar_node]: Hardware Rev: 6
+[robot_state_publisher-1] [INFO] [1792594888.634593262] [robot_state_publisher]: got segment arduino_nano
+[robot_state_publisher-1] [INFO] [1792594888.652166402] [robot_state_publisher]: got segment arm_fl
+[robot_state_publisher-1] [INFO] [1792594888.659281021] [robot_state_publisher]: got segment arm_fr
+[robot_state_publisher-1] [INFO] [1792594888.661972651] [robot_state_publisher]: got segment arm_rl
+[robot_state_publisher-1] [INFO] [1792594888.668529291] [robot_state_publisher]: got segment arm_rr
+[robot_state_publisher-1] [INFO] [1792594888.668623069] [robot_state_publisher]: got segment base_deck
+[robot_state_publisher-1] [INFO] [1792594888.668659735] [robot_state_publisher]: got segment base_footprint
+[robot_state_publisher-1] [INFO] [1792594888.668691772] [robot_state_publisher]: got segment base_link
+[robot_state_publisher-1] [INFO] [1792594888.668723160] [robot_state_publisher]: got segment battery_label
+[robot_state_publisher-1] [INFO] [1792594888.668755123] [robot_state_publisher]: got segment battery_pack
+[robot_state_publisher-1] [INFO] [1792594888.668787104] [robot_state_publisher]: got segment cam_clamp
+[robot_state_publisher-1] [INFO] [1792594888.668817419] [robot_state_publisher]: got segment cam_face
+[robot_state_publisher-1] [INFO] [1792594888.668847808] [robot_state_publisher]: got segment cam_lens_c
+[robot_state_publisher-1] [INFO] [1792594888.668879067] [robot_state_publisher]: got segment cam_lens_l
+[robot_state_publisher-1] [INFO] [1792594888.668910030] [robot_state_publisher]: got segment cam_lens_r
+[robot_state_publisher-1] [INFO] [1792594888.668941474] [robot_state_publisher]: got segment cam_pillar
+[robot_state_publisher-1] [INFO] [1792594888.668973548] [robot_state_publisher]: got segment cam_pillar_foot
+[robot_state_publisher-1] [INFO] [1792594888.669006862] [robot_state_publisher]: got segment camera_link
+[robot_state_publisher-1] [INFO] [1792594888.669038547] [robot_state_publisher]: got segment camera_optical_frame
+[robot_state_publisher-1] [INFO] [1792594888.669072658] [robot_state_publisher]: got segment deck_post_f
+[robot_state_publisher-1] [INFO] [1792594888.669105880] [robot_state_publisher]: got segment deck_post_r
+[robot_state_publisher-1] [INFO] [1792594888.669138935] [robot_state_publisher]: got segment display_link
+[robot_state_publisher-1] [INFO] [1792594888.669171380] [robot_state_publisher]: got segment drive_shaft
+[robot_state_publisher-1] [INFO] [1792594888.669202528] [robot_state_publisher]: got segment face_eye_l
+[robot_state_publisher-1] [INFO] [1792594888.669236842] [robot_state_publisher]: got segment face_eye_r
+[robot_state_publisher-1] [INFO] [1792594888.669268398] [robot_state_publisher]: got segment face_mouth
+[robot_state_publisher-1] [INFO] [1792594888.669300008] [robot_state_publisher]: got segment face_panel
+[robot_state_publisher-1] [INFO] [1792594888.669332638] [robot_state_publisher]: got segment face_screen_link
+[robot_state_publisher-1] [INFO] [1792594888.669366767] [robot_state_publisher]: got segment front_bulkhead
+[robot_state_publisher-1] [INFO] [1792594888.669398100] [robot_state_publisher]: got segment front_bumper
+[robot_state_publisher-1] [INFO] [1792594888.669428989] [robot_state_publisher]: got segment front_bumper_arm
+[robot_state_publisher-1] [INFO] [1792594888.669462878] [robot_state_publisher]: got segment front_left_hub
+[robot_state_publisher-1] [INFO] [1792594888.669496137] [robot_state_publisher]: got segment front_left_rim
+[robot_state_publisher-1] [INFO] [1792594888.669528655] [robot_state_publisher]: got segment front_left_rim_mark_a
+[robot_state_publisher-1] [INFO] [1792594888.669565488] [robot_state_publisher]: got segment front_left_rim_mark_b
+[robot_state_publisher-1] [INFO] [1792594888.669600580] [robot_state_publisher]: got segment front_left_steer_link
+[robot_state_publisher-1] [INFO] [1792594888.669633580] [robot_state_publisher]: got segment front_left_tread
+[robot_state_publisher-1] [INFO] [1792594888.669670302] [robot_state_publisher]: got segment front_left_wheel
+[robot_state_publisher-1] [INFO] [1792594888.669704543] [robot_state_publisher]: got segment front_right_hub
+[robot_state_publisher-1] [INFO] [1792594888.669737468] [robot_state_publisher]: got segment front_right_rim
+[robot_state_publisher-1] [INFO] [1792594888.669771931] [robot_state_publisher]: got segment front_right_rim_mark_a
+[robot_state_publisher-1] [INFO] [1792594888.669805468] [robot_state_publisher]: got segment front_right_rim_mark_b
+[robot_state_publisher-1] [INFO] [1792594888.669841727] [robot_state_publisher]: got segment front_right_steer_link
+[robot_state_publisher-1] [INFO] [1792594888.669877727] [robot_state_publisher]: got segment front_right_tread
+[robot_state_publisher-1] [INFO] [1792594888.669911578] [robot_state_publisher]: got segment front_right_wheel
+[robot_state_publisher-1] [INFO] [1792594888.669946948] [robot_state_publisher]: got segment gearbox
+[robot_state_publisher-1] [INFO] [1792594888.669981189] [robot_state_publisher]: got segment imu_link
+[robot_state_publisher-1] [INFO] [1792594888.670019355] [robot_state_publisher]: got segment jetson_case
+[robot_state_publisher-1] [INFO] [1792594888.670052559] [robot_state_publisher]: got segment jetson_fan
+[robot_state_publisher-1] [INFO] [1792594888.670086151] [robot_state_publisher]: got segment lidar_base
+[robot_state_publisher-1] [INFO] [1792594888.670124021] [robot_state_publisher]: got segment lidar_cap
+[robot_state_publisher-1] [INFO] [1792594888.670541204] [robot_state_publisher]: got segment lidar_link
+[robot_state_publisher-1] [INFO] [1792594888.670797295] [robot_state_publisher]: got segment lidar_ring
+[robot_state_publisher-1] [INFO] [1792594888.670907275] [robot_state_publisher]: got segment lidar_standoff_fl
+[robot_state_publisher-1] [INFO] [1792594888.692015484] [robot_state_publisher]: got segment lidar_standoff_fr
+[robot_state_publisher-1] [INFO] [1792594888.692185428] [robot_state_publisher]: got segment lidar_standoff_rl
+[robot_state_publisher-1] [INFO] [1792594888.692238964] [robot_state_publisher]: got segment lidar_standoff_rr
+[robot_state_publisher-1] [INFO] [1792594888.692274909] [robot_state_publisher]: got segment lower_nose
+[robot_state_publisher-1] [INFO] [1792594888.692308242] [robot_state_publisher]: got segment lower_nose_cl
+[robot_state_publisher-1] [INFO] [1792594888.692340038] [robot_state_publisher]: got segment lower_nose_cr
+[robot_state_publisher-1] [INFO] [1792594888.692377426] [robot_state_publisher]: got segment motor
+[robot_state_publisher-1] [INFO] [1792594888.692414889] [robot_state_publisher]: got segment pca9685
+[robot_state_publisher-1] [INFO] [1792594888.692450481] [robot_state_publisher]: got segment perfboard
+[robot_state_publisher-1] [INFO] [1792594888.692481203] [robot_state_publisher]: got segment rear_axle
+[robot_state_publisher-1] [INFO] [1792594888.692514759] [robot_state_publisher]: got segment rear_bumper
+[robot_state_publisher-1] [INFO] [1792594888.692547110] [robot_state_publisher]: got segment rear_left_hub
+[robot_state_publisher-1] [INFO] [1792594888.692581499] [robot_state_publisher]: got segment rear_left_rim
+[robot_state_publisher-1] [INFO] [1792594888.692612999] [robot_state_publisher]: got segment rear_left_rim_mark_a
+[robot_state_publisher-1] [INFO] [1792594888.692647702] [robot_state_publisher]: got segment rear_left_rim_mark_b
+[robot_state_publisher-1] [INFO] [1792594888.692678313] [robot_state_publisher]: got segment rear_left_tread
+[robot_state_publisher-1] [INFO] [1792594888.692709720] [robot_state_publisher]: got segment rear_left_wheel
+[robot_state_publisher-1] [INFO] [1792594888.692739813] [robot_state_publisher]: got segment rear_right_hub
+[robot_state_publisher-1] [INFO] [1792594888.692771553] [robot_state_publisher]: got segment rear_right_rim
+[robot_state_publisher-1] [INFO] [1792594888.692801479] [robot_state_publisher]: got segment rear_right_rim_mark_a
+[robot_state_publisher-1] [INFO] [1792594888.692832460] [robot_state_publisher]: got segment rear_right_rim_mark_b
+[robot_state_publisher-1] [INFO] [1792594888.692862682] [robot_state_publisher]: got segment rear_right_tread
+[robot_state_publisher-1] [INFO] [1792594888.692892682] [robot_state_publisher]: got segment rear_right_wheel
+[robot_state_publisher-1] [INFO] [1792594888.692923034] [robot_state_publisher]: got segment rpi_case
+[robot_state_publisher-1] [INFO] [1792594888.692953997] [robot_state_publisher]: got segment rpi_ports
+[robot_state_publisher-1] [INFO] [1792594888.692982848] [robot_state_publisher]: got segment screen_post_l
+[robot_state_publisher-1] [INFO] [1792594888.693012774] [robot_state_publisher]: got segment screen_post_r
+[robot_state_publisher-1] [INFO] [1792594888.693042311] [robot_state_publisher]: got segment shock_fl_body
+[robot_state_publisher-1] [INFO] [1792594888.693073181] [robot_state_publisher]: got segment shock_fl_spring
+[robot_state_publisher-1] [INFO] [1792594888.693102588] [robot_state_publisher]: got segment shock_fr_body
+[robot_state_publisher-1] [INFO] [1792594888.693132773] [robot_state_publisher]: got segment shock_fr_spring
+[robot_state_publisher-1] [INFO] [1792594888.693162477] [robot_state_publisher]: got segment shock_rl_body
+[robot_state_publisher-1] [INFO] [1792594888.693192180] [robot_state_publisher]: got segment shock_rl_spring
+[robot_state_publisher-1] [INFO] [1792594888.693221569] [robot_state_publisher]: got segment shock_rr_body
+[robot_state_publisher-1] [INFO] [1792594888.693252124] [robot_state_publisher]: got segment shock_rr_spring
+[robot_state_publisher-1] [INFO] [1792594888.693282179] [robot_state_publisher]: got segment standoff_fl
+[robot_state_publisher-1] [INFO] [1792594888.693312753] [robot_state_publisher]: got segment standoff_fr
+[robot_state_publisher-1] [INFO] [1792594888.693342753] [robot_state_publisher]: got segment standoff_ml
+[robot_state_publisher-1] [INFO] [1792594888.693374438] [robot_state_publisher]: got segment standoff_mr
+[robot_state_publisher-1] [INFO] [1792594888.693403827] [robot_state_publisher]: got segment standoff_rl
+[robot_state_publisher-1] [INFO] [1792594888.693434475] [robot_state_publisher]: got segment standoff_rr
+[robot_state_publisher-1] [INFO] [1792594888.693463456] [robot_state_publisher]: got segment steer_servo
+[robot_state_publisher-1] [INFO] [1792594888.693493882] [robot_state_publisher]: got segment terminals_a
+[robot_state_publisher-1] [INFO] [1792594888.693523456] [robot_state_publisher]: got segment terminals_b
+[robot_state_publisher-1] [INFO] [1792594888.693553196] [robot_state_publisher]: got segment top_deck
+[robot_state_publisher-1] [INFO] [1792594888.693582529] [robot_state_publisher]: got segment track_rod
+[robot_state_publisher-1] [INFO] [1792594888.693613418] [robot_state_publisher]: got segment ultrasonic_front_link
+[robot_state_publisher-1] [INFO] [1792594888.693668066] [robot_state_publisher]: got segment ultrasonic_rear_link
+[robot_state_publisher-1] [INFO] [1792594888.693857213] [robot_state_publisher]: got segment us_front_barrel_l
+[robot_state_publisher-1] [INFO] [1792594888.693952471] [robot_state_publisher]: got segment us_front_barrel_r
+[robot_state_publisher-1] [INFO] [1792594888.693993804] [robot_state_publisher]: got segment us_front_face_l
+[robot_state_publisher-1] [INFO] [1792594888.694036193] [robot_state_publisher]: got segment us_front_face_r
+[robot_state_publisher-1] [INFO] [1792594888.694068174] [robot_state_publisher]: got segment xt60
+[sllidar_node-3] [ERROR] [1792594890.081547583] [rplidar_node]: Error, cannot retrieve SLLidar health code: 80008002
+[ERROR] [sllidar_node-3]: process has died [pid 13460, exit code 255, cmd '/home/a2r/ros2_ws/install/sllidar_ros2/lib/sllidar_ros2/sllidar_node --ros-args -r __node:=rplidar_node --params-file /tmp/launch_params_r8m8etx8'].
+[ekf_state_node-5] [0m[INFO] [1792594898.650722047] [ekf_state_node]: ekf_state_node up — 50 Hz, sources: imu_rate imu_accel command scan_match[0m
+[wheel_state_node-2] [INFO] [1792594901.353354556] [wheel_state_node]: wheel_state_node → /joint_states @ 15 Hz (L=0.280 m, T=0.250 m, r=0.060 m)
+[scan_leg_fill_node-11] [INFO] [1792594901.805172833] [scan_leg_fill]: /scan -> /scan/planner (owner removed) + /scan/merged (owner kept): chair-leg gaps <= 0.60 m closed, posts -> 0.06 m discs
+[gps_owner_node-12] [INFO] [1792594903.640306860] [gps_owner]: gps_owner (a2r_step3f) up - mode INDOOR
+[cmd_mux_node-9] [INFO] [1792594904.328668073] [cmd_mux]: cmd_mux: pc(200) /cmd_vel_pc, teleop(100) /cmd_vel_teleop, escape(50) /cmd_vel_escape, navigation(10) /cmd_vel_nav -> /cmd_vel_mux; lock /estop_lock
+[cmd_mux_node-9] [INFO] [1792594904.729458343] [cmd_mux]: cmd_mux: driving input -> none
+[owner_fusion_node-7] [INFO] [1792594905.016763417] [owner_fusion]: owner source: Jetson lidar_owner_keeper (/owner_keeper/position) - the Pi's own lidar tracker is off; camera only without a keeper
+[owner_fusion_node-7] [INFO] [1792594905.236232210] [owner_fusion]: owner_fusion up (camera <-> lidar owner tracking)
+[imu_filter_node-4] [0m[INFO] [1792594905.750632711] [imu_filter_node]: imu_filter_node up — madgwick, mag on, calibrating gyro bias[0m
+[owner_fusion_node-7] [WARN] [1792594905.762041134] [owner_fusion]: no lidar_owner_keeper heartbeat: following the camera only
+[follow_manager_node-8] [INFO] [1792594906.278322196] [follow_manager]: follow_manager up: stand-off 1.20 m, search ON (/followme/owner_lost), trap memory ON
+[smart_planner_node-6] [0m[INFO] [1792594906.720375557] [local_planner_bridge]: output_mode=topic — a2r_bot_arduino owns the serial port[0m
+[follow_manager_node-8] [INFO] [1792594906.818607559] [follow_manager]: follow: INACTIVE (no /followme/state)
+[collision_monitor_node-10] [INFO] [1792594906.976953840] [collision_monitor]: collision_monitor: /cmd_vel_mux -> /local_planner/cmd_out
+[smart_planner_node-6] [0m[INFO] [1792594907.894839962] [local_planner_bridge]: SmartPlanner ready | planner=pure_pursuit | out=topic | heading_memory=off | costmap 4.0 m @ 0.05 m | lethal r=0.175 m infl=0.22 m | v∈[0.168,1.2] m/s steer=±30° [DRY RUN][0m
+[cmd_mux_node-9] [INFO] [1792594907.991997953] [cmd_mux]: cmd_mux: driving input -> navigation
+[smart_planner_node-6] [33m[WARN] [1792594908.219379878] [local_planner_bridge]: No usable scan on '/scan' for 1 s - republishing the last costmap. Check: ros2 topic hz /scan[0m
+[smart_planner_node-6] [33m[WARN] [1792594919.062235254] [local_planner_bridge]: No usable scan on '/scan' for 2 s - republishing the last costmap. Check: ros2 topic hz /scan[0m
+[owner_fusion_node-7] [INFO] [1792594920.073741243] [owner_fusion]: keeper: 0 heartbeats (last never), 0 points (frames -), 0 used, 0 ignored (no TF); camera: 0 points; scrub points: 0
+[ekf_state_node-5] [33m[WARN] [1792594927.121166837] [ekf_state_node]: no IMU for 15879.9 s — running on commands alone[0m
+[smart_planner_node-6] [33m[WARN] [1792594929.082386697] [local_planner_bridge]: No usable scan on '/scan' for 2 s - republishing the last costmap. Check: ros2 topic hz /scan[0m
+[WARNING] [launch]: user interrupted with ctrl-c (SIGINT)
+[INFO] [gps_owner_node-12]: sending signal 'SIGINT' to process[gps_owner_node-12]
+[INFO] [scan_leg_fill_node-11]: sending signal 'SIGINT' to process[scan_leg_fill_node-11]
+[INFO] [collision_monitor_node-10]: sending signal 'SIGINT' to process[collision_monitor_node-10]
+[INFO] [cmd_mux_node-9]: sending signal 'SIGINT' to process[cmd_mux_node-9]
+[INFO] [follow_manager_node-8]: sending signal 'SIGINT' to process[follow_manager_node-8]
+[INFO] [owner_fusion_node-7]: sending signal 'SIGINT' to process[owner_fusion_node-7]
+[INFO] [smart_planner_node-6]: sending signal 'SIGINT' to process[smart_planner_node-6]
+[INFO] [ekf_state_node-5]: sending signal 'SIGINT' to process[ekf_state_node-5]
+[INFO] [imu_filter_node-4]: sending signal 'SIGINT' to process[imu_filter_node-4]
+[INFO] [wheel_state_node-2]: sending signal 'SIGINT' to process[wheel_state_node-2]
+[INFO] [robot_state_publisher-1]: sending signal 'SIGINT' to process[robot_state_publisher-1]
+[robot_state_publisher-1] [INFO] [1792594934.787216208] [rclcpp]: signal_handler(SIGINT/SIGTERM)
+[smart_planner_node-6] [0m[INFO] [1792594934.886744664] [local_planner_bridge]: Shutdown — sending STOP[0m
+[smart_planner_node-6] Failed to publish log message to rosout: publisher's context is invalid, at ./src/rcl/publisher.c:389
+[collision_monitor_node-10] Traceback (most recent call last):
+[collision_monitor_node-10]   File "/home/a2r/A2R_BOT/a2r_bot_ws/install/a2r_bot_follow/lib/a2r_bot_follow/collision_monitor_node", line 33, in <module>
+[collision_monitor_node-10]     sys.exit(load_entry_point('a2r-bot-follow==2.0.0', 'console_scripts', 'collision_monitor_node')())
+[collision_monitor_node-10]   File "/home/a2r/A2R_BOT/a2r_bot_ws/install/a2r_bot_follow/lib/python3.10/site-packages/a2r_bot_follow/collision_monitor_node.py", line 305, in main
+[collision_monitor_node-10]     node.destroy_node()
+[collision_monitor_node-10]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/node.py", line 1691, in destroy_node
+[collision_monitor_node-10]     self.destroy_service(self._services[0])
+[collision_monitor_node-10]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/node.py", line 1615, in destroy_service
+[owner_fusion_node-7] Traceback (most recent call last):
+[smart_planner_node-6] Traceback (most recent call last):
+[cmd_mux_node-9] Traceback (most recent call last):
+[cmd_mux_node-9]   File "/home/a2r/A2R_BOT/a2r_bot_ws/install/a2r_bot_follow/lib/a2r_bot_follow/cmd_mux_node", line 33, in <module>
+[cmd_mux_node-9]     sys.exit(load_entry_point('a2r-bot-follow==2.0.0', 'console_scripts', 'cmd_mux_node')())
+[cmd_mux_node-9]   File "/home/a2r/A2R_BOT/a2r_bot_ws/install/a2r_bot_follow/lib/python3.10/site-packages/a2r_bot_follow/cmd_mux_node.py", line 178, in main
+[cmd_mux_node-9]     node.destroy_node()
+[cmd_mux_node-9]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/node.py", line 1687, in destroy_node
+[cmd_mux_node-9]     self.destroy_subscription(self._subscriptions[0])
+[cmd_mux_node-9]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/node.py", line 1583, in destroy_subscription
+[cmd_mux_node-9]     subscription.destroy()
+[cmd_mux_node-9]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/subscription.py", line 80, in destroy
+[cmd_mux_node-9]     self.handle.destroy_when_not_in_use()
+[cmd_mux_node-9] KeyboardInterrupt
+[smart_planner_node-6]   File "/home/a2r/A2R_BOT/a2r_bot_ws/install/a2r_bot_follow/lib/python3.10/site-packages/a2r_bot_follow/smart_planner_node.py", line 4797, in main
+[ekf_state_node-5] Traceback (most recent call last):
+[imu_filter_node-4] Traceback (most recent call last):
+[imu_filter_node-4]   File "/home/a2r/A2R_BOT/a2r_bot_ws/install/a2r_bot_sensor_fusion/lib/a2r_bot_sensor_fusion/imu_filter_node", line 33, in <module>
+[imu_filter_node-4]     sys.exit(load_entry_point('a2r-bot-sensor-fusion==2.0.0', 'console_scripts', 'imu_filter_node')())
+[imu_filter_node-4]   File "/home/a2r/A2R_BOT/a2r_bot_ws/install/a2r_bot_sensor_fusion/lib/python3.10/site-packages/a2r_bot_sensor_fusion/imu_filter_node.py", line 316, in main
+[imu_filter_node-4]     node.destroy_node()
+[imu_filter_node-4]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/node.py", line 1691, in destroy_node
+[imu_filter_node-4]     self.destroy_service(self._services[0])
+[imu_filter_node-4]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/node.py", line 1615, in destroy_service
+[gps_owner_node-12] Traceback (most recent call last):
+[gps_owner_node-12]   File "/home/a2r/A2R_BOT/a2r_bot_ws/install/a2r_bot_follow/lib/a2r_bot_follow/gps_owner_node", line 33, in <module>
+[gps_owner_node-12]     sys.exit(load_entry_point('a2r-bot-follow==2.0.0', 'console_scripts', 'gps_owner_node')())
+[gps_owner_node-12]   File "/home/a2r/A2R_BOT/a2r_bot_ws/install/a2r_bot_follow/lib/python3.10/site-packages/a2r_bot_follow/gps_owner_node.py", line 804, in main
+[gps_owner_node-12]     node.destroy_node()
+[gps_owner_node-12]   File "/home/a2r/A2R_BOT/a2r_bot_ws/install/a2r_bot_follow/lib/python3.10/site-packages/a2r_bot_follow/gps_owner_node.py", line 795, in destroy_node
+[gps_owner_node-12]     return super().destroy_node()
+[gps_owner_node-12]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/node.py", line 1685, in destroy_node
+[gps_owner_node-12]     self.destroy_publisher(self._publishers[0])
+[gps_owner_node-12]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/node.py", line 1565, in destroy_publisher
+[gps_owner_node-12]     publisher.destroy()
+[gps_owner_node-12]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/publisher.py", line 99, in destroy
+[gps_owner_node-12]     self.__publisher.destroy_when_not_in_use()
+[gps_owner_node-12] KeyboardInterrupt
+[owner_fusion_node-7]   File "/home/a2r/A2R_BOT/a2r_bot_ws/install/a2r_bot_follow/lib/a2r_bot_follow/owner_fusion_node", line 33, in <module>
+[owner_fusion_node-7]     sys.exit(load_entry_point('a2r-bot-follow==2.0.0', 'console_scripts', 'owner_fusion_node')())
+[owner_fusion_node-7]   File "/home/a2r/A2R_BOT/a2r_bot_ws/install/a2r_bot_follow/lib/python3.10/site-packages/a2r_bot_follow/owner_fusion_node.py", line 772, in main
+[owner_fusion_node-7]     node.destroy_node()
+[owner_fusion_node-7]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/node.py", line 1685, in destroy_node
+[robot_state_publisher-1] [INFO] [1792594935.232856619] [rclcpp]: signal_handler(SIGINT/SIGTERM)
+[ERROR] [follow_manager_node-8]: process has died [pid 13470, exit code -2, cmd '/home/a2r/A2R_BOT/a2r_bot_ws/install/a2r_bot_follow/lib/a2r_bot_follow/follow_manager_node --ros-args -r __node:=follow_manager --params-file /home/a2r/A2R_BOT/a2r_bot_ws/install/a2r_bot_follow/share/a2r_bot_follow/config/params.yaml --params-file /tmp/launch_params_vgz4ki6j'].
+[ekf_state_node-5]   File "/home/a2r/A2R_BOT/a2r_bot_ws/install/a2r_bot_sensor_fusion/lib/a2r_bot_sensor_fusion/ekf_state_node", line 33, in <module>
+[ekf_state_node-5]     sys.exit(load_entry_point('a2r-bot-sensor-fusion==2.0.0', 'console_scripts', 'ekf_state_node')())
+[ekf_state_node-5]   File "/home/a2r/A2R_BOT/a2r_bot_ws/install/a2r_bot_sensor_fusion/lib/python3.10/site-packages/a2r_bot_sensor_fusion/ekf_state_node.py", line 532, in main
+[wheel_state_node-2] Traceback (most recent call last):
+[wheel_state_node-2]   File "/home/a2r/A2R_BOT/a2r_bot_ws/install/a2r_bot_description/lib/a2r_bot_description/wheel_state_node", line 33, in <module>
+[wheel_state_node-2]     sys.exit(load_entry_point('a2r-bot-description==3.0.0', 'console_scripts', 'wheel_state_node')())
+[wheel_state_node-2]   File "/home/a2r/A2R_BOT/a2r_bot_ws/install/a2r_bot_description/lib/python3.10/site-packages/a2r_bot_description/wheel_state_node.py", line 221, in main
+[wheel_state_node-2]     node.destroy_node()
+[wheel_state_node-2]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/node.py", line 1691, in destroy_node
+[wheel_state_node-2]     self.destroy_service(self._services[0])
+[wheel_state_node-2]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/node.py", line 1615, in destroy_service
+[INFO] [robot_state_publisher-1]: process has finished cleanly [pid 13456]
+[imu_filter_node-4]     service.destroy()
+[imu_filter_node-4]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/service.py", line 93, in destroy
+[imu_filter_node-4]     self.__service.destroy_when_not_in_use()
+[imu_filter_node-4] KeyboardInterrupt
+[smart_planner_node-6]     executor.spin()
+[smart_planner_node-6]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/executors.py", line 323, in spin
+[smart_planner_node-6]     self.spin_once()
+[smart_planner_node-6]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/executors.py", line 808, in spin_once
+[smart_planner_node-6]     self._spin_once_impl(timeout_sec)
+[smart_planner_node-6]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/executors.py", line 805, in _spin_once_impl
+[smart_planner_node-6]     raise handler.exception()
+[smart_planner_node-6]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/task.py", line 272, in _execute_coroutine_step
+[owner_fusion_node-7]     self.destroy_publisher(self._publishers[0])
+[owner_fusion_node-7]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/node.py", line 1565, in destroy_publisher
+[owner_fusion_node-7]     publisher.destroy()
+[owner_fusion_node-7]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/publisher.py", line 99, in destroy
+[owner_fusion_node-7]     self.__publisher.destroy_when_not_in_use()
+[owner_fusion_node-7] KeyboardInterrupt
+[ERROR] [owner_fusion_node-7]: process has died [pid 13468, exit code -2, cmd '/home/a2r/A2R_BOT/a2r_bot_ws/install/a2r_bot_follow/lib/a2r_bot_follow/owner_fusion_node --ros-args -r __node:=owner_fusion --params-file /home/a2r/A2R_BOT/a2r_bot_ws/install/a2r_bot_follow/share/a2r_bot_follow/config/params.yaml'].
+[ERROR] [cmd_mux_node-9]: process has died [pid 13472, exit code -2, cmd '/home/a2r/A2R_BOT/a2r_bot_ws/install/a2r_bot_follow/lib/a2r_bot_follow/cmd_mux_node --ros-args -r __node:=cmd_mux --params-file /home/a2r/A2R_BOT/a2r_bot_ws/install/a2r_bot_follow/share/a2r_bot_follow/config/params.yaml'].
+[ekf_state_node-5]     node.destroy_node()
+[ekf_state_node-5]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/node.py", line 1687, in destroy_node
+[ekf_state_node-5]     self.destroy_subscription(self._subscriptions[0])
+[ekf_state_node-5]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/node.py", line 1583, in destroy_subscription
+[ekf_state_node-5]     subscription.destroy()
+[ekf_state_node-5]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/subscription.py", line 80, in destroy
+[ekf_state_node-5]     self.handle.destroy_when_not_in_use()
+[ekf_state_node-5] KeyboardInterrupt
+[smart_planner_node-6]     result = coro.send(None)
+[smart_planner_node-6]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/executors.py", line 478, in handler
+[collision_monitor_node-10]     service.destroy()
+[collision_monitor_node-10]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/service.py", line 93, in destroy
+[collision_monitor_node-10]     self.__service.destroy_when_not_in_use()
+[collision_monitor_node-10] KeyboardInterrupt
+[scan_leg_fill_node-11] Traceback (most recent call last):
+[scan_leg_fill_node-11]   File "/home/a2r/A2R_BOT/a2r_bot_ws/install/a2r_bot_follow/lib/python3.10/site-packages/a2r_bot_follow/scan_leg_fill_node.py", line 520, in main
+[scan_leg_fill_node-11]     rclpy.spin(node)
+[scan_leg_fill_node-11]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/__init__.py", line 229, in spin
+[scan_leg_fill_node-11]     executor.spin_once()
+[scan_leg_fill_node-11]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/executors.py", line 808, in spin_once
+[wheel_state_node-2]     service.destroy()
+[wheel_state_node-2]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/service.py", line 93, in destroy
+[wheel_state_node-2]     self.__service.destroy_when_not_in_use()
+[wheel_state_node-2] KeyboardInterrupt
+[smart_planner_node-6]     arg = take_from_wait_list(entity)
+[smart_planner_node-6]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/executors.py", line 400, in _take_subscription
+[smart_planner_node-6]     msg_info = sub.handle.take_message(sub.msg_type, sub.raw)
+[smart_planner_node-6] RuntimeError: Unable to convert call argument to Python object (compile in debug mode for details)
+[smart_planner_node-6] 
+[smart_planner_node-6] During handling of the above exception, another exception occurred:
+[smart_planner_node-6] 
+[smart_planner_node-6] Traceback (most recent call last):
+[smart_planner_node-6]   File "/home/a2r/A2R_BOT/a2r_bot_ws/install/a2r_bot_follow/lib/a2r_bot_follow/smart_planner_node", line 33, in <module>
+[ERROR] [collision_monitor_node-10]: process has died [pid 13474, exit code -2, cmd '/home/a2r/A2R_BOT/a2r_bot_ws/install/a2r_bot_follow/lib/a2r_bot_follow/collision_monitor_node --ros-args -r __node:=collision_monitor --params-file /home/a2r/A2R_BOT/a2r_bot_ws/install/a2r_bot_follow/share/a2r_bot_follow/config/params.yaml'].
+[scan_leg_fill_node-11]     self._spin_once_impl(timeout_sec)
+[scan_leg_fill_node-11]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/executors.py", line 805, in _spin_once_impl
+[scan_leg_fill_node-11]     raise handler.exception()
+[scan_leg_fill_node-11]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/task.py", line 272, in _execute_coroutine_step
+[scan_leg_fill_node-11]     result = coro.send(None)
+[scan_leg_fill_node-11]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/executors.py", line 478, in handler
+[ERROR] [scan_leg_fill_node-11]: process has died [pid 13476, exit code -2, cmd '/home/a2r/A2R_BOT/a2r_bot_ws/install/a2r_bot_follow/lib/a2r_bot_follow/scan_leg_fill_node --ros-args -r __node:=scan_leg_fill --params-file /home/a2r/A2R_BOT/a2r_bot_ws/install/a2r_bot_follow/share/a2r_bot_follow/config/params.yaml'].
+[smart_planner_node-6]     sys.exit(load_entry_point('a2r-bot-follow==2.0.0', 'console_scripts', 'smart_planner_node')())
+[smart_planner_node-6]   File "/home/a2r/A2R_BOT/a2r_bot_ws/install/a2r_bot_follow/lib/python3.10/site-packages/a2r_bot_follow/smart_planner_node.py", line 4802, in main
+[smart_planner_node-6]     node.destroy_node()
+[smart_planner_node-6]   File "/home/a2r/A2R_BOT/a2r_bot_ws/install/a2r_bot_follow/lib/python3.10/site-packages/a2r_bot_follow/smart_planner_node.py", line 4762, in destroy_node
+[scan_leg_fill_node-11]     arg = take_from_wait_list(entity)
+[scan_leg_fill_node-11]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/executors.py", line 400, in _take_subscription
+[scan_leg_fill_node-11]     msg_info = sub.handle.take_message(sub.msg_type, sub.raw)
+[scan_leg_fill_node-11] RuntimeError: Unable to convert call argument to Python object (compile in debug mode for details)
+[scan_leg_fill_node-11] 
+[scan_leg_fill_node-11] During handling of the above exception, another exception occurred:
+[scan_leg_fill_node-11] 
+[scan_leg_fill_node-11] Traceback (most recent call last):
+[scan_leg_fill_node-11]   File "/home/a2r/A2R_BOT/a2r_bot_ws/install/a2r_bot_follow/lib/a2r_bot_follow/scan_leg_fill_node", line 33, in <module>
+[scan_leg_fill_node-11]     sys.exit(load_entry_point('a2r-bot-follow==2.0.0', 'console_scripts', 'scan_leg_fill_node')())
+[scan_leg_fill_node-11]   File "/home/a2r/A2R_BOT/a2r_bot_ws/install/a2r_bot_follow/lib/python3.10/site-packages/a2r_bot_follow/scan_leg_fill_node.py", line 524, in main
+[scan_leg_fill_node-11]     node.destroy_node()
+[scan_leg_fill_node-11]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/node.py", line 1687, in destroy_node
+[scan_leg_fill_node-11]     self.destroy_subscription(self._subscriptions[0])
+[scan_leg_fill_node-11]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/node.py", line 1583, in destroy_subscription
+[scan_leg_fill_node-11]     subscription.destroy()
+[scan_leg_fill_node-11]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/subscription.py", line 80, in destroy
+[scan_leg_fill_node-11]     self.handle.destroy_when_not_in_use()
+[scan_leg_fill_node-11] KeyboardInterrupt
+[smart_planner_node-6]     super().destroy_node()
+[smart_planner_node-6]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/node.py", line 1685, in destroy_node
+[smart_planner_node-6]     self.destroy_publisher(self._publishers[0])
+[smart_planner_node-6]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/node.py", line 1565, in destroy_publisher
+[smart_planner_node-6]     publisher.destroy()
+[smart_planner_node-6]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/publisher.py", line 99, in destroy
+[smart_planner_node-6]     self.__publisher.destroy_when_not_in_use()
+[smart_planner_node-6] KeyboardInterrupt
+[ERROR] [smart_planner_node-6]: process has died [pid 13466, exit code -2, cmd '/home/a2r/A2R_BOT/a2r_bot_ws/install/a2r_bot_follow/lib/a2r_bot_follow/smart_planner_node --ros-args --log-level info --ros-args -r __node:=local_planner_bridge --params-file /home/a2r/A2R_BOT/a2r_bot_ws/install/a2r_bot_follow/share/a2r_bot_follow/config/params.yaml --params-file /tmp/launch_params_40g8v6kq'].
+[ERROR] [ekf_state_node-5]: process has died [pid 13464, exit code -2, cmd '/home/a2r/A2R_BOT/a2r_bot_ws/install/a2r_bot_sensor_fusion/lib/a2r_bot_sensor_fusion/ekf_state_node --ros-args --log-level info --ros-args -r __node:=ekf_state_node --params-file /home/a2r/A2R_BOT/a2r_bot_ws/install/a2r_bot_sensor_fusion/share/a2r_bot_sensor_fusion/config/fusion.yaml --params-file /tmp/launch_params_kyk8qd1b'].
+[ERROR] [wheel_state_node-2]: process has died [pid 13458, exit code -2, cmd '/home/a2r/A2R_BOT/a2r_bot_ws/install/a2r_bot_description/lib/a2r_bot_description/wheel_state_node --ros-args -r __node:=wheel_state_node --params-file /home/a2r/A2R_BOT/a2r_bot_ws/install/a2r_bot_description/share/a2r_bot_description/config/description.yaml --params-file /tmp/launch_params_2ury_5l0'].
+[ERROR] [gps_owner_node-12]: process has died [pid 13478, exit code -2, cmd '/home/a2r/A2R_BOT/a2r_bot_ws/install/a2r_bot_follow/lib/a2r_bot_follow/gps_owner_node --ros-args -r __node:=gps_owner --params-file /home/a2r/A2R_BOT/a2r_bot_ws/install/a2r_bot_follow/share/a2r_bot_follow/config/params.yaml --params-file /tmp/launch_params_pjr4cjcq'].
+[ERROR] [imu_filter_node-4]: process has died [pid 13462, exit code -2, cmd '/home/a2r/A2R_BOT/a2r_bot_ws/install/a2r_bot_sensor_fusion/lib/a2r_bot_sensor_fusion/imu_filter_node --ros-args --log-level info --ros-args -r __node:=imu_filter_node --params-file /home/a2r/A2R_BOT/a2r_bot_ws/install/a2r_bot_sensor_fusion/share/a2r_bot_sensor_fusion/config/fusion.yaml --params-file /tmp/launch_params_hu6hbxku'].

@@ -1,0 +1,51 @@
+# =============================================================================
+#  a2r_bot_description — parameters
+# =============================================================================
+#  The robot's physical dimensions live in urdf/common.xacro, which is the
+#  single source of truth. The values repeated here are only the ones a ROS
+#  node needs at runtime, and they MUST match common.xacro. If you change the
+#  car, change common.xacro first, then these.
+# =============================================================================
+
+robot_state_publisher:
+  ros__parameters:
+    # 30 Hz is plenty. The TF tree is 123 links; republishing all of it at
+    # 100 Hz floods /tf for no benefit, because nothing moves quickly except
+    # the wheels and the steering knuckles — and those come from
+    # wheel_state_node's /joint_states, not from here.
+    publish_frequency: 100.0     # a CAP, not a rate: keep it well above
+                                 # wheel_state_node's rate or it skips frames
+    ignore_timestamp: false
+
+
+wheel_state_node:
+  ros__parameters:
+    # ---- Geometry: MUST match urdf/common.xacro ---------------------------
+    wheelbase_m: 0.280
+    track_m: 0.250
+    wheel_radius_m: 0.060
+    max_steer_deg: 30.0
+
+    # ---- Sources ----------------------------------------------------------
+    # This node publishes /joint_states from the drive command, so RViz shows
+    # the wheels turning and the knuckles steering. That makes the model a
+    # live debugger: if the servo wags in RViz but not on the bench, the fault
+    # is below the serial bridge; if it wags in neither, it is above.
+    #
+    # cmd_out_topic is normalised (-1..1) from the local planner.
+    # cmd_vel_topic is the fallback, in real units, used when the planner is
+    # not running — teleop straight to /cmd_vel, for instance.
+    cmd_out_topic: "/local_planner/cmd_out"
+    cmd_vel_topic: "/cmd_vel"
+    publish_rate_hz: 15.0        # v2.4: was 50 - wheel visuals only (no subscriber but robot_state_publisher); halves /tf
+
+    # How long after the last command the animation keeps going. Past this the
+    # wheels freeze and the steering returns to centre, so a stale RViz view
+    # looks visibly stale instead of quietly lying about a robot that stopped
+    # receiving commands a minute ago.
+    cmd_timeout_s: 1.0
+
+    # Low-pass on the steering visual only, in Hz. Do NOT raise this to make
+    # the model look smoother — servo wag is a real fault and the point of
+    # showing it here is that you can see it.
+    steer_filter_hz: 12.0

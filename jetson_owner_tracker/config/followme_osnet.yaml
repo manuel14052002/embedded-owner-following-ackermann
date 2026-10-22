@@ -1,0 +1,40 @@
+segmentation:
+  model_path: yolo11n-seg.engine
+  remove_background: false
+  image_size: 480
+reid:
+  backend: torchreid
+  torchreid_model_name: osnet_x1_0
+  model_path: models/osnet_x1_0_msmt17.pth
+calibration:
+  metric: gallery
+  duration_s: 12
+  num_samples: 120
+identity:
+  negative_margin: 0.03
+  online_update: true
+  tracking_threshold_factor: 1.5
+  online_from_tracking: true
+localization:
+  confirm_frames: 3
+  confirm_radius_m: 0.5
+  gate_m: 1.0
+navigation:
+  search_linear_speed: 0.08
+  max_velocity_mps: 0.05
+  safety_radius_m: 0.5
+  follow_distance_m: 0.6
+  accel_mps2: 0.2
+  max_angular_rps: 0.5
+  search_angular_speed: 0.3
+  search_move_s: 1.5
+  search_pause_s: 0.5
+ownership:
+  enabled: true
+  claim_hold_s: 1.5
+  release_hold_s: 3.0
+  calibration_s: 12.0
+  owner_lost_release_s: 60.0
+  start_following: true
+  max_candidates: 2
+  voice_arm_s: 30.0

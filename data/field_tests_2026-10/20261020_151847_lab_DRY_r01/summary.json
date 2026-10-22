@@ -1,0 +1,53 @@
+{
+  "run_dir": "/home/a2r/a2r_tests/20261020_151847_lab_DRY_r01",
+  "date": "2026-10-20T15:19:15",
+  "mode": "lab",
+  "scenario": "DRY",
+  "run": 1,
+  "planner": "dwa",
+  "vfht": true,
+  "result": "STUCK",
+  "time_to_goal_s": null,
+  "duration_s": 23.5,
+  "path_length_m": 1.591,
+  "straight_line_m": 1.5,
+  "path_ratio": 1.061,
+  "avg_speed_mps": 0.068,
+  "final_goal_error_m": 0.783,
+  "min_clearance_m": 0.26,
+  "mean_clearance_m": 0.408,
+  "escapes": 0,
+  "boxed_events": 0,
+  "cm_stops": 2,
+  "trap_detections": 0,
+  "planner_switches": 0,
+  "owner_lost_events": 0,
+  "owner_reacquired": 0,
+  "max_lost_s": 0.0,
+  "src_camera_lidar_s": 0,
+  "src_lidar_s": 0,
+  "src_camera_s": 0,
+  "src_none_s": 23.5,
+  "search_s": 0.0,
+  "motion_start_wall": "2026-10-20T15:18:52.669",
+  "notes": "",
+  "goal_start_frame": [
+    1.5,
+    0.0
+  ],
+  "waypoints": [
+    [
+      1.5,
+      0.0
+    ]
+  ],
+  "waypoint_times_s": [],
+  "start_pose_odom": [
+    5.008280775531945,
+    -0.6500613251509536,
+    -0.2780922849548331
+  ],
+  "owner_source_time_s": {
+    "none": 23.53
+  }
+}
