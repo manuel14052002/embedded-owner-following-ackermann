@@ -28,7 +28,7 @@ These are screen recordings of the robot's debug view, sped up 2.5×. The green 
 
 <p align="center"><img src="docs/demo/outdoor_follow.gif" width="460" alt="Following outdoors"></p>
 
-**Turning away.** When I walk off to the side the car can't turn on the spot, so it plans a manoeuvre to get me back in view.
+**Turning away.** When the individual walk off to the side the car can't turn on the spot, so it plans a manoeuvre to get me back in view.
 
 <p align="center"><img src="docs/demo/corridor_turn.gif" width="460" alt="Following through a turn in a corridor"></p>
 
