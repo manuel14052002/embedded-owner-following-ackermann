@@ -1,6 +1,0 @@
-rule,parameter,owner_accept_select,owner_accept_test,wrong_person_test,volunteer_accept_test,volunteer_accepted_frames
-Strict ReID (original FollowMe),1.25,0.8061,0.8901,0.0000,0.0034,1
-Fixed-weight fusion,0.3,0.8170,0.9018,0.0000,0.0034,1
-"Gated, a-priori reliabilities",0.66,0.7998,0.8874,0.0000,0.0034,1
-"Gated, calibrated",0.49,0.8170,0.8991,0.0000,0.0000,0
-Deployed cascade,,0.7845,0.8982,0.0000,0.0000,0

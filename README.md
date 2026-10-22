@@ -1,61 +1,110 @@
-# A2R-bot — Embedded Owner Following on an Ackermann Robot
+# A2R-bot
 
-**Adapting FollowMe with multi-view re-identification and LiDAR-assisted owner keeping**
+A small RC car that follows its owner around.
 
-A2R-bot is a small Ackermann-steered robot car that recognises its owner, follows them indoors and outdoors, and avoids obstacles. It runs entirely on embedded hardware: an NVIDIA Jetson for perception, a Raspberry Pi 4 for fusion, planning and safety, and an Arduino Nano ESP32 on a custom carrier PCB for the actuators.
+I built this on top of a 1:10 Ackermann RC chassis. You raise your hand in front of it, it learns what you look like, and from then on it follows you at a couple of metres, indoors or outside, while trying not to hit anything (or anyone) on the way. It ignores other people, and if it loses you for a moment it keeps track of where you probably are using the lidar until the camera finds you again.
 
-This repository contains the source code, firmware, electronics design, analysis scripts, field-test data and documentation of the project (TDK research project, University of Debrecen, Faculty of Engineering, 2026).
+<p align="center">
+  <img src="docs/images/robot_side.jpg" width="360" alt="A2R-bot, side view">
+  <img src="docs/images/robot_top.jpg" width="360" alt="A2R-bot, top view">
+</p>
 
-<p align="center"><img src="docs/figures/car_annotated.jpg" width="520" alt="The A2R-bot prototype"></p>
+The person-recognition part started from [FollowMe](https://arxiv.org/abs/2311.12992) (Rollo et al.), which I adapted to run on a Jetson and extended in two ways:
 
-## Highlights
+- **multi-view re-identification**: instead of one "average" picture of the owner, the robot keeps many separate views (front, back, side, near, far) and compares new detections against the closest ones;
+- **lidar owner keeping**: a 2D lidar tracker that holds on to the owner when the camera loses them, which happens a lot on a car that can't turn on the spot.
 
-| | |
-|---|---|
-| Field tests (20–22 Oct 2026) | 12 of 15 follow runs completed, 446 m, no collisions |
-| LiDAR owner keeper | supplied the owner position for **89.9 %** of the tracked time |
-| Multi-view re-identification | 89.8 % owner acceptance on held-out frames, 0 of 295 volunteer frames accepted |
-| Owner range accuracy | camera 3.3 cm MAE, lidar 11.1 cm MAE (1–5 m) |
-| Perception on the Jetson | median 74 ms per frame (YOLO11n-seg + OSNet, TensorRT FP16) |
+This was my student research project (TDK) at the University of Debrecen, Faculty of Engineering, in 2026.
 
-Open issues found in the evaluation: no owner fix for 51.9 % of moving time, zero identification beyond 3.5 m, search by rotating in place, and I²C / serial-link faults traced to the carrier board (see [docs/RESULTS.md](docs/RESULTS.md)).
+## What's in the repo
 
-## How it works
+```
+robot_ws/              ROS 2 workspace that runs on the Raspberry Pi 4
+  src/a2r_bot_follow/      owner fusion, Kalman filter, follow manager, local planner,
+                           collision monitor, command mux
+  src/a2r_bot_arduino/     serial bridge + ESP32 firmware (servo, ESC, IMU, battery)
+  src/a2r_bot_description/ URDF model
+  src/a2r_bot_info/docs/   older notes: architecture, topics, kinematics, wiring, testing
+jetson_owner_tracker/  perception on the Jetson (FollowMe adaptation, re-ID, gestures,
+                       lidar owner keeper, ROS 2 nodes in ros2/followme_ros)
+robot_face/            the little face shown on the robot's display
+hardware/              KiCad project of the carrier board + schematic / PCB renders
+tools/simulation/      MATLAB / Python simulation of the follow controller
+legacy_ros2_ws/        my first prototype (simple human tracker), kept for reference
+```
 
-<p align="center"><img src="docs/figures/des_system_architecture.png" width="760" alt="System architecture"></p>
+## How it works (short version)
 
-1. **Perception (Jetson, `jetson_owner_tracker/`)** — a FollowMe-based pipeline: YOLO11n-seg person segmentation → OSNet x1_0 embeddings → owner identification → masked-depth localisation, plus MediaPipe hand gestures for enrolment (raised palm) and FOLLOW/WAIT commands.
-2. **Multi-view re-identification** — every enrolment crop is kept as its own reference view (80 gallery views + up to 400 online views); a candidate is scored by its three nearest views, checked against a stranger bank, and accepted through a five-stage cascade (strict → continuity → relaxed → far → lidar).
-3. **LiDAR-assisted owner keeping (`lidar_owner_keeper.py`)** — tracks every leg/body cluster in the 2D scan, lets the camera decide which track is the owner, keeps that track through camera drop-outs, and feeds a 0.8 m hint back into identification.
-4. **Fusion, planning and safety (Raspberry Pi, `robot_ws/`)** — owner fusion and a constant-velocity Kalman filter with χ² gating, a pure-pursuit goal law with DWA / VFH+ / APF local planners, a priority command multiplexer and a speed-dependent collision monitor.
-5. **Low level (Arduino Nano ESP32, `robot_ws/src/a2r_bot_arduino/firmware/`)** — JSON serial protocol, PCA9685 PWM for the steering servo and ESC, IMU telemetry, watchdogs.
+```
+ RealSense D435 ──► Jetson: segment people ─► re-ID ─► "is this my owner?" ─► owner position
+                                                                │
+ RPLIDAR A2M12 ───► Jetson: lidar owner keeper ◄────────────────┘ (camera picks the track)
+                                │
+                                ▼
+                    Raspberry Pi 4: owner fusion ─► Kalman filter ─► goal 1.6 m behind owner
+                                                     ─► local planner ─► collision monitor
+                                │
+                                ▼  JSON over serial
+                    Arduino Nano ESP32 ─► PCA9685 ─► steering servo + ESC
+```
 
-Details: [docs/PROJECT_OVERVIEW.md](docs/PROJECT_OVERVIEW.md).
+The Jetson does everything that needs a GPU: person segmentation (YOLO11n-seg), appearance embeddings (OSNet), deciding which person is the owner, and hand gestures. It also runs the lidar keeper, because the keeper and the camera have to talk to each other constantly. The Raspberry Pi does the "driving" part: it fuses the owner position, filters it, picks a goal point and plans a path that the Ackermann steering can actually follow. The ESP32 only turns speed and steering commands into PWM and has a watchdog that stops the car if commands stop arriving.
 
-## Repository layout
+The longer explanation, including how enrolment, the re-ID decision and the lidar keeper work, is in [docs/how-it-works.md](docs/how-it-works.md). Parts and wiring are in [docs/hardware.md](docs/hardware.md).
 
-| Folder | Content |
-|---|---|
-| `robot_ws/` | ROS 2 workspace for the Raspberry Pi: `a2r_bot_follow` (owner fusion, follow manager, owner KF, smart planner, collision monitor, command mux), `a2r_bot_arduino` (serial bridge + ESP32 firmware), `a2r_bot_description` (URDF), `a2r_bot_info/docs` (architecture, hardware, kinematics, planners, protocol, testing guides) |
-| `jetson_owner_tracker/` | Jetson perception: FollowMe adaptation, multi-view Re-ID, ownership state machine, gestures, LiDAR owner keeper, ROS 2 nodes (`ros2/followme_ros`) |
-| `robot_face/` | Robot face UI shown on the LCD |
-| `legacy_ros2_ws/` | Earlier prototype workspace (human tracker, pet-car behaviour) |
-| `hardware/` | KiCad 9 project of the carrier PCB and schematic / 3D renders |
-| `analysis/` | MATLAB simulation of the follow law, offline analysis scripts, thesis figure scripts and the figure-data workbook |
-| `data/` | Field-test summaries, event logs and stack logs (20–22 Oct 2026), range-accuracy sweep |
-| `docs/` | Project overview, results, electronics review and figures |
+## Running it
 
-## Getting started
+You need ROS 2 (I used Humble) on both the Pi and the Jetson, on the same network.
 
-- Robot (Raspberry Pi 4, ROS 2): see [robot_ws/README.md](robot_ws/README.md) and [QUICKSTART](robot_ws/src/a2r_bot_info/docs/QUICKSTART.md).
-- Jetson perception: see [jetson_owner_tracker/README.md](jetson_owner_tracker/README.md) and [README_FOLLOWME.md](jetson_owner_tracker/README_FOLLOWME.md). The TensorRT engines and model weights are **not** included (size and licence); build them from the original YOLO11n-seg and OSNet weights as described there.
-- Wiring and firmware: [WIRING.md](robot_ws/src/a2r_bot_arduino/docs/WIRING.md), [SERIAL_PROTOCOL.md](robot_ws/src/a2r_bot_info/docs/SERIAL_PROTOCOL.md).
-- Figures and analysis: open MATLAB in `analysis/thesis_figures_matlab` and run `make_all_figures` (reads `analysis/A2R-bot_TDK_Thesis_Figure_Data.xlsx`).
+**Raspberry Pi**
 
-**Configuration secrets.** The Firebase database URL and the SIM PIN of the GNSS/LTE modem have been replaced with placeholders in `robot_ws/src/a2r_bot_follow/config/params.yaml`, `gps_owner_node.py` and `phone_pdr_node.py`. Set your own values locally and do not commit them.
+```bash
+cd robot_ws
+colcon build --symlink-install
+source install/setup.bash
+ros2 launch a2r_bot_follow follow.launch.py
+```
 
-## Acknowledgements
+**Jetson**
 
-The perception pipeline builds on **FollowMe** (F. Rollo et al., "FollowMe: a robust person following framework based on visual re-identification and gestures", arXiv:2311.12992) and uses OSNet (K. Zhou et al.), YOLO11 (Ultralytics), MediaPipe Hands and ROS 2.
+The model files are not in the repo (too big). Export YOLO11n-seg and OSNet x1_0 to TensorRT on the Jetson first; the steps are in [jetson_owner_tracker/README_FOLLOWME.md](jetson_owner_tracker/README_FOLLOWME.md). Then:
 
+```bash
+cd jetson_owner_tracker
+pip install -r requirements.txt
+# build the ROS 2 package in ros2/followme_ros, then:
+ros2 launch followme_ros followme.launch.py
+```
+
+**ESP32 firmware**
+
+Open `robot_ws/src/a2r_bot_arduino/firmware/a2r_bot_firmware/` in the Arduino IDE (board: Arduino Nano ESP32) and flash it. The serial protocol is described in [SERIAL_PROTOCOL.md](robot_ws/src/a2r_bot_info/docs/SERIAL_PROTOCOL.md).
+
+**Using the robot**
+
+1. Stand alone in front of the camera, about 2 m away, and hold up an open hand for a second or two.
+2. Stay in view while it learns you (about 12 seconds). Turning around slowly helps.
+3. Make a fist to start following, show a low open palm to make it wait. Hold your hand up for 3 s to release it.
+
+The more detailed bring-up checklist is in [QUICKSTART.md](robot_ws/src/a2r_bot_info/docs/QUICKSTART.md), and [TROUBLESHOOTING.md](robot_ws/src/a2r_bot_info/docs/TROUBLESHOOTING.md) has the problems I ran into.
+
+## Configuration
+
+Most parameters live in `robot_ws/src/a2r_bot_follow/config/params.yaml` (follow distance, planner choice, speed limits, collision zones) and `jetson_owner_tracker/config/followme_deploy.yaml` (detection, re-ID and enrolment settings).
+
+The GPS fallback uses a SIM7600 modem and reads the owner's phone position from a Firebase database. I removed my own database URL and SIM PIN from the code, so set `firebase_url` and `sim_pin` in `params.yaml` yourself if you want that feature, and don't commit them.
+
+## Known issues / TODO
+
+- When it loses you it searches by turning in place, which is not great for a car. It should drive towards the last place it saw you.
+- Recognition gets unreliable when you are further than ~3.5 m away or very close (only legs in view).
+- Enrolment can lock onto the wrong person if someone else is in view at the same time. Do it alone for now.
+- There are no wheel encoders, so speed control is open loop.
+- The carrier board mixes 3.3 V and 5 V I²C pull-ups and powers the ESP32 only from USB. That probably explains the occasional "PCA9685 not responding" and serial reconnects; it's on the list for the next board revision.
+- The lidar keeper's leg-shape identity model (`leg_signature.py`) only runs in logging mode so far.
+
+## Credits
+
+- FollowMe: F. Rollo, A. Zunino, G. Raiola, F. Amadio, A. Ajoudani, N. Tsagarakis, *FollowMe: a robust person following framework based on visual re-identification and gestures*, arXiv:2311.12992.
+- OSNet (K. Zhou et al.), YOLO11 (Ultralytics), MediaPipe Hands, ROS 2, Slamtec sllidar_ros2, Intel RealSense SDK.
 Authors: Manuel Afonso Fernandes Junior 

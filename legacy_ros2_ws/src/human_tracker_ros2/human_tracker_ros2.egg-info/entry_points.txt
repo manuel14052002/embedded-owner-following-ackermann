@@ -1,3 +1,0 @@
-[console_scripts]
-camera_node = human_tracker_ros2.camera_node:main
-tracker_node = human_tracker_ros2.tracker_node:main
