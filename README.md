@@ -16,6 +16,22 @@ The person-recognition part started from [FollowMe](https://arxiv.org/abs/2311.1
 
 This was my student research project (TDK) at the University of Debrecen, Faculty of Engineering, in 2026.
 
+## In action
+
+These are screen recordings of the robot's debug view, sped up 2.5×. The green outline is the person it thinks is its owner; the small panel at the bottom right is the lidar view from above (yellow dot = owner, cross = current goal).
+
+**Enrolling and following down a corridor.** The yellow box is the "learning you" phase; once it turns green it starts following.
+
+<p align="center"><img src="docs/demo/corridor_enrol_and_follow.gif" width="460" alt="Enrolment and following in a corridor"></p>
+
+**Following outdoors.** Low sun and backlight, which is about the hardest light for the camera.
+
+<p align="center"><img src="docs/demo/outdoor_follow.gif" width="460" alt="Following outdoors"></p>
+
+**Turning away.** When I walk off to the side the car can't turn on the spot, so it plans a manoeuvre to get me back in view.
+
+<p align="center"><img src="docs/demo/corridor_turn.gif" width="460" alt="Following through a turn in a corridor"></p>
+
 ## What's in the repo
 
 ```
