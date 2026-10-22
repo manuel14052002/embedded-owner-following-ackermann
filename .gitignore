@@ -6,39 +6,39 @@ log/
 # Python
 __pycache__/
 *.pyc
+*.egg-info/
 .venv/
 venv/
 .pytest_cache/
 
-# Models and large binaries (build locally, see jetson_owner_tracker/README_FOLLOWME.md)
+# model files (export them on the Jetson, see jetson_owner_tracker/README_FOLLOWME.md)
 *.engine
 *.onnx
 *.pt
 *.pth
 *.npz
+
+# recordings and logs
 *.bag
 *.db3
 *.mp4
+logs/
 
-# Editors / OS
+# backups / editor files
 *.bak
 *.bak_*
+*.orig
 *~
 .DS_Store
 Thumbs.db
 
-# KiCad temporary files
+# KiCad temp files
 *-backups/
 *.lck
 fp-info-cache
 hs_err_pid*.log
 *.kicad_prl
 
-# MATLAB outputs
-analysis/thesis_figures_matlab/figures_matlab/
-
-# Local secrets (SIM PIN, Firebase URL overrides)
+# local secrets (SIM PIN, Firebase URL)
 *.local.yaml
 .env
-
-*.orig
