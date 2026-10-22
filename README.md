@@ -58,4 +58,4 @@ Details: [docs/PROJECT_OVERVIEW.md](docs/PROJECT_OVERVIEW.md).
 
 The perception pipeline builds on **FollowMe** (F. Rollo et al., "FollowMe: a robust person following framework based on visual re-identification and gestures", arXiv:2311.12992) and uses OSNet (K. Zhou et al.), YOLO11 (Ultralytics), MediaPipe Hands and ROS 2.
 
-Authors: [author names] · Supervisor: [supervisor name] · University of Debrecen, Faculty of Engineering
+Authors: Manuel Afonso Fernandes Junior 
